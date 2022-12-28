@@ -1,0 +1,180 @@
+[
+    {  
+        "name": "flexpool",
+        "primary": {
+            "main": "#0069ff"
+        },
+        "secondary": {
+            "main": "#1633ff"
+        },
+        "background": {
+            "default": "#151519",
+            "paper":" #1c1c1f"
+        },
+        "text": {
+            "primary": "#eee",
+            "secondary": "#ccc",
+            "disabled": ""
+        }
+    },
+
+    {   
+        "name": "Zapper",
+        "primary": {
+            "main": "#784ffe"
+        },
+        "secondary": {
+            "main": "#202a30"
+        },
+        "background": {
+            "default": "#0c1013",
+            "paper": "#202a30"
+        },
+        "text": {
+            "primary": "#fff",
+            "secondary": "#c7d2da",
+            "disabled": "#422f88"
+        }
+    },
+
+    {   "name": "Framer",
+        "primary": {
+            "main": "#09f",
+            "light": "",
+            "dark": "#0088f0"
+        },
+        "secondary": {
+            "main": "#d2c"
+        },
+        "background": {
+            "default": "#1a1a1a",
+            "paper": "#2c2c2c"
+        },
+        "text": {
+            "primary": "#fff",
+            "secondary": "#ffffff80",
+            "disabled": ""
+        }
+    },
+
+    {   "name": "Motionapp.com",
+        "primary": {
+            "main": "#5047eb",
+            "light": "",
+            "dark": ""
+        },
+        "secondary": {
+            "main": "#ec91d8"
+        },
+        "background": {
+            "default": "#000000",
+            "paper": "#101014"
+        },
+        "text": {
+            "primary": "#fff",
+            "secondary": "#abaab9",
+            "disabled": ""
+        }
+    },
+    
+    {
+        "name": "threes.dev",
+        "primary": {
+            "main": "#8c9eff",
+            "light": "",
+            "dark": ""
+        },
+        "secondary": {
+            "main": "#eb83cc"
+        },
+        "background": {
+            "default": "#191B1F",
+            "paper": "#1f1f27"
+        },
+        "text": {
+            "primary": "#fff",
+            "secondary": "#cbcbcd",
+            "disabled": ""
+        }
+    },
+    {
+        "name": "ethereum.org",
+        "primary": {
+            "main": "#ff7324",
+            "light": "",
+            "dark": ""
+        },
+        "secondary": {
+            "main": "#222222"
+        },
+        "background": {
+            "default": "#222222",
+            "paper": "#272627"
+        },
+        "text": {
+            "primary": "#ffffffeb",
+            "secondary": "#b2b2b2",
+            "disabled": ""
+        }
+    },
+    {
+        "name": "uniswap.org",
+        "primary": {
+            "main": "#FF007A"
+        },
+        "secondary": {
+            "main": "#4c82fb"
+        },
+        "background": {
+            "default": "#191B1F",
+            "paper": "#ffffff05"
+        },
+        "text": {
+            "primary": "#ffffffeb",
+            "secondary": "#b2b2b2",
+            "disabled": ""
+        },
+        "border": "#ffffff21"
+        
+    },
+    {
+        "name": "aleo.org",
+        "primary": {
+            "main": "#ff6f5f"
+        },
+        "secondary": {
+            "main": "#931cff"
+        },
+        "background": {
+            "default": "#12141d",
+            "paper": "#1e2029"
+        },
+        "text": {
+            "primary": "#fff",
+            "secondary": "#ffffff80",
+            "disabled": ""
+        },
+        "border": "#ffffff21"
+        
+    },
+    {
+        "name": "studiobaseline",
+        "primary": {
+            "main": "#f7f7f7"
+        },
+        "secondary": {
+            "main": "#979899"
+        },
+        "background": {
+            "default": "#262626",
+            "paper": "#efeff1"
+        },
+        "text": {
+            "primary": "#262626",
+            "secondary": "#979899",
+            "disabled": ""
+        },
+        "border": "#ffffff21"
+        
+    }
+]

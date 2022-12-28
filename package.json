@@ -3,10 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@adobe/leonardo-contrast-colors": "1.0.0-alpha.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@k-vyn/coloralgorithm": "^1.0.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vx/pattern": "0.0.194",
+    "@vx/shape": "0.0.194",
+    "axios": "^1.2.1",
+    "cheerio": "^1.0.0-rc.12",
+    "chroma-js": "^2.4.2",
+    "ciebase": "^0.1.1",
+    "ciecam02": "^0.4.6",
+    "color-namer": "1.4.0",
+    "framer-motion": "^7.10.2",
+    "hsluv": "^1.0.0",
+    "mdx-utils": "^0.2.0",
+    "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
+    "react-code-blocks": "0.0.9-0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -34,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.0.0-alpha.16"
   }
 }

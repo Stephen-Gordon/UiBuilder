@@ -16,7 +16,7 @@ import theme from "prism-react-renderer/themes/dracula";
 
 
 
-const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPalette, JSON, setJSON, setPalette, primaryPalette, primaryColorPalette, setPrimaryColorPalette }) => {
+const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, setPalette, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
     let colors 
 
@@ -48,42 +48,42 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
     let primary;
 
     
-
+    
     const generateBackgroundPalette = () => {
         
-        setJSON(
+        setBackgroundJSON(
             {
                 steps: 20,
                 hue: {
-                  start: input, // 0 - 359
-                  end: input2, // 0 - 359
+                  start: input,
+                  end: input2,
                   rotation: "cw",
-                  curve: "easeInQuad", // See acceptable curves below
+                  curve: "easeInQuad", 
                   direction: "easeOut"
                 },
                  saturation: {
-                    start: saturation, // 0 - 1
-                    end: saturation2, // 0 - 1
+                    start: saturation, 
+                    end: saturation2, 
                     curve: "easeOutQuad",
-                    rate: 1, // 1 is default
+                    rate: 1, 
                     direction: "easeOut"
                   }, 
                  brightness: {
-                    start: brightness, // 0 - 1
-                    end: brightness2, // 0 - 1
+                    start: brightness, 
+                    end: brightness2, 
                     curve: "linear",
                     direction: "linear"
                   }, 
             }
         )
       
-        colors = generate(JSON);
+        colors = generate(backgroundJSON);
         
-        setColorPalette(colors[0].colors)
+        setBackgroundColorPalette(colors[0].colors)
          
-        background = colorPalette.length -1
-        paper = colorPalette.length - 4
-        primary = colorPalette.length /2
+        background = backgroundColorPalette.length -1
+        paper = backgroundColorPalette.length - 4
+        primary = backgroundColorPalette.length /2
 
 
         setPalette(prevState => ({
@@ -113,7 +113,7 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
 
     const generatePrimaryPalette = () => {
 
-        setPrimaryPalette(
+        setPrimaryJSON(
             {
                 steps: 20,
                 hue: {
@@ -138,14 +138,20 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
                   }, 
             }
             
-        )
+        ,  console.log("Primary Palette",primaryJSON.hue)) 
+       
 
         
        
-      
-        primaryColors = generate(primaryPalette);
+     
+         primaryColors = generate(primaryJSON);
 
+        console.log(primaryColors[0].color)  
 
+        
+
+        
+ 
         setPrimaryColorPalette(primaryColors[0].colors)
         background = primaryColorPalette.length - 1;
         paper = primaryColorPalette.length - 4;
@@ -173,14 +179,25 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
             
           }));
        
-        console.log(palette.name)
+       
         
     }
 
+    useEffect(() => {
+     
 
+
+        primaryColors = generate(primaryJSON)
+
+        console.log(primaryColors)  
+
+        setPrimaryColorPalette(primaryColors[0].colors)
+        
+
+      }, [primaryHueStart, primaryJSON]);
 
     /* BACKGROUND PALETTE */
-
+   
 
     const handleInput = (e) => {    
             setInput(e.target.value)
@@ -222,9 +239,62 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
 
 
     const handlePrimaryHueStart = (e) => {    
-            setPrimaryHueStart(e.target.value)
-            setPrimaryHueEnd(e.target.value)         
-            generatePrimaryPalette()    
+       setPrimaryHueStart(e.target.value)   
+       setPrimaryJSON(prevState => (
+        {
+            steps: 20,
+            hue: {
+              start: e.target.value,
+              end: e.target.value,
+              rotation: "cw",
+              curve: "easeInQuad", 
+              direction: "easeOut"
+            },
+             saturation: {
+                start: prevState.saturation.start,
+                end: prevState.saturation.end,
+                curve: "easeOutQuad",
+                rate: 1, 
+                direction: "easeOut"
+              }, 
+             brightness: {
+                start: prevState.brightness.start,
+                end:   prevState.brightness.end,
+                curve: "linear",
+                direction: "linear"
+              }, 
+        }
+    ))
+    
+    background = primaryColorPalette.length - 1;
+    paper = primaryColorPalette.length - 4;
+     let primary =  primaryColorPalette.length /2;
+    
+     if(primaryColorPalette.length > 0){
+        setPalette(prevState => ({
+       
+         
+            "name": prevState.name,
+            "primary": {
+                "main": `${primaryColorPalette[primary].hex}`
+            },
+            "secondary": {
+                "main": `${primaryColorPalette[1].hex}`
+            },
+            "background": {
+                "default": prevState.background.default,
+                "paper": prevState.background.paper
+            },
+            "text": {
+                "primary": prevState.text.primary,
+                "secondary": prevState.text.secondary,
+                "disabled": ""
+            }
+            
+          
+        }));
+     }
+    
     }
 
     const handlePrimarySaturationStart = (e) => {      
@@ -249,17 +319,21 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
         
     }
 
+
     
-    let BackgroundPalette = colorPalette.map((c, i)=> {
+
+
+    
+    let BackgroundPalette = backgroundColorPalette.map((c, i)=> {
         return <Button fullWidth key={i} variant='contained' sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
     })
 
-      let PrimaryPalette = primaryColorPalette.map((c, i)=> {
+    let PrimaryPalette = primaryColorPalette.map((c, i)=> {
         return <Button fullWidth key={i} variant='contained' sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
     })  
    
   
-    console.log(input)
+    
 
     return (
 
@@ -413,7 +487,10 @@ const ColorGenerator = ({ palette, setPrimaryPalette, colorPalette, setColorPale
                                 max={360}
                                 step={10}
                                 valueLabelDisplay="auto" 
-                                onChange={handlePrimaryHueStart}
+                                onChange={(e) => {
+                                    handlePrimaryHueStart(e)
+                                }} 
+                               
                                 color="primary"
                             />
                         </Grid>

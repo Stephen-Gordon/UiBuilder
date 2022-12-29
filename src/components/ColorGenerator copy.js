@@ -52,7 +52,7 @@ const ColorGenerator = ({ palette, setPalette }) => {
 
       
         colors = generate(JSON);
-        setColorPalette(colors[0].colors)
+        setBackgroundColorPalette(colors[0].colors)
         
         let background = colorPalette.length -1
         let paper = colorPalette.length - 4

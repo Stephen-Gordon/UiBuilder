@@ -18,16 +18,38 @@ import { motion, useScroll } from "framer-motion";
 
 const Home = () => {
 
+
   
-  const [palette, setPalette] = useState(palettes[Math.floor(Math.random()*palettes.length)])
+  const [palette, setPalette] = useState(
+    {
+      "name": "threes.dev",
+      "primary": {
+          "main": "#40547c",
+          "light": "",
+          "dark": ""
+      },
+      "secondary": {
+          "main": "#8798ba"
+      },
+      "background": {
+          "default": "#121214",
+          "paper": "#2c2d33"
+      },
+      "text": {
+          "primary": "#fff",
+          "secondary": "#cbcbcd",
+          "disabled": ""
+      }
+  }
+  )
   
-  const [colorPalette, setColorPalette] = useState([])
+  const [backgroundColorPalette, setBackgroundColorPalette] = useState([])
 
   const [primaryColorPalette, setPrimaryColorPalette] = useState([])
 
   
 
-  const [JSON, setJSON] = useState(
+  const [backgroundJSON, setBackgroundJSON] = useState(
         {
             steps: 20,
             hue: {
@@ -53,19 +75,19 @@ const Home = () => {
         }
     )
 
-    const [primaryPalette, setPrimaryPalette] = useState(
+    const [primaryJSON, setPrimaryJSON] = useState(
       {
           steps: 20,
           hue: {
             start: 220, 
-            end: 235, 
+            end: 220, 
             rotation: "cw",
             curve: "easeInQuad", 
             direction: "easeOut"
           },
            saturation: {
               start: 0.14, 
-              end: 0.14, 
+              end: 0.6, 
               curve: "easeOutQuad",
               rate: 1, 
               direction: "easeOut"
@@ -81,29 +103,29 @@ const Home = () => {
 
   const { scrollYProgress } = useScroll();
     
-   let fonts = [
-        'Segoe UI',
-        'Arial',
-        'sans-serif',
-        'Segoe UI Emoji', 
-        'Segoe UI Symbol', 
-        'Inter',
-        'Roboto',
-        'Ubuntu',
-        'Open Sans',
-        'Montserrat'
 
-    ]
+    useEffect(() => {
+      let colors = generate(backgroundJSON);
+      setBackgroundColorPalette(colors[0].colors)
 
- 
+      let primaryColors = generate(primaryJSON);
+      setPrimaryColorPalette(primaryColors[0].colors)
+
+      console.log("pri", primaryColorPalette)
+
+
+      
+
+  }, [primaryJSON.setPrimaryJSON,])
    
-   const [font, setFont] = useState(fonts[Math.floor(Math.random()*fonts.length)])
 
+
+  
      const theme = createTheme({
         palette: {
          
             primary: {
-                main: palette.primary.main,
+                main: palette.secondary.main,
                 //contrastText: palette.text.primary,
             },
             secondary: {
@@ -119,9 +141,6 @@ const Home = () => {
                 primary: palette.text.primary,
                 secondary: palette.text.secondary
             }
-        },
-        typography: {
-          fontFamily: font
         },
         components: {
           variants: [
@@ -163,21 +182,11 @@ const Home = () => {
     });
      
       
-    const updateAll = () => {
-        setPalette(palettes[Math.floor(Math.random() * palettes.length)])
-        setFont(fonts[Math.floor(Math.random()*fonts.length)])
-    }
+   
 
-    useEffect(() => {
-        let colors = generate(JSON);
-        setColorPalette(colors[0].colors)
+    
 
-        let primaryColors = generate(primaryPalette);
-        setPrimaryColorPalette(primaryColors[0].colors)
-        console.log("pri",primaryColors.colors)
-    },[])
-
-    console.log(primaryPalette)
+    
     return (
 
     <ThemeProvider theme={theme}>
@@ -186,11 +195,11 @@ const Home = () => {
         style={{ scaleX: scrollYProgress, background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`, height: '20px', position: 'fixed', transformOrigin: '0%', top: 0, left: '0', right: 0 }}
       />
       
-        <ColorGenerator primaryPalette={primaryPalette} setPrimaryPalette={setPrimaryPalette }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} JSON={JSON} setJSON={setJSON} colorPalette={colorPalette} setColorPalette={setColorPalette} palette={palette}  setPalette={setPalette} />
+        <ColorGenerator primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} />
 
         <PrimaryColorGenerator/>
 
-        <UI palette={palette} JSON={JSON} setJSON={setJSON} palettes={palettes} font={font} fonts={fonts} setPalette={setPalette} updateAll={updateAll} setFont={setFont}/>
+        {/* <UI palette={palette} backgroundPalette={backgroundPalette} setBackgroundPalette={setBackgroundPalette} palettes={palettes} font={font} fonts={fonts} setPalette={setPalette} updateAll={updateAll} setFont={setFont}/> */}
        
         
 

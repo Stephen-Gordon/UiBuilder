@@ -110,13 +110,8 @@ const Home = () => {
 
       let primaryColors = generate(primaryJSON);
       setPrimaryColorPalette(primaryColors[0].colors)
-
-      console.log("pri", primaryColorPalette)
-
-
       
-
-  }, [primaryJSON.setPrimaryJSON,])
+  }, [palette])
    
 
 

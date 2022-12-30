@@ -108,7 +108,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
             
           
         }));
-
+        console.log(palette)
     }
 
     const generatePrimaryPalette = () => {
@@ -154,47 +154,41 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
  
         setPrimaryColorPalette(primaryColors[0].colors)
         background = primaryColorPalette.length - 1;
-        paper = primaryColorPalette.length - 4;
-       
-        setPalette(prevState => ({
-           
-             
-              "name": prevState.name,
-              "primary": {
-                  "main": `${primaryColorPalette[9].hex}`
-              },
-              "secondary": {
-                  "main": `${primaryColorPalette[1].hex}`
-              },
-              "background": {
-                  "default": prevState.background.default,
-                  "paper": prevState.background.paper
-              },
-              "text": {
-                  "primary": prevState.text.primary,
-                  "secondary": prevState.text.secondary,
-                  "disabled": ""
-              }
-              
-            
-          }));
-       
-       
+        paper = primaryColorPalette.length - 4;  
         
     }
 
     useEffect(() => {
-     
-
 
         primaryColors = generate(primaryJSON)
 
         console.log(primaryColors)  
-
-        setPrimaryColorPalette(primaryColors[0].colors)
         
+        setPalette(prevState => ({
+        
+            
+            "name": prevState.name,
+            "primary": {
+                "main": primaryColors[0].colors[12].hex
+            },
+            "secondary": {
+                "main": primaryColors[0].colors[2].hex
+            },
+            "background": {
+                "default": prevState.background.default,
+                "paper": prevState.background.paper
+            },
+            "text": {
+                "primary": prevState.text.primary,
+                "secondary": prevState.text.secondary,
+                "disabled": ""
+            }
+            
+            
+        }), console.log("palette set" ,palette));
+        setPrimaryColorPalette(primaryColors[0].colors)
 
-      }, [primaryHueStart, primaryJSON]);
+      }, [primaryHueStart, primaryJSON, primaryColors ]);
 
     /* BACKGROUND PALETTE */
    
@@ -264,16 +258,20 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                 direction: "linear"
               }, 
         }
-    ))
+        ))
     
-    background = primaryColorPalette.length - 1;
-    paper = primaryColorPalette.length - 4;
-     let primary =  primaryColorPalette.length /2;
-    
-     if(primaryColorPalette.length > 0){
-        setPalette(prevState => ({
+        paper = primaryColorPalette.length - 4;
+        
        
-         
+        background = primaryColorPalette.length - 1;
+        paper = primaryColorPalette.length - 4;
+        
+        let primary =  primaryColorPalette.length /2;
+        
+        
+        setPalette(prevState => ({
+        
+            
             "name": prevState.name,
             "primary": {
                 "main": `${primaryColorPalette[primary].hex}`
@@ -291,9 +289,9 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                 "disabled": ""
             }
             
-          
-        }));
-     }
+            
+        }), console.log("palette set" ,palette));
+        
     
     }
 

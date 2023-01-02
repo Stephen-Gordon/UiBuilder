@@ -2,7 +2,7 @@
 
 
 import { generate } from "@k-vyn/coloralgorithm";
-import { Button, Grid, Typography, Drawer, Box } from "@mui/material";
+import { Button, Grid, Typography, Drawer, Box, InputLabel, MenuItem ,FormControl, Select     } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import Slider from '@mui/material/Slider';
 
@@ -13,6 +13,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { palette } from "@mui/system";
 
+import ThemeAccordian from './ThemeAccordian';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -29,12 +30,14 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
 
     let primary
     function handleOnDragEnd(result) {
-            if (!result.destination) return;
+        if (!result.destination) {
+            items.splice(result.destination.index, 0, reorderedItem);
+        };
 
-        const items = Array.from(characters);
+        const items = Array.from(customPalette);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
-        updateCharacters(items);
+        setCustomPalette(items);
     }
     
     let primaryColors;
@@ -51,49 +54,16 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         setPrimaryColorPalette(primaryColors[0].colors)
         setBackgroundColorPalette(backgroundColors[0].colors)
         updateCharacters(primaryColors[0].colors)
-        console.log(characters)
        
-        primary = primaryColors[0].colors[0].hex
-        if(characters.length >= 1){
-            primary = characters[0].hex
-        }
+       
+       
 
-        setPalette(prevState => ({
-        
-            ...prevState,
-            "name": prevState.name,
-             "primary": {
-                "main": primary
-            }, 
-            "secondary": {    
-                "main":  primary
-            },
-            "background": {
-                "default": backgroundColors[0].colors[19].hex,
-                "paper": backgroundColors[0].colors[15].hex
-            },     
-        }));
       }, [primaryJSON, primaryColors, backgroundJSON, backgroundColors]);
 
 
 
       useEffect(() => {
-       
-        if(characters.length >= 1){
-            primary = characters[0].hex
-            console.log(primary)
-            setPalette(prevState => ({
-        
-                ...prevState,
-                "name": prevState.name,
-                 "primary": {
-                    "main": primary
-                }, 
-                "secondary": {    
-                    "main":  primary
-                }
-            }));
-        }
+   
       }, [characters]);
 
 
@@ -188,21 +158,6 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         {   ...prevState,
             hue: {
                 start: e.target.value,
-                end: prevState.hue.end,
-                rotation: "cw",
-                curve: "easeInQuad", 
-                direction: "easeOut"
-            }
-        }
-        ));
-    }
-
-    const handlePrimaryHueEnd = (e) => {    
-     
-        setPrimaryJSON(prevState => (
-        {   ...prevState,
-            hue: {
-                start: prevState.hue.start,
                 end: e.target.value,
                 rotation: "cw",
                 curve: "easeInQuad", 
@@ -276,20 +231,16 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
 
     const addToPalette = (e) => {
         setCustomPalette(prevState => ([
-
-        
              ...prevState,
-            
              e.target.value 
         ]));
-        console.log(customPalette)
     }
     
 
 
     
     let BackgroundPalette = backgroundColorPalette.map((c, i)=> {
-        return <Button fullWidth key={i} variant='contained' sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
+        return <Button fullWidth key={i} onClick={addToPalette} variant='contained' value={c.hex} sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
     })
 
     let PrimaryPalette = primaryColorPalette.map((c, i)=> {
@@ -466,19 +417,6 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                
                                 color="primary"
                             />
-                            <Slider
-                            label="Hi"
-                                sx={{width: '200px'}}
-                                aria-label="Temperature"
-                                defaultValue={220}
-                                min={0}
-                                max={360}
-                                step={10}
-                                valueLabelDisplay="auto" 
-                                onChange={handlePrimaryHueEnd} 
-                               
-                                color="primary"
-                            />
                         </Grid>
 
                         <Grid>
@@ -550,26 +488,56 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     </Accordion>
 
                     <Accordion>
-                    <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography>Palette</Typography>
-                    </AccordionSummary>
-                        <AccordionDetails>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            >
+                            <Typography>Palette</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
 
-                         
-                    <Box sx={{mt:3}}>
+                                
+                            
+                                <DragDropContext onDragEnd={handleOnDragEnd}>
+                                    <Droppable droppableId="characters">
+                                        {(provided) => (
+                                        <Box className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+                                            {customPalette.map((c, i) => {
+                                            return (     
+                                                <Grid key={i} sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                                                        <Draggable key={i} draggableId={c} index={i}>
+                                                        {(provided) => (           
+                                                            <Box
+                                                                ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
+                                                                onClick={null}  
+                                                                key={i} 
+                                                                variant='contained' 
+                                                                sx={{width: '100%', borderRadius: '0px', backgroundColor: c, paddingTop: '8px',
+                                                                paddingBottom: '8px',
+                                                                paddingLeft: '32px',
+                                                                paddingRight: '32px',
+                                                                fontWeight: '700',
+                                                                }}
+                                                                >
+                                                                {c}
+                                                            </Box>                                      
+                                                        )}
+                                                        </Draggable>
+                                                </Grid>
+                                            );
+                                            })}
+                                            {provided.placeholder}
+                                        </Box>
+                                        )}
+                                    </Droppable>
+                                    
+                                </DragDropContext> 
                         
-                    {SidePalette}
-                    </Box>  
-                        </AccordionDetails>
+                            </AccordionDetails>
                     </Accordion>
-                    
-                     
+                    <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                 </Drawer>
-
 
                 <Grid sx={{display: 'flex', flexDirection: 'row'}}>
                     <Grid sx={{width: '400px'}}>
@@ -579,51 +547,6 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     <Grid sx={{ml:5, width: '400px'}}>
                         {PrimaryPalette}    
                     </Grid>
-
-                   
-                    {/* <DragDropContext onDragEnd={handleOnDragEnd}>
-                    
-                        <Droppable droppableId="characters">
-                            {(provided) => (
-                            <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                                {characters.map((c, i, index) => {
-                                return (
-                                    <>
-                                    <Grid sx={{display: 'flex', flexDirection: 'row'}}>
-                                    <Grid sx={{ml:5, width: '400px'}}>
-                                    <Draggable key={i} draggableId={c.hex} index={i}>
-                                    {(provided) => (           
-                                        <Box
-                                            ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
-                                            onClick={null}  
-                                            key={i} 
-                                            variant='contained' 
-                                            sx={{ borderRadius: '0px', backgroundColor: c.hex, paddingTop: '8px',
-                                            paddingBottom: '8px',
-                                            paddingLeft: '32px',
-                                            paddingRight: '32px',
-                                            fontWeight: '700',
-                                            }}
-                                            >
-                                            {c.hex}
-                                        </Box>                                      
-                                    )}
-                                    </Draggable>
-                                    </Grid>
-                                    
-                                    </Grid>
-                                    </>
-                                );
-                                })}
-                                {provided.placeholder}
-                            </ul>
-                            )}
-                        </Droppable>
-                        
-                    </DragDropContext> */}
-                    
-                 
-
                     
                 </Grid>
            </Grid> 

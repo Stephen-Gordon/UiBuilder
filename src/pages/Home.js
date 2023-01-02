@@ -120,7 +120,7 @@ const Home = () => {
         palette: {
          
             primary: {
-                main: palette.secondary.main,
+                main: palette.primary.main,
                 //contrastText: palette.text.primary,
             },
             secondary: {

@@ -2,8 +2,8 @@
 
 
 import { generate } from "@k-vyn/coloralgorithm";
-import { Button, Grid, Typography, Drawer } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Button, Grid, Typography, Drawer, Box } from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
 import Slider from '@mui/material/Slider';
 
 
@@ -12,219 +12,165 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { palette } from "@mui/system";
-import theme from "prism-react-renderer/themes/dracula";
 
+
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, setPalette, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
-    let colors 
 
+
+
+    const [characters, updateCharacters] = useState(primaryColorPalette);
+   
+    let primary
+    function handleOnDragEnd(result) {
+            if (!result.destination) return;
+
+        const items = Array.from(characters);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        updateCharacters(items);
+    }
+    
     let primaryColors;
-
-    const [input, setInput] = useState(220)
-    const [input2, setInput2] = useState(Number(input +15))
-    
-    const [saturation, setSaturation] = useState(0.14)
-    const [saturation2, setSaturation2] = useState(saturation)
-
-    const [brightness, setBrightness] = useState(0.85)
-    const [brightness2, setBrightness2] = useState(0.08)
-
-
-
-
-    const [primaryHueStart, setPrimaryHueStart] = useState(220)
-    const [primaryHueEnd, setPrimaryHueEnd] = useState(Number(primaryHueStart))
-    
-    const [primarySaturationStart, setPrimarySaturationStart] = useState(0.14)
-    const [primarySaturationEnd, setPrimarySaturationEnd] = useState(0.6)
-
-    const [primaryBrightnessStart, setPrimaryBrightnessStart] = useState(0.85)
-    const [primaryBrightnessEnd, setPrimaryBrightnessEnd] = useState(0.08)
-
-    let background;
-    let paper;
-    let primary;
+    let backgroundColors;
 
     
-    
-    const generateBackgroundPalette = () => {
-        
-        setBackgroundJSON(
-            {
-                steps: 20,
-                hue: {
-                  start: input,
-                  end: input2,
-                  rotation: "cw",
-                  curve: "easeInQuad", 
-                  direction: "easeOut"
-                },
-                 saturation: {
-                    start: saturation, 
-                    end: saturation2, 
-                    curve: "easeOutQuad",
-                    rate: 1, 
-                    direction: "easeOut"
-                  }, 
-                 brightness: {
-                    start: brightness, 
-                    end: brightness2, 
-                    curve: "linear",
-                    direction: "linear"
-                  }, 
-            }
-        )
-      
-        colors = generate(backgroundJSON);
-        
-        setBackgroundColorPalette(colors[0].colors)
-         
-        background = backgroundColorPalette.length -1
-        paper = backgroundColorPalette.length - 4
-        primary = backgroundColorPalette.length /2
 
-
-        setPalette(prevState => ({
-           
-             
-            "name": prevState.name,
-            "primary": {
-                "main": prevState.primary.main,
-            },
-            "secondary": {
-                "main": prevState.secondary.main
-            },
-            "background": {
-                "default": `${colors[0].colors[background].hex}`,
-                "paper": `${colors[0].colors[paper].hex}`
-            },
-            "text": {
-                "primary": `${colors[0].colors[0].hex}`,
-                "secondary": `${colors[0].colors[2].hex}`,
-                "disabled": ""
-            }
-            
-          
-        }));
-        console.log(palette)
-    }
-
-    const generatePrimaryPalette = () => {
-
-        setPrimaryJSON(
-            {
-                steps: 20,
-                hue: {
-                  start: primaryHueStart,
-                  end: primaryHueEnd,
-                  rotation: "cw",
-                  curve: "easeInQuad", 
-                  direction: "easeOut"
-                },
-                 saturation: {
-                    start: primarySaturationStart,
-                    end: primarySaturationEnd,
-                    curve: "easeOutQuad",
-                    rate: 1, 
-                    direction: "easeOut"
-                  }, 
-                 brightness: {
-                    start: primaryBrightnessStart,
-                    end: primaryBrightnessEnd,
-                    curve: "linear",
-                    direction: "linear"
-                  }, 
-            }
-            
-        ,  console.log("Primary Palette",primaryJSON.hue)) 
-       
-
-        
-       
-     
-         primaryColors = generate(primaryJSON);
-
-        console.log(primaryColors[0].color)  
-
-        
-
-        
- 
-        setPrimaryColorPalette(primaryColors[0].colors)
-        background = primaryColorPalette.length - 1;
-        paper = primaryColorPalette.length - 4;  
-        
-    }
 
     useEffect(() => {
-
+        
+        backgroundColors = generate(backgroundJSON)
         primaryColors = generate(primaryJSON)
 
-        console.log(primaryColors)  
-        
+        setPrimaryColorPalette(primaryColors[0].colors)
+        setBackgroundColorPalette(backgroundColors[0].colors)
+        updateCharacters(primaryColors[0].colors)
+       
+        primary = primaryColors[0].colors[0].hex
+        if(characters.length >= 1){
+            primary = characters[0].hex
+        }
+
         setPalette(prevState => ({
         
-            
+            ...prevState,
             "name": prevState.name,
-            "primary": {
-                "main": primaryColors[0].colors[12].hex
-            },
-            "secondary": {
-                "main": primaryColors[0].colors[2].hex
+             "primary": {
+                "main": primary
+            }, 
+            "secondary": {    
+                "main":  primary
             },
             "background": {
-                "default": prevState.background.default,
-                "paper": prevState.background.paper
-            },
-            "text": {
-                "primary": prevState.text.primary,
-                "secondary": prevState.text.secondary,
-                "disabled": ""
-            }
-            
-            
-        }), console.log("palette set" ,palette));
-        setPrimaryColorPalette(primaryColors[0].colors)
+                "default": backgroundColors[0].colors[19].hex,
+                "paper": backgroundColors[0].colors[15].hex
+            },     
+        }));
+      }, [primaryJSON, primaryColors, backgroundJSON, backgroundColors]);
 
-      }, [primaryHueStart, primaryJSON, primaryColors ]);
+
+
+      useEffect(() => {
+       
+        if(characters.length >= 1){
+            primary = characters[0].hex
+            console.log(primary)
+            setPalette(prevState => ({
+        
+                ...prevState,
+                "name": prevState.name,
+                 "primary": {
+                    "main": primary
+                }, 
+                "secondary": {    
+                    "main":  primary
+                }
+            }));
+        }
+      }, [characters]);
+
+
 
     /* BACKGROUND PALETTE */
    
 
-    const handleInput = (e) => {    
-            setInput(e.target.value)
-            setInput2(Number(e.target.value) + 15)         
-            generateBackgroundPalette()    
+    const handleBackgroundHueStart = (e) => {    
+     
+        setBackgroundJSON(prevState => (
+        {   ...prevState,
+            hue: {
+                start: e.target.value,
+                end: e.target.value,
+                rotation: "cw",
+                curve: "easeInQuad", 
+                direction: "easeOut"
+            }
+        }
+        ));
     }
 
-    const handleSaturation = (e) => {      
-       
-            setSaturation(e.target.value)
-            generateBackgroundPalette()
+    const handleBackgroundSaturationStart = (e) => {      
         
-    }
-    const handleSaturation2 = (e) => {
-       
-            setSaturation2(e.target.value)
-            generateBackgroundPalette()
-        
+        setBackgroundJSON(prevState => (
+        {   ...prevState,
+            saturation: {
+                start: e.target.value, 
+                end: prevState.saturation.end, 
+                curve: "easeOutQuad",
+                rate: 1, 
+                direction: "easeOut"
+            }, 
+        }
+        ));
     }
 
-    const handleBrightness = (e) => {
-       
-            setBrightness(e.target.value)
-            generateBackgroundPalette()
-        
-        
+    const handleBackgroundSaturationEnd = (e) => {
+          
+        setBackgroundJSON(prevState => (
+            {   ...prevState,
+                saturation: {
+                    start: prevState.saturation.start,
+                    end: e.target.value, 
+                    curve: "easeOutQuad",
+                    rate: 1, 
+                    direction: "easeOut"
+                }, 
+            }
+        ));
+    
     }
-    const handleBrightness2 = (e) => {
-       
-            setBrightness2(e.target.value)
-            generateBackgroundPalette()
-        
-        
+
+    const handleBackGroundBrightnessStart = (e) => {
+           
+        setBackgroundJSON(prevState => (
+            {   
+                ...prevState,
+                brightness: {
+                    start: e.target.value, 
+                    end: prevState.brightness.end,
+                    curve: "linear",
+                    direction: "linear"
+                }, 
+            }
+        ));
+    }
+
+    const handleBackGroundBrightnessEnd = (e) => {
+         
+        setBackgroundJSON(prevState => (
+            {   
+                ...prevState,
+                brightness: {
+                    start: prevState.brightness.start,
+                    end: e.target.value, 
+                    curve: "linear",
+                    direction: "linear"
+                }, 
+            }
+        ));
     }
 
 
@@ -233,88 +179,94 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
 
 
     const handlePrimaryHueStart = (e) => {    
-       setPrimaryHueStart(e.target.value)   
-       setPrimaryJSON(prevState => (
-        {
-            steps: 20,
+     
+        setPrimaryJSON(prevState => (
+        {   ...prevState,
             hue: {
-              start: e.target.value,
-              end: e.target.value,
-              rotation: "cw",
-              curve: "easeInQuad", 
-              direction: "easeOut"
-            },
-             saturation: {
-                start: prevState.saturation.start,
-                end: prevState.saturation.end,
-                curve: "easeOutQuad",
-                rate: 1, 
+                start: e.target.value,
+                end: prevState.hue.end,
+                rotation: "cw",
+                curve: "easeInQuad", 
                 direction: "easeOut"
-              }, 
-             brightness: {
-                start: prevState.brightness.start,
-                end:   prevState.brightness.end,
-                curve: "linear",
-                direction: "linear"
-              }, 
-        }
-        ))
-    
-        paper = primaryColorPalette.length - 4;
-        
-       
-        background = primaryColorPalette.length - 1;
-        paper = primaryColorPalette.length - 4;
-        
-        let primary =  primaryColorPalette.length /2;
-        
-        
-        setPalette(prevState => ({
-        
-            
-            "name": prevState.name,
-            "primary": {
-                "main": `${primaryColorPalette[primary].hex}`
-            },
-            "secondary": {
-                "main": `${primaryColorPalette[1].hex}`
-            },
-            "background": {
-                "default": prevState.background.default,
-                "paper": prevState.background.paper
-            },
-            "text": {
-                "primary": prevState.text.primary,
-                "secondary": prevState.text.secondary,
-                "disabled": ""
             }
-            
-            
-        }), console.log("palette set" ,palette));
-        
-    
+        }
+        ));
+    }
+
+    const handlePrimaryHueEnd = (e) => {    
+     
+        setPrimaryJSON(prevState => (
+        {   ...prevState,
+            hue: {
+                start: prevState.hue.start,
+                end: e.target.value,
+                rotation: "cw",
+                curve: "easeInQuad", 
+                direction: "easeOut"
+            }
+        }
+        ));
     }
 
     const handlePrimarySaturationStart = (e) => {      
-            setPrimarySaturationStart(e.target.value)
-            generatePrimaryPalette()
+        
+        setPrimaryJSON(prevState => (
+        {   ...prevState,
+            saturation: {
+                start: e.target.value, 
+                end: prevState.saturation.end, 
+                curve: "easeOutQuad",
+                rate: 1, 
+                direction: "easeOut"
+            }, 
+        }
+        ));
     }
 
     const handlePrimarySaturationEnd = (e) => {
-            setPrimarySaturationEnd(e.target.value)
-            generatePrimaryPalette()
+          
+        setPrimaryJSON(prevState => (
+            {   ...prevState,
+                saturation: {
+                    start: prevState.saturation.start,
+                    end: e.target.value, 
+                    curve: "easeOutQuad",
+                    rate: 1, 
+                    direction: "easeOut"
+                }, 
+            }
+        ));
+    
     }
 
     const handleBrightnessStart = (e) => {
-            setPrimaryBrightnessStart(e.target.value)
-            generatePrimaryPalette()
-        
+           
+        setPrimaryJSON(prevState => (
+            {   
+                ...prevState,
+                brightness: {
+                    start: e.target.value, 
+                    end: prevState.brightness.end,
+                    curve: "linear",
+                    direction: "linear"
+                }, 
+            }
+        ));
     }
 
     const handleBrightnessEnd = (e) => {
-            setPrimaryBrightnessEnd(e.target.value)
-            generatePrimaryPalette()
-        
+         
+        setPrimaryJSON(prevState => (
+            {   
+                ...prevState,
+                brightness: {
+                    start: prevState.brightness.start,
+                    end: e.target.value, 
+                    curve: "linear",
+                    direction: "linear"
+                }, 
+            }
+        ));
     }
 
 
@@ -327,10 +279,11 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
     })
 
     let PrimaryPalette = primaryColorPalette.map((c, i)=> {
-        return <Button fullWidth key={i} variant='contained' sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
+        return (
+            <Button fullWidth key={i} variant='contained' sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
+        )
+        
     })  
-   
-  
     
 
     return (
@@ -355,7 +308,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     variant="permanent"
                     anchor="left"
                 >
-                    <Button variant='contained' color='primary' onClick={generateBackgroundPalette} sx={{m:1}}>ColorBox</Button>
+              
                     <Accordion>
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -378,14 +331,12 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                             label="Hi"
                             sx={{width: '200px'}}
                             aria-label="Temperature"
-                            defaultValue={input}
+                            defaultValue={220}
                             min={200}
                             max={280}
                             step={10}
                             valueLabelDisplay="auto" 
-                            onChange={(e) => {
-                                setInput(e.target.value)
-                            }}
+                            onChange={handleBackgroundHueStart}
                             color="primary"
                             />
                         </Grid>
@@ -399,24 +350,24 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="input"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'} 
-                                defaultValue={saturation}
+                                defaultValue={0.07}
                                 min={0}
                                 max={1} 
                                 step={0.01} 
                                 valueLabelDisplay="auto" 
-                                onChange={handleSaturation}
+                                onChange={handleBackgroundSaturationStart}
                                 color="primary"
                             />
                             <Slider
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={saturation2}
+                                defaultValue={0.7}
                                 min={0}
                                 max={1}
                                 step={0.01}
                                 valueLabelDisplay="auto" 
-                                onChange={handleSaturation2}
+                                onChange={handleBackgroundSaturationEnd}
                                 color="primary"
                             />
                         </Grid>
@@ -430,24 +381,24 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={brightness}
+                                defaultValue={0.9}
                                 min={0}
                                 max={1}
                                 step={0.01}
                                 valueLabelDisplay="auto" 
-                                onChange={handleBrightness}
+                                onChange={handleBackGroundBrightnessStart}
                                 color="primary"
                             />
                             <Slider
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={brightness2}
+                                defaultValue={0.1}
                                 min={0}
                                 max={1}
                                 step={0.01}
                                 valueLabelDisplay="auto" 
-                                onChange={handleBrightness2}
+                                onChange={handleBackGroundBrightnessEnd}
                                 color="primary"
                             />
                         </Grid>
@@ -480,14 +431,25 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                             label="Hi"
                                 sx={{width: '200px'}}
                                 aria-label="Temperature"
-                                defaultValue={input}
+                                defaultValue={220}
                                 min={0}
                                 max={360}
                                 step={10}
                                 valueLabelDisplay="auto" 
-                                onChange={(e) => {
-                                    handlePrimaryHueStart(e)
-                                }} 
+                                onChange={handlePrimaryHueStart} 
+                               
+                                color="primary"
+                            />
+                            <Slider
+                            label="Hi"
+                                sx={{width: '200px'}}
+                                aria-label="Temperature"
+                                defaultValue={220}
+                                min={0}
+                                max={360}
+                                step={10}
+                                valueLabelDisplay="auto" 
+                                onChange={handlePrimaryHueEnd} 
                                
                                 color="primary"
                             />
@@ -502,7 +464,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="input"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'} 
-                                defaultValue={saturation}
+                                defaultValue={0.07}
                                 min={0}
                                 max={1} 
                                 step={0.01} 
@@ -514,7 +476,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={saturation2}
+                                defaultValue={0.6}
                                 min={0}
                                 max={1}
                                 step={0.01}
@@ -533,7 +495,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={brightness}
+                                defaultValue={0.9}
                                 min={0}
                                 max={1}
                                 step={0.01}
@@ -545,7 +507,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                 label="Hi"
                                 sx={{width: '200px'}}
                                 getAriaLabel={() => 'Temperature range'}
-                                defaultValue={brightness2}
+                                defaultValue={0.1}
                                 min={0}
                                 max={1}
                                 step={0.01}
@@ -563,9 +525,6 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                             
                 </Drawer>
 
-            
-                
-
 
                 <Grid sx={{display: 'flex', flexDirection: 'row'}}>
                     <Grid sx={{width: '400px'}}>
@@ -575,20 +534,47 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     <Grid sx={{ml:5, width: '400px'}}>
                         {PrimaryPalette}    
                     </Grid>
+
+                    <Grid sx={{ml:5, width: '400px'}}>
+                    <DragDropContext onDragEnd={handleOnDragEnd}>
+                        <Droppable droppableId="characters">
+                            {(provided) => (
+                            <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+                                {characters.map((c, i, index) => {
+                                return (
+                                    <Draggable key={i} draggableId={c.hex} index={i}>
+                                    {(provided) => (           
+                                        <Box
+                                            ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
+                                            onClick={null}  
+                                            key={i} 
+                                            variant='contained' 
+                                            sx={{ borderRadius: '0px', backgroundColor: c.hex, paddingTop: '8px',
+                                            paddingBottom: '8px',
+                                            paddingLeft: '32px',
+                                            paddingRight: '32px',
+                                            fontWeight: '700',
+                                            }}
+                                            >
+                                            {c.hex}
+                                        </Box>                                      
+                                    )}
+                                    </Draggable>
+                                );
+                                })}
+                                {provided.placeholder}
+                            </ul>
+                            )}
+                        </Droppable>
+                    </DragDropContext>
+                    </Grid>
+
+                    
                 </Grid>
            </Grid> 
            
         </>
-       
-       
     )
-    
-    
-    
-    
-    
-
-    
 }
 
 export default ColorGenerator

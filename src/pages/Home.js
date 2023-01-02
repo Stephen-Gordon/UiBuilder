@@ -22,7 +22,7 @@ const Home = () => {
   
   const [palette, setPalette] = useState(
     {
-      "name": "threes.dev",
+      "name": "Colors",
       "primary": {
           "main": "#40547c",
           "light": "",
@@ -194,7 +194,7 @@ const Home = () => {
 
         <PrimaryColorGenerator/>
 
-        {/* <UI palette={palette} backgroundPalette={backgroundPalette} setBackgroundPalette={setBackgroundPalette} palettes={palettes} font={font} fonts={fonts} setPalette={setPalette} updateAll={updateAll} setFont={setFont}/> */}
+        <UI palette={palette} palettes={palettes} setPalette={setPalette} /* updateAll={updateAll} */ /* setFont={setFont}  font={font} fonts={fonts} *//> 
        
         
 

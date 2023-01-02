@@ -7,7 +7,7 @@ import dracula from 'prism-react-renderer/themes/dracula';
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {  useState } from 'react';
-import { Grid, Button, Typography, Box, CssBaseline } from '@mui/material';
+import { Grid, Button, Typography, Box, CssBaseline, Card } from '@mui/material';
 import { Container } from '@mui/system';
 import CasinoIcon from '@mui/icons-material/Casino';
 import Paper from '@mui/material/Paper';
@@ -28,10 +28,10 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
    const handleClick = () => {
     updateAll()
    }
-    
+   /*  
     const handleFont = () => {
         setFont(fonts[Math.floor(Math.random()*fonts.length)])
-    }
+    } */
 
     const handlePalette = () => {
         setPalette(palettes[Math.floor(Math.random() * palettes.length)])
@@ -91,9 +91,9 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
                         
                         <Typography color='text.primary' variant='p'>Whereas disregard and contempt for human rights have resulted </Typography>  
 
-                        <Box sx={{mb:1}}>
+                     {/*    <Box sx={{mb:1}}>
                             <Typography color='text.secondary' variant='p'>{ font }</Typography> 
-                        </Box>
+                        </Box> */}
 
                         <Box sx={{mb:1}}>
                             <Typography color='text.secondary' variant='subtitle2'>{ palette.name }</Typography> 
@@ -103,13 +103,13 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
                     
              
            
-            <Button variant="contained" color="primary"  sx={{m:3, display: 'flex',  justifyContent: 'center'}} onClick={handleClick}><CasinoIcon/></Button>
-            
+            {/* <Button variant="contained" color="primary"  sx={{m:3, display: 'flex',  justifyContent: 'center'}} onClick={handleClick}><CasinoIcon/></Button>
+             */}
             
             <Container sx={{display: 'flex', justifyContent: 'center'}}>
                 
-                <Button variant="contained" color="secondary" size="large" sx={{m:3}} onClick={handleFont}>Font</Button>
-                <Button variant="contained" color="secondary" sx={{m:3}} onClick={handlePalette}>Palatte</Button>         
+               {/*  <Button variant="contained" color="secondary" size="large" sx={{m:3}} onClick={handleFont}>Font</Button> */}
+                {/* <Button variant="contained" color="secondary" sx={{m:3}} onClick={handlePalette}>Palatte</Button>        */}  
             </Container>
         </Grid>
     
@@ -142,6 +142,11 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
 
 
                 </Grid>
+                <Card sx={{width: '300px', height: '300px'}}>
+                <Typography>
+                    Hi
+                </Typography>
+                </Card>
         </Grid>
 
 

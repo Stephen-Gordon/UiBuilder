@@ -137,21 +137,16 @@ const Home = () => {
                 secondary: palette.text.secondary
             }
         },
+        overrides: {
+          MuiCssBaseline: {
+            '@global': {
+              body: {
+                transition: 'all 5s linear',
+              },
+            },
+          },
+        },
         components: {
-          variants: [
-            {
-              props: { variant: 'dashed', color: 'primary' },
-              style: {
-                border: '1px dashed darkblue',
-              },
-            },
-            {
-              props: { variant: 'dashed', color: 'secondary' },
-              style: {
-                border: '1px dashed darkred',
-              },
-            },
-          ],
             MuiPaper: {
               styleOverrides: {
                 root: {

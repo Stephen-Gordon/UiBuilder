@@ -6,6 +6,7 @@
     "@adobe/leonardo-contrast-colors": "1.0.0-alpha.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@heroicons/react": "^2.0.13",
     "@k-vyn/coloralgorithm": "^1.0.0",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.0",
@@ -29,6 +30,7 @@
     "react-code-blocks": "0.0.9-0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-use-measure": "^2.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

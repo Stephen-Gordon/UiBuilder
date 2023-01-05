@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from "react";
 
 
-
 const ThemeAccordian = ({customPalette, setPalette, palette}) => {
    
     let [primary, setPrimary] = useState(palette.primary.main)
@@ -21,7 +20,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
     
 
     useEffect(() => {
-
+        console.log("colorpal", customPalette)
      setPalette(prevState => ({
         ...prevState,
         "primary": {
@@ -69,6 +68,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
     
 
     return (
+        <>
         <Accordion>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -142,6 +142,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
             </AccordionDetails>
         </Accordion>
+        </>
     )
 
 }

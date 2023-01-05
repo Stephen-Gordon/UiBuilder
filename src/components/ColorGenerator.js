@@ -2,7 +2,7 @@
 
 
 import { generate } from "@k-vyn/coloralgorithm";
-import { Button, Grid, Typography, Drawer, Box, InputLabel, MenuItem ,FormControl, Select     } from "@mui/material";
+import { Button, Grid, Typography, Drawer, Box, InputLabel, MenuItem ,FormControl, Select , CssBaseline   } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import Slider from '@mui/material/Slider';
 
@@ -16,6 +16,10 @@ import { palette } from "@mui/system";
 import ThemeAccordian from './ThemeAccordian';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import { AnimatePresence, motion } from "framer-motion";
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+
 
 
 const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, setPalette, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
@@ -55,7 +59,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         setBackgroundColorPalette(backgroundColors[0].colors)
         updateCharacters(primaryColors[0].colors)
        
-       
+        
        
 
       }, [primaryJSON, primaryColors, backgroundJSON, backgroundColors]);
@@ -240,12 +244,12 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
 
     
     let BackgroundPalette = backgroundColorPalette.map((c, i)=> {
-        return <Button fullWidth key={i} onClick={addToPalette} variant='contained' value={c.hex} sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
+        return <Button style={{ transition: 'all 0.5s linear' }}  key={i} onClick={addToPalette} variant='contained' value={c.hex} sx={{m:1, width: '100px', height: '100px', borderRadius: '16px', backgroundColor: c.hex}}>{c.hex}</Button>
     })
 
     let PrimaryPalette = primaryColorPalette.map((c, i)=> {
         return (
-            <Button fullWidth key={i} onClick={addToPalette} variant='contained' value={c.hex} sx={{ borderRadius: '0px', backgroundColor: c.hex}}>{c.hex}</Button>
+            <Button style={{ transition: 'all 0.5s linear' }} key={i} onClick={addToPalette} variant='contained' value={c.hex} sx={{m:1, width: '100px', height: '100px', borderRadius: '16px', backgroundColor: c.hex, transition: 'ease-in', }}>{c.hex}</Button>
         )
         
     })  
@@ -266,13 +270,15 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         
 
         <>
+        
          <Grid
             container
             spacing={0}
             direction="column"
             alignItems="center"
             justifyContent="center"
-            style={{ minHeight: '100vh' }}>
+            style={{ minHeight: '100vh', transition: 'all 0.5s linear'}}>
+              
                 <Drawer
                     sx={{
                     width: '300px',
@@ -505,7 +511,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                         <Box className="characters" {...provided.droppableProps} ref={provided.innerRef}>
                                             {customPalette.map((c, i) => {
                                             return (     
-                                                <Grid key={i} sx={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                                                <Grid key={i} sx={{display: 'flex', flexDirection: 'row',}}>
                                                         <Draggable key={i} draggableId={c} index={i}>
                                                         {(provided) => (           
                                                             <Box
@@ -513,11 +519,15 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                                                                 onClick={null}  
                                                                 key={i} 
                                                                 variant='contained' 
-                                                                sx={{width: '100%', borderRadius: '0px', backgroundColor: c, paddingTop: '8px',
-                                                                paddingBottom: '8px',
-                                                                paddingLeft: '32px',
-                                                                paddingRight: '32px',
+                                                                
+                                                                sx={{
+                                                                    
+                                                                backgroundColor: c,
+                                                                 paddingTop: '20px',
+                                                                m:1, width: '100px', height: '100px', borderRadius: '16px',
+                                                                justifyContent: 'space-between',
                                                                 fontWeight: '700',
+
                                                                 }}
                                                                 >
                                                                 {c}
@@ -538,17 +548,31 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     </Accordion>
                     <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                 </Drawer>
-
+                
                 <Grid sx={{display: 'flex', flexDirection: 'row'}}>
-                    <Grid sx={{width: '400px'}}>
+
+                <motion.div drag  dragConstraints={{ left: -400, right: 1}}>
+                    <Grid sx={{width: '600px'}}>
+                        <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
                         {BackgroundPalette} 
                     </Grid>
-                    
-                    <Grid sx={{ml:5, width: '400px'}}>
-                        {PrimaryPalette}    
-                    </Grid>
+                </motion.div>
+                <AnimatePresence>
+                    <motion.div 
+                        initial={{opacity: 0, x: -400}}
+                        animate={{opacity: 1, x: 500}}
+                        exit= {{opacity: 0}}
+                        drag
+                        >
+                        <Grid sx={{width: '600px'}}>
+                            <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
+                            {PrimaryPalette} 
+                        </Grid>
+                    </motion.div>
+                </AnimatePresence>
                     
                 </Grid>
+           
            </Grid> 
            
         </>

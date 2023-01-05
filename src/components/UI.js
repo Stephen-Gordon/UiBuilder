@@ -101,6 +101,24 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
 
                     </Paper>
                     
+
+                    <Card sx={{width: '600px',  borderRadius: '8px'}}>
+                        <Grid sx={{display: 'flex', flexDirection: 'row'}}>
+                            <Box sx={{m:3, width: '50%', height: '180px', borderRadius: '8px', border: '1px solid #f7f7f7'}}></Box>
+                            <Grid sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+
+                                <Typography sx={{mt:3, ml:3, mr:3, display: 'flex', flexDirection: 'column'}}>
+                                    This is a Card
+                                </Typography>
+                                <Typography  color='text.secondary' variant='subtitle2' sx={{m:3, display: 'flex', flexDirection: 'column'}}>
+                                    Sub text
+                                </Typography>
+
+                                <Button variant='contained' size="small" color="primary" sx={{m:3, display: 'flex', flexDirection: 'column'}}>Buy</Button>
+                        </Grid>
+                        </Grid>
+                    
+                    </Card>
              
            
             {/* <Button variant="contained" color="primary"  sx={{m:3, display: 'flex',  justifyContent: 'center'}} onClick={handleClick}><CasinoIcon/></Button>
@@ -142,11 +160,7 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
 
 
                 </Grid>
-                <Card sx={{width: '300px', height: '300px'}}>
-                <Typography>
-                    Hi
-                </Typography>
-                </Card>
+                
         </Grid>
 
 

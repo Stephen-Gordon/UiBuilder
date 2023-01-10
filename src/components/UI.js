@@ -7,22 +7,14 @@ import dracula from 'prism-react-renderer/themes/dracula';
 import {  createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {  useState } from 'react';
-import { Grid, Button, Typography, Box, CssBaseline, Card } from '@mui/material';
+import { Grid, Button, Typography, Box, CssBaseline, Card, CardActions, CardContent } from '@mui/material';
 import { Container } from '@mui/system';
 import CasinoIcon from '@mui/icons-material/Casino';
 import Paper from '@mui/material/Paper';
 
-//motion
-import { motion } from "framer-motion";
-import theme from 'prism-react-renderer/themes/dracula';
-import { BorderColor } from '@mui/icons-material';
 
 
-//components
-import ColorGenerator from './ColorGenerator';
-
-
-const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) => {
+const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalette}) => {
 
    
    const handleClick = () => {
@@ -70,7 +62,7 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
         navigator.clipboard.writeText(e.target.value)
       }
 
-
+       
     return (
 
         
@@ -87,38 +79,46 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
 
                
                     
-                    <Paper elevation={24} sx={{mb:5, p:5, borderRadius: '8px'}}>
+                    {/* <Paper elevation={24} sx={{mb:5, p:5, borderRadius: '8px'}}>
                         
                         <Typography color='text.primary' variant='p'>Whereas disregard and contempt for human rights have resulted </Typography>  
 
-                     {/*    <Box sx={{mb:1}}>
+                       <Box sx={{mb:1}}>
                             <Typography color='text.secondary' variant='p'>{ font }</Typography> 
-                        </Box> */}
+                        </Box> 
 
                         <Box sx={{mb:1}}>
                             <Typography color='text.secondary' variant='subtitle2'>{ palette.name }</Typography> 
                         </Box>
 
-                    </Paper>
-                    
+                    </Paper> */}
 
-                    <Card sx={{width: '600px',  borderRadius: '8px'}}>
-                        <Grid sx={{display: 'flex', flexDirection: 'row'}}>
-                            <Box sx={{m:3, width: '50%', height: '180px', borderRadius: '8px', border: '1px solid #f7f7f7'}}></Box>
-                            <Grid sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card elevation={20} sx={{ minWidth: '397px', maxWidth: '514px', borderRadius: '30px', backgroundColor: 'background.default', p:5, border: '1px solid', borderColor: 'background.paper'}}>
+                        <CardContent>
+                            <Typography variant="h4" sx={{mb:5}} component="div">
+                                Roboto
+                            </Typography>
 
-                                <Typography sx={{mt:3, ml:3, mr:3, display: 'flex', flexDirection: 'column'}}>
-                                    This is a Card
-                                </Typography>
-                                <Typography  color='text.secondary' variant='subtitle2' sx={{m:3, display: 'flex', flexDirection: 'column'}}>
-                                    Sub text
-                                </Typography>
+                            <Typography  sx={{mb:5}} color="text.secondary" variant="body1">
+                            Whereas disregard and contempt for human rights have resulted
+                            </Typography>
 
-                                <Button variant='contained' size="small" color="primary" sx={{m:3, display: 'flex', flexDirection: 'column'}}>Buy</Button>
-                        </Grid>
-                        </Grid>
-                    
+
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Word of the Day
+                            </Typography>
+                            
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            adjective
+                            </Typography>
+                            
+                        </CardContent>
+                        <CardActions>
+                            <Button variant="outlined" size="small">Learn More</Button>
+                        </CardActions>
                     </Card>
+
+                    
              
            
             {/* <Button variant="contained" color="primary"  sx={{m:3, display: 'flex',  justifyContent: 'center'}} onClick={handleClick}><CasinoIcon/></Button>
@@ -131,6 +131,8 @@ const UI = ({palette, palettes, font, fonts, setFont, updateAll, setPalette}) =>
             </Container>
         </Grid>
     
+
+
 
         <Grid
             container

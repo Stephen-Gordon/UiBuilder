@@ -14,6 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { palette } from "@mui/system";
 
 import ThemeAccordian from './ThemeAccordian';
+import FontAccordian from './FontAccordian';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
@@ -58,7 +59,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         setPrimaryColorPalette(primaryColors[0].colors)
         setBackgroundColorPalette(backgroundColors[0].colors)
         updateCharacters(primaryColors[0].colors)
-       
+       console.log(primaryColorPalette)
         
        
 
@@ -280,6 +281,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
             style={{ minHeight: '100vh', transition: 'all 0.5s linear'}}>
               
                 <Drawer
+        
                     sx={{
                     width: '300px',
                     flexShrink: 0,
@@ -547,12 +549,13 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                             </AccordionDetails>
                     </Accordion>
                     <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                    <FontAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                 </Drawer>
                 
                 <Grid sx={{display: 'flex', flexDirection: 'row'}}>
 
                 <motion.div drag  dragConstraints={{ left: -400, right: 1}}>
-                    <Grid sx={{width: '600px'}}>
+                    <Grid sx={{ width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '30px'}}>
                         <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
                         {BackgroundPalette} 
                     </Grid>
@@ -564,7 +567,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                         exit= {{opacity: 0}}
                         drag
                         >
-                        <Grid sx={{width: '600px'}}>
+                        <Grid sx={{width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '30px'}}>
                             <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
                             {PrimaryPalette} 
                         </Grid>

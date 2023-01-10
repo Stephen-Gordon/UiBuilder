@@ -171,10 +171,6 @@ const Home = () => {
         
     });
      
-      
-   
-
-    
 
     
     return (
@@ -189,7 +185,7 @@ const Home = () => {
 
         <PrimaryColorGenerator/>
 
-        <UI palette={palette} palettes={palettes} setPalette={setPalette} /* updateAll={updateAll} */ /* setFont={setFont}  font={font} fonts={fonts} *//> 
+        <UI theme={theme} palette={palette} palettes={palettes} setPalette={setPalette} /* updateAll={updateAll} */ /* setFont={setFont}  font={font} fonts={fonts} *//> 
        
         
 

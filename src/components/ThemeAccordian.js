@@ -79,9 +79,8 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
             </AccordionSummary>
 
             <AccordionDetails>
-
+                <InputLabel id="demo-simple-select-label">Primary Color</InputLabel>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Primary Color</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"

@@ -24,7 +24,7 @@ const Home = () => {
     {
       "name": "Colors",
       "primary": {
-          "main": "#40547c",
+          "main": "#4c82ed",
           "light": "",
           "dark": ""
       },
@@ -42,12 +42,28 @@ const Home = () => {
       }
   }
   )
+
+  let fonts = [
+    'Segoe UI',
+    'Arial',
+    'sans-serif',
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Inter',
+    'Roboto',
+    'Ubuntu',
+    'Open Sans',
+    'Montserrat'
+
+]
   
   const [backgroundColorPalette, setBackgroundColorPalette] = useState([])
 
   const [primaryColorPalette, setPrimaryColorPalette] = useState([])
 
-  
+
+  const [font, setFont] = useState(fonts[Math.floor(Math.random()*fonts.length)])
+
 
   const [backgroundJSON, setBackgroundJSON] = useState(
         {
@@ -117,6 +133,9 @@ const Home = () => {
 
   
      const theme = createTheme({
+        typography: {
+          fontFamily: font
+        },
         palette: {
          
             primary: {
@@ -162,8 +181,8 @@ const Home = () => {
                   paddingBottom: '8px',
                   paddingLeft: '32px',
                   paddingRight: '32px',
-                  fontWeight: '700',
-                  borderRadius: '16px'
+                  //fontWeight: '700',
+                  borderRadius: '24px'
                 }
               }
             }
@@ -181,7 +200,7 @@ const Home = () => {
         style={{ scaleX: scrollYProgress, background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`, height: '20px', position: 'fixed', transformOrigin: '0%', top: 0, left: '0', right: 0 }}
       />
       
-        <ColorGenerator primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} />
+        <ColorGenerator fonts={fonts} setFont={setFont} primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} />
 
         <PrimaryColorGenerator/>
 

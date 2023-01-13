@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import Slider from '@mui/material/Slider';
 
 
-import Accordion from '@mui/material/Accordion';
+import Accordion from '../components/CustomMuiComponents/Accordian';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -16,14 +16,12 @@ import { palette } from "@mui/system";
 import ThemeAccordian from './ThemeAccordian';
 import FontAccordian from './FontAccordian';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
 import { AnimatePresence, motion } from "framer-motion";
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 
 
-const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, setPalette, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
+const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, backgroundColorPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, setPalette, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
 
 
@@ -32,18 +30,6 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
    
     const [customPalette, setCustomPalette] = useState([]);
 
-
-    let primary
-    function handleOnDragEnd(result) {
-        if (!result.destination) {
-            items.splice(result.destination.index, 0, reorderedItem);
-        };
-
-        const items = Array.from(customPalette);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-        setCustomPalette(items);
-    }
     
     let primaryColors;
     let backgroundColors;
@@ -255,16 +241,20 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
         
     })  
     
-    let SidePalette;
+    let SidePalette =  <Typography variant="body2" color='text.secondary'> Your palette is empty</Typography>
 
     if(customPalette.length > 0){
         SidePalette = customPalette.map((c, i)=> {
-            return (
-                <Button fullWidth key={i} variant='contained' value={c} sx={{ borderRadius: '0px', backgroundColor: c}}>{c}</Button>
-            )
+           
+                return (     
+                    (
+                        <Button style={{ transition: 'all 0.5s linear' }} key={i} onClick={null} variant='contained' value={c} sx={{justifyContent: 'center', m:1, width: '100px', height: '100px', borderRadius: '16px', backgroundColor: c, transition: 'ease-in', }}>{c}</Button>
+                    )
+                );
+              
             
         })  
-    }
+    } 
 
 
     return (
@@ -272,18 +262,24 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
 
         <>
         
-         <Grid
+        <Grid
             container
             spacing={0}
             direction="column"
             alignItems="center"
             justifyContent="center"
+            sx={{ backgroundColor: 'background.default',}}
             style={{ minHeight: '100vh', transition: 'all 0.5s linear'}}>
               
                 <Drawer
-        
+                    PaperProps={{
+                        sx: {
+                            backgroundColor: "background.default",
+                            borderRight: '1px solid',
+                            borderColor: 'background.paper'
+                        }
+                    }}
                     sx={{
-                    width: '300px',
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: '300px',
@@ -294,7 +290,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                     anchor="left"
                 >
                     
-                    <Accordion>
+                    <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -307,7 +303,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                         <Grid sx={{ml:3}}> 
                                 
                         <Grid>
-                            <Typography id="input-slider" gutterBottom>
+                            <Typography gutterBottom>
                                 Hue
                             </Typography>
 
@@ -394,7 +390,7 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                         </AccordionDetails>
                     </Accordion>
                 
-                    <Accordion>
+                    <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -495,70 +491,46 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion>
+
+
+
+                    <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
                             id="panel1a-header"
-                            >
+                        >
                             <Typography>Palette</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-
-                                
-                            
-                                <DragDropContext onDragEnd={handleOnDragEnd}>
-                                    <Droppable droppableId="characters">
-                                        {(provided) => (
-                                        <Box className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                                            {customPalette.map((c, i) => {
-                                            return (     
-                                                <Grid key={i} sx={{display: 'flex', flexDirection: 'row',}}>
-                                                        <Draggable key={i} draggableId={c} index={i}>
-                                                        {(provided) => (           
-                                                            <Box
-                                                                ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} 
-                                                                onClick={null}  
-                                                                key={i} 
-                                                                variant='contained' 
-                                                                
-                                                                sx={{
-                                                                    
-                                                                backgroundColor: c,
-                                                                 paddingTop: '20px',
-                                                                m:1, width: '100px', height: '100px', borderRadius: '16px',
-                                                                justifyContent: 'space-between',
-                                                                fontWeight: '700',
-
-                                                                }}
-                                                                >
-                                                                {c}
-                                                            </Box>                                      
-                                                        )}
-                                                        </Draggable>
-                                                </Grid>
-                                            );
-                                            })}
-                                            {provided.placeholder}
-                                        </Box>
-                                        )}
-                                    </Droppable>
-                                    
-                                </DragDropContext> 
-                        
+                                <Grid container justifyContent="space-around " >
+                                    {SidePalette}
+                                </Grid>
+                              
                             </AccordionDetails>
                     </Accordion>
                     <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
-                    <FontAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                    <FontAccordian fonts={fonts} setFont={setFont} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                 </Drawer>
                 
+
+
+
+
                 <Grid sx={{display: 'flex', flexDirection: 'row'}}>
 
                 <motion.div drag  dragConstraints={{ left: -400, right: 1}}>
-                    <Grid sx={{ width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '30px'}}>
+
+                    <Grid sx={{ width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '24px'}}>
+
                         <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
+
+                        <Grid container justifyContent="space-around ">
                         {BackgroundPalette} 
+                        </Grid>
+
                     </Grid>
+
                 </motion.div>
                 <AnimatePresence>
                     <motion.div 
@@ -567,10 +539,15 @@ const ColorGenerator = ({ palette, setPrimaryJSON, backgroundColorPalette, setBa
                         exit= {{opacity: 0}}
                         drag
                         >
-                        <Grid sx={{width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '30px'}}>
-                            <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
-                            {PrimaryPalette} 
+                        <Grid sx={{ width: '520px',  p:3, border: '1px solid', borderColor: 'background.paper', borderRadius: '24px'}}>
+
+                        <DragIndicatorIcon sx={{display: 'flex', flexDirection: 'row'}} />
+                        
+                        <Grid container justifyContent="space-around ">
+                        {PrimaryPalette} 
                         </Grid>
+
+                    </Grid>
                     </motion.div>
                 </AnimatePresence>
                     

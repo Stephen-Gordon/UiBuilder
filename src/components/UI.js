@@ -16,22 +16,6 @@ import Paper from '@mui/material/Paper';
 
 const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalette}) => {
 
-   
-   const handleClick = () => {
-    updateAll()
-   }
-   /*  
-    const handleFont = () => {
-        setFont(fonts[Math.floor(Math.random()*fonts.length)])
-    } */
-
-    const handlePalette = () => {
-        setPalette(palettes[Math.floor(Math.random() * palettes.length)])
-    }   
-   
-
-      
-    
         const exampleCode = 
         `
         const theme = createTheme({
@@ -93,7 +77,7 @@ const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalet
 
                     </Paper> */}
 
-                    <Card elevation={20} sx={{ minWidth: '397px', maxWidth: '514px', borderRadius: '30px', backgroundColor: 'background.default', p:5, border: '1px solid', borderColor: 'background.paper'}}>
+                    <Card elevation={0} sx={{ minWidth: '397px', maxWidth: '514px', borderRadius: '24px', backgroundColor: 'background.default', p:5, border: '1px solid', borderColor: 'background.paper'}}>
                         <CardContent>
                             <Typography variant="h4" sx={{mb:5}} component="div">
                                 Roboto
@@ -114,56 +98,13 @@ const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalet
                             
                         </CardContent>
                         <CardActions>
-                            <Button variant="outlined" size="small">Learn More</Button>
+                            <Button sx={{background: 'background.paper' }} variant="contained" size="small">Learn More</Button>
                         </CardActions>
                     </Card>
 
-                    
-             
-           
-            {/* <Button variant="contained" color="primary"  sx={{m:3, display: 'flex',  justifyContent: 'center'}} onClick={handleClick}><CasinoIcon/></Button>
-             */}
             
-            <Container sx={{display: 'flex', justifyContent: 'center'}}>
-                
-               {/*  <Button variant="contained" color="secondary" size="large" sx={{m:3}} onClick={handleFont}>Font</Button> */}
-                {/* <Button variant="contained" color="secondary" sx={{m:3}} onClick={handlePalette}>Palatte</Button>        */}  
-            </Container>
         </Grid>
-    
 
-
-
-        <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ minHeight: '100vh' }}>
-            
-                <Grid sx={{ mb:5, p:5, borderRadius: '8px', border: '1px solid #ffffff21'}}>
-
-                    <Button value={palette.primary.main} onClick={copyToClipboard} variant="contained" color="primary" sx={{m:5, width: '100px', height: '100px'}} >
-                        { palette.primary.main } pri
-                    </Button>
-
-                    <Button value={palette.secondary.main} onClick={copyToClipboard} variant="contained" color="secondary" sx={{m:5, width: '100px', height: '100px'}} >
-                        { palette.secondary.main } sec
-                    </Button>
-                    
-                    <Button value={palette.background.default} onClick={copyToClipboard} color="secondary" variant={palette.background.default}  sx={{backgroundColor: 'background.default', m:5, width: '100px', height: '100px', border: `1px solid #ffffff21`}} >
-                        { palette.background.default } bg
-                    </Button>
-
-                    <Button value={palette.background.paper} onClick={copyToClipboard} color="secondary" variant={palette.background.paper}  sx={{backgroundColor: 'background.paper', m:5, width: '100px', height: '100px', border: `1px solid #ffffff21`}} >
-                        { palette.background.paper } paper
-                    </Button>
-
-
-                </Grid>
-                
-        </Grid>
 
 
         <Grid

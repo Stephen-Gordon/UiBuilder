@@ -272,6 +272,7 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
             style={{ minHeight: '100vh', transition: 'all 0.5s linear'}}>
               
                 <Drawer
+                className="scroller"
                     PaperProps={{
                         sx: {
                             backgroundColor: "background.default",
@@ -282,7 +283,7 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
                     sx={{
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
-                        width: '300px',
+                        width: '400px',
                         boxSizing: 'border-box',
                     },
                     }}
@@ -290,6 +291,7 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
                     anchor="left"
                 >
                     
+                    <Grid sx={{m:2}}>
                     <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
                     <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -389,15 +391,17 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
                         </Grid>
                         </AccordionDetails>
                     </Accordion>
+                    </Grid>
                 
+                    <Grid sx={{m:2}}>
                     <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
-                    <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography>Primary</Typography>
-                    </AccordionSummary>
+                        <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        >
+                        <Typography>Primary</Typography>
+                        </AccordionSummary>
                         <AccordionDetails>
 
                         <Grid sx={{ml:3}}> 
@@ -490,10 +494,12 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
                         </Grid>
                         </AccordionDetails>
                     </Accordion>
+                    </Grid>
 
 
 
 
+                    <Grid sx={{m:2}}>
                     <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -509,8 +515,10 @@ const ColorGenerator = ({ fonts, setFont={setFont}, palette, setPrimaryJSON, bac
                               
                             </AccordionDetails>
                     </Accordion>
+                    </Grid>
                     <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                     <FontAccordian fonts={fonts} setFont={setFont} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+
                 </Drawer>
                 
 

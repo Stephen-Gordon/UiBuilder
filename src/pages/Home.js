@@ -157,6 +157,34 @@ const Home = () => {
             }
         },
         overrides: {
+          /* MuiCssBaseline: {
+            styleOverrides: {
+              body: {
+                scrollbarColor: "#f7f7f7 #f7f7f7",
+                "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+                  backgroundColor: "#f7f7f7",
+                },
+                "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+                  borderRadius: 8,
+                  backgroundColor: "#f7f7f7",
+                  minHeight: 24,
+                  border: "3px solid #f7f7f7",
+                },
+                "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+                  backgroundColor: "#f7f7f7",
+                },
+                "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+                  backgroundColor: "#f7f7f7",
+                },
+                "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+                  backgroundColor: "#f7f7f7",
+                },
+                "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+                  backgroundColor: "#f7f7f7",
+                },
+              },
+            },
+          }, */
           MuiCssBaseline: {
             '@global': {
               body: {

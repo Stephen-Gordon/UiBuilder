@@ -54,7 +54,8 @@ const FontAccordian = ({fonts, setFont, customPalette, setPalette, palette}) => 
 
     return (
         <>
-        <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
+            <Grid sx={{m:2}}>
+            <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -66,20 +67,9 @@ const FontAccordian = ({fonts, setFont, customPalette, setPalette, palette}) => 
             <AccordionDetails>
 
             <Grid sx={{display: 'flex' , alignItems: 'center', mb:3 }}>
-                    <Grid container justifyContent="flex-start">
-                        <InputLabel sx={{display: 'flex', width:' 100%'}}>Primary Color</InputLabel>
-                    </Grid>
-                    <Grid container justifyContent="flex-end">
-                        <Select
-                            value=''
-                            label="Age"
-                            name=''
-                            onChange={handlePrimaryColor}
-                            sx={{backgroundColor: primary, width:'50px', height:'50px', border:'0px solid', borderRadius: '12px'}}
-                        >
-                            {ColorList}
-                        </Select>
-                    </Grid>
+                    
+                    
+                    
                 </Grid>
 
                 <Grid sx={{display: 'flex' , alignItems: 'center', mb:3 }}>
@@ -132,6 +122,7 @@ const FontAccordian = ({fonts, setFont, customPalette, setPalette, palette}) => 
 
             </AccordionDetails>
         </Accordion>
+            </Grid>
         </>
     )
 

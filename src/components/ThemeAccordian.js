@@ -4,10 +4,14 @@ import Accordion from '../components/CustomMuiComponents/Accordian';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import Paper from '@mui/material/Paper';
 import StyledMenu from '../components/CustomMuiComponents/StyledMenu'
 
+import '../App.css';
+
 import { useEffect, useState } from "react";
+import PrimaryColor from "./ThemeAccordian/PrimaryColor";
+import SecondaryColor from "./ThemeAccordian/SecondaryColor";
 
 
 const ThemeAccordian = ({customPalette, setPalette, palette}) => {
@@ -20,7 +24,6 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
     let [paper, setPaper] = useState(palette.background.paper)
 
-    
 
     useEffect(() => {
    
@@ -74,17 +77,30 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
     return (
         <>
-        <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px'}}>
-            <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-            >
-                <Typography>Theme</Typography>
-            </AccordionSummary>
+            <Grid sx={{m:2}}>
+            <Accordion sx={{ m:2, backgroundColor: 'background.default', border: '1px solid', borderColor: 'background.paper', borderRadius: '12px',}}>
+                <AccordionSummary
+                   
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                >
+                    <Typography>Theme</Typography>
+                </AccordionSummary>
 
+
+
+               
             <AccordionDetails>
+
+            <PrimaryColor ColorList={ColorList} primary={primary} handlePrimaryColor={handlePrimaryColor} secondary={secondary}/>
+
+            <SecondaryColor ColorList={ColorList} primary={primary} handlePrimaryColor={handlePrimaryColor} secondary={secondary}/>
+            
+
+
                 
+           {/*      
             <Grid sx={{display: 'flex' , alignItems: 'center', mb:3 }}>
                     <Grid container justifyContent="flex-start">
                         <InputLabel sx={{display: 'flex'}}>Primary Color</InputLabel>
@@ -143,7 +159,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
                         </Select>
                     </Grid>
                 </Grid>
-
+ */}
 
                 <Grid sx={{display: 'flex' , alignItems: 'center', mb:3 }}>
                     <Grid container justifyContent="flex-start">
@@ -206,6 +222,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
             </AccordionDetails>
         </Accordion>
+            </Grid>
         </>
     )
 

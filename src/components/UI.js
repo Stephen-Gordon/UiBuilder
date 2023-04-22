@@ -9,12 +9,11 @@ import {  createTheme, ThemeProvider } from '@mui/material/styles';
 import {  useState } from 'react';
 import { Grid, Button, Typography, Box, CssBaseline, Card, CardActions, CardContent } from '@mui/material';
 import { Container } from '@mui/system';
-import CasinoIcon from '@mui/icons-material/Casino';
-import Paper from '@mui/material/Paper';
+
+import { AnimatePresence, motion } from "framer-motion";
 
 
-
-const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalette}) => {
+const UI = ({isVisible, theme, palette, font,  setPalette}) => {
 
         const exampleCode = 
         `
@@ -51,86 +50,94 @@ const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalet
 
         
       <>
-      <div className='App-header'>
+      
         <Grid
             container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ minHeight: '100vh' }}>
-                
+            maxWidth="xl"
+            columns={12}
+            sx={{display: 'flex', flexDirection: 'column'}}
+            style={{ minHeight: '100vh' }} >
 
-               
-                    
-                    {/* <Paper elevation={24} sx={{mb:5, p:5, borderRadius: '8px'}}>
+                       
+                          
+
+                    <Grid container column={12}  sx={{display: 'flex'}}>
+                       
+                       
+                    <AnimatePresence>
+                                
+                        {isVisible && (
+                        <motion.div
+                            key="modal"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0}}
+                            transition={{type: 'spring', }}
+                            
+                    >
+                        <Card  item lg={2} md={2} sm={4} xs={6} elevation={0} sx={{ minWidth: '0px', maxWidth: '514px', borderRadius: '24px', backgroundColor: 'background.default', my:3,  p:5, sm: {p:1}, border: '1px solid', borderColor: 'border'}}>
+                            <CardContent>
+                                <Typography variant="h4" sx={{mb:5}} component="div">
+                                    Roboto
+                                </Typography>
+
+                                <Typography  sx={{mb:5}} color="text.secondary" variant="body1">
+                                Whereas disregard and contempt for human rights have resulted
+                                </Typography>
+
+
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                Word of the Day
+                                </Typography>
+                                
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                adjective
+                                </Typography>
+                                
+                            </CardContent>
+                            <CardActions>
+                                <Button sx={{background: 'background.paper' }} variant="contained" size="small">Learn More</Button>
+                            </CardActions>
+                        </Card>
                         
-                        <Typography color='text.primary' variant='p'>Whereas disregard and contempt for human rights have resulted </Typography>  
+                    
+                        <Card item lg={2} md={2} sm={4} xs={6} elevation={0} sx={{  maxWidth: '514px', borderRadius: '24px', backgroundColor: 'background.default', my:3,  p:5, border: '1px solid', borderColor: 'border'}}>
+                            <CardContent>
+                                <Typography variant="h4" sx={{mb:5}} component="div">
+                                    Roboto
+                                </Typography>
 
-                       <Box sx={{mb:1}}>
-                            <Typography color='text.secondary' variant='p'>{ font }</Typography> 
-                        </Box> 
-
-                        <Box sx={{mb:1}}>
-                            <Typography color='text.secondary' variant='subtitle2'>{ palette.name }</Typography> 
-                        </Box>
-
-                    </Paper> */}
-
-                    <Card elevation={0} sx={{ minWidth: '397px', maxWidth: '514px', borderRadius: '24px', backgroundColor: 'background.default', p:5, border: '1px solid', borderColor: 'background.paper'}}>
-                        <CardContent>
-                            <Typography variant="h4" sx={{mb:5}} component="div">
-                                Roboto
-                            </Typography>
-
-                            <Typography  sx={{mb:5}} color="text.secondary" variant="body1">
-                            Whereas disregard and contempt for human rights have resulted
-                            </Typography>
+                                <Typography  sx={{mb:5}} color="text.secondary" variant="body1">
+                                Whereas disregard and contempt for human rights have resulted
+                                </Typography>
 
 
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                            </Typography>
-                            
-                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            adjective
-                            </Typography>
-                            
-                        </CardContent>
-                        <CardActions>
-                            <Button sx={{background: 'background.paper' }} variant="contained" size="small">Learn More</Button>
-                        </CardActions>
-                    </Card>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                Word of the Day
+                                </Typography>
+                                
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                adjective
+                                </Typography>
+                                
+                            </CardContent>
+                            <CardActions>
+                                <Button sx={{background: 'background.paper' }} variant="contained" size="small">Learn More</Button>
+                            </CardActions>
+                        </Card>
+                        </motion.div>
+                    )}
+                              
+                </AnimatePresence>
+                    </Grid>
+
+                  
 
             
         </Grid>
 
 
-
-        <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ minHeight: '100vh' }}>
-        
-            <Highlight theme={dracula} {...defaultProps} code={exampleCode} language={'jsx'}>
-                {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={className} style={style}>
-                    {tokens.map((line, i) => (
-                    <div {...getLineProps({ line, key: i })}>
-                        {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                        ))}
-                    </div>
-                    ))}
-                </pre>
-                )}
-            </Highlight> 
-        
-        </Grid>
-        </div>        
+           
       </>
            
            
@@ -142,3 +149,4 @@ const UI = ({theme, palette, palettes, font, fonts, setFont, updateAll, setPalet
 };
 
 export default UI;
+

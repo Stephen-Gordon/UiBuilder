@@ -9,7 +9,8 @@
     "@heroicons/react": "^2.0.13",
     "@k-vyn/coloralgorithm": "^1.0.0",
     "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.0",
+    "@mui/lab": "^5.0.0-alpha.115",
+    "@mui/material": "^5.11.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -29,8 +30,10 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-code-blocks": "0.0.9-0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-use-measure": "^2.1.1",
+    "resize-observer-polyfill": "^1.5.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

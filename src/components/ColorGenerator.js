@@ -129,8 +129,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                 value={c.hex} 
                 sx={{
                     m:1,
-                    width: 
-                    '100px', 
+                    width: {xs: '100%', md: '100px'},
                     height: '100px', 
                     borderRadius: '16px', 
                     backgroundColor: c.hex,

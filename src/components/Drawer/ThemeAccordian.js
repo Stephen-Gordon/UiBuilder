@@ -1,5 +1,5 @@
 
-import {  MenuItem  } from "@mui/material";
+import {  MenuItem, Grid  } from "@mui/material";
 
 import '../../App.css';
 
@@ -140,7 +140,8 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
     return (
         <>
-            <PrimaryColor customPalette={customPalette} ColorList={ColorList} primary={primary} setPrimary={setPrimary} />
+           <Grid sx={{  p: {xs: 3, md: 0}, width: '100%', position: 'relative', }}>
+           <PrimaryColor customPalette={customPalette} ColorList={ColorList} primary={primary} setPrimary={setPrimary} />
             <SecondaryColor ColorList={ColorList} setSecondary={setSecondary} secondary={secondary}/>
             <ErrorColor ColorList={ColorList} setError={setError} error={error}/>
             <WarningColor ColorList={ColorList} setWarning={setWarning} warning={warning}/>
@@ -148,6 +149,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
             <SuccessColor ColorList={ColorList} setSuccess={setSuccess} success={success}/>
 
             <BackgroundColor ColorList={ColorList} background={background} handlePaperColor={handlePaperColor} handleBackgroundColor={handleBackgroundColor} paper={paper}/>
+           </Grid>
         </>
     )
 

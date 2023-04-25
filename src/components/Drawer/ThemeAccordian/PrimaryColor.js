@@ -35,8 +35,8 @@ const PrimaryColor = ({ColorList, setPrimary}) => {
 
 
     return (
-        <Grid sx={{mb:2,}}>
-            <Accordion sx={{  
+        <Grid sx={{mb:2, width: '100%'}}>
+            <Accordion sx={{   width: '100%',
                 backgroundColor: 'background.default', 
                 border: '1px solid', borderColor: 'border', borderRadius: '12px' ,  
                 '& .MuiAccordion-root, .Mui-expanded': { 

@@ -122,7 +122,7 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
             transition={{duration:0.6}}
         >
 
-        <Grid sx={{p:3, width: '100%', position: 'relative',  backgroundColor: 'background.default' }} >
+        <Grid sx={{p:3, width: '100%', position: 'relative',  backgroundColor: '' }} >
                         
        
 
@@ -156,7 +156,7 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
                                     />
                     
                                 <Typography color="text.secondary" variant="body1">
-                                    1
+                                359
                                 </Typography>
                             </Stack>
                         </Grid>
@@ -311,7 +311,7 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
 
         <Grid container xl={6} lg={12} md={12} sm={12} xs={12} sx={{display: 'flex', justifyContent: 'center', height: 'fit-content' }}>
                                 
-        <Grid sx={{ width: '100%', maxWidth: '400px', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
+        <Grid sx={{ width: '100%', maxWidth: '100%', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
 
          
 

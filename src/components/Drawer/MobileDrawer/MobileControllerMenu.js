@@ -64,6 +64,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
         const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
         const [isPrimaryVisible, setIsPrimaryVisible] = useState(false);
+        const [isThemeVisible, setIsThemeVisible] = useState(false);
 
         const [renderController, setRenderController] = useState(true);
         const [size, setSize] = useState('h4');
@@ -129,6 +130,22 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                     )
                     
                 }
+                {
+                    isThemeVisible && (
+                    <motion.div
+                    initial={{  x: 900 }}
+                    style={{width: '100%', zIndex: '1501', position: ''}}
+                    animate={{ x:0}}
+                    exit={{ x: 900 }}
+                    transition={{duration:0.6}}
+                    >
+                    <Typography align="center" sx={{zIndex: '1501', mt:3, mb:3, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
+                        {title}
+                    </Typography> 
+                    </motion.div>
+                    )
+                    
+                }
                 
                 </Grid>
 
@@ -154,6 +171,12 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                         setIsPrimaryVisible(false)
                                         handleText('h4', 'Controller', 'text.main')
                                     }
+                                    else  
+                                        setRenderController(true) 
+                                        setIsBackgroundVisible(false)
+                                        setIsThemeVisible(false)
+                                        handleText('h4', 'Controller', 'text.main')
+                                    
                                 }}
                             >
                                 { 
@@ -168,6 +191,16 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                 }
                                 { 
                                     isPrimaryVisible && (
+                                        <>
+                                            <Grid sx={{display: 'flex',  alignItems: 'center'}}>
+                                                <ArrowBackIosIcon sx={{mt:3, mb:3, ml: 3}} fontSize="xs" color="primary"/> 
+                                            </Grid>
+                                        </>
+                                    )
+                                    
+                                }
+                                { 
+                                    isThemeVisible && (
                                         <>
                                             <Grid sx={{display: 'flex',  alignItems: 'center'}}>
                                                 <ArrowBackIosIcon sx={{mt:3, mb:3, ml: 3}} fontSize="xs" color="primary"/> 
@@ -205,7 +238,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                         key="Codn"
                         initial={{ x: -50, opacity: 0.3 }}
                         animate={{ x: 0, opacity: 1}}
-                        exit={{ x: -50, opacity: 0.3 }}
+                        exit={{ x: -50, opacity:0 }}
                         transition={{duration: 0.6, type: 'spring',  }}
                        
                     >
@@ -254,6 +287,19 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                 Primary
                         </StyledButton>
 
+                        {/* Theme Accordian */}
+                        <StyledButton 
+                            sx={{width: '100%', mt: 3}}
+                            onClick={() => {
+                                setIsThemeVisible(true) 
+                                setRenderController(false)
+                                handleText('subtitle1', 'Theme', 'primary.main')
+                                
+                            }}
+                            >
+                                Theme
+                        </StyledButton>
+
                     </motion.div>
                    )}
                    </AnimatePresence>
@@ -261,7 +307,24 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
               
                 <MobileBackground handleText={handleText} theme={theme} BackgroundPalette={BackgroundPalette} addToPalette={addToPalette} renderController={renderController} setRenderController={setRenderController} setIsVisible={setIsVisible} isBackgroundVisible={isBackgroundVisible} setIsBackgroundVisible={setIsBackgroundVisible} setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
                 <MobilePrimaryController theme={theme} addToPalette={addToPalette} PrimaryPalette={PrimaryPalette} setRenderController={setRenderController} isPrimaryVisible={isPrimaryVisible} setIsPrimaryVisible={setIsPrimaryVisible} primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
-
+                
+                <AnimatePresence>
+                {isThemeVisible && (
+               
+                        <motion.div 
+                            sx={{width: '100%'}}
+                            initial={{  x: 900 }}
+                            style={{width: '100%'}}
+                            animate={{ x:0}}
+                            exit={{ x: 900 }}
+                            transition={{duration:0.6}}
+                        
+                        > 
+                    <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                    </motion.div>
+          
+                )}
+                </AnimatePresence>
             </Grid>
            
     

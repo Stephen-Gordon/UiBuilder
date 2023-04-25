@@ -25,6 +25,8 @@ import Customize from "./Customize";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+
 const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgroundColorPalette, setPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
     const TabButton = styled(Tab)({
@@ -169,9 +171,9 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
         <>
         
         <Grid
-            sx={{ 
+            /* sx={{ 
                 background: `linear-gradient( to top, ${alpha(theme.palette.background.default, 0.3)}, ${alpha(theme.palette.background.paper, 0.3)})`,
-            }}
+            }} */
         >
           <Grid
           justifyContent="center"
@@ -211,7 +213,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
 
             {/* Mobile Drawer */}                    
-            <Drawer
+            <SwipeableDrawer
                 PaperProps={{
                     sx: {
                         backgroundColor: alpha(theme.palette.background.default, 0),
@@ -229,13 +231,14 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                     }}
                 variant="temporary"
                 open={mobileOpen}
+                disableBackdropTransition
                 onClose={handleDrawerToggle}
                 anchor="left"
             >
 
                 <MobileControllerMenu BackgroundPalette={BackgroundPalette} addToPalette={addToPalette} PrimaryPalette={PrimaryPalette} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} theme={theme} fonts={fonts} setFont={setFont} primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} customPalette={customPalette} />
             
-            </Drawer> 
+            </SwipeableDrawer> 
 
 
            

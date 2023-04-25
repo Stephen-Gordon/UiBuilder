@@ -4,24 +4,22 @@ import MobilePrimaryController from "./MobilePrimaryController";
 
 import { useState } from "react";
 
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
 
 
-import { Grid, Typography, duration } from "@mui/material";
+import { AppBar, Grid, Typography } from "@mui/material";
 
 import styled from "@emotion/styled";
-import TypographyController from "../Typography/TypographyController";
-import PrimaryController from "../PrimaryController";
+
 import Button from '@mui/material/Button';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Grow from '@mui/material/Grow';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { alpha } from "@mui/material";
+import { useScroll } from "framer-motion"
 
 
 const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, setMobileOpen, theme, customPalette, setPalette, fonts, setFont={setFont}, palette, setPrimaryJSON, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
@@ -60,7 +58,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             }
         });
     
-
+          
 
         const [isVisible, setIsVisible] = useState(true);
 
@@ -68,34 +66,147 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
         const [isPrimaryVisible, setIsPrimaryVisible] = useState(false);
 
         const [renderController, setRenderController] = useState(true);
+        const [size, setSize] = useState('h4');
+        const [title, setTitle] = useState('Controller');
+        const [color, setColor] = useState('text.primary');
 
+        const handleText = (size, title, color) => {
+            setSize(size)
+            setTitle(title)
+            setColor(color)
+        }
 
+        let marginLeft = 0;
+        if(renderController){
+            marginLeft = 3
+        }
         
+        let pointerBool = 'pointer';
+        if(renderController){
+            pointerBool = 'cursor'
+        }
+     
+       
         return (
 
             <>
-     
 
-            
+            <AppBar 
+                position="sticky" 
+                elevation={0}
+                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", }} >
+                <Grid sx={{position: 'absolute', width: '100%'}}>
+                
+                {
+                    isBackgroundVisible && (
+                    <motion.div
+                    initial={{  x: 900 }}
+                    style={{width: '100%', zIndex: '1501', position: ''}}
+                    animate={{ x:0}}
+                    exit={{ x: 900 }}
+                    transition={{duration:0.6}}
+                    >
+                    <Typography align="center" sx={{zIndex: '1501', mt:3, mb:3, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
+                        {title}
+                    </Typography> 
+                    </motion.div>
+                    )
+                    
+                }
+                {
+                    isPrimaryVisible && (
+                    <motion.div
+                    initial={{  x: 900 }}
+                    style={{width: '100%', zIndex: '1501', position: ''}}
+                    animate={{ x:0}}
+                    exit={{ x: 900 }}
+                    transition={{duration:0.6}}
+                    >
+                    <Typography align="center" sx={{zIndex: '1501', mt:3, mb:3, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
+                        {title}
+                    </Typography> 
+                    </motion.div>
+                    )
+                    
+                }
+                
+                </Grid>
+
+                <Grid sx={{backgroundColor: 'inherit', position: 'sticky'}}>
+
+                    <motion.div  transition={{duration:0.6}} layoutId="text" style={{zIndex: '1500'}}>
+                    
+
+                        <Grid sx={{display: 'flex', alignItems: 'center'}} >
+
+                            {/* Background */}
+                            <Grid sx={{display: 'flex', alignItems: 'center', cursor: pointerBool,}}
+                                onClick={() => {
+                                    if(isBackgroundVisible){
+                                    setRenderController(true) 
+                                    setIsBackgroundVisible(false)
+                                    setIsPrimaryVisible(false)
+                                    handleText('h4', 'Controller', 'text.main')
+                                    } 
+                                    else if (isPrimaryVisible) {
+                                        setRenderController(true) 
+                                        setIsBackgroundVisible(false)
+                                        setIsPrimaryVisible(false)
+                                        handleText('h4', 'Controller', 'text.main')
+                                    }
+                                }}
+                            >
+                                { 
+                                    isBackgroundVisible && (
+                                        <>
+                                            <Grid sx={{display: 'flex',  alignItems: 'center'}}>
+                                                <ArrowBackIosIcon sx={{mt:3, mb:3, ml: 3}} fontSize="xs" color="primary"/> 
+                                            </Grid>
+                                        </>
+                                    )
+                                    
+                                }
+                                { 
+                                    isPrimaryVisible && (
+                                        <>
+                                            <Grid sx={{display: 'flex',  alignItems: 'center'}}>
+                                                <ArrowBackIosIcon sx={{mt:3, mb:3, ml: 3}} fontSize="xs" color="primary"/> 
+                                            </Grid>
+                                        </>
+                                    )
+                                    
+                                }
+                                    
+                                <Typography sx={{mt:3, mb:3, ml: marginLeft}} color={color} variant={size}>
+                                    Controller
+                                </Typography>
+                                                            
+                            </Grid>
+
+                        </Grid>
+
+                    </motion.div>
+                
+                </Grid>
+            </AppBar>
+                   
+                    
             
             <Grid sx={{width: '100%',  display: 'flex',}} >
-
+            
             
                 <Grid sx={{ position: 'absolute', p:3, width: '100%', }}>
 
-
+                
                 <AnimatePresence>
                 {renderController && (
                         
                     <motion.div
                         key="Codn"
-                        /* initial={{ scale: 0.5,  }}
-                        animate={{ scale: 1}}
-                        exit={{ scale: 0.5 }} */
                         initial={{ x: -50, opacity: 0.3 }}
                         animate={{ x: 0, opacity: 1}}
                         exit={{ x: -50, opacity: 0.3 }}
-                        transition={{duration: 1, type: 'spring',  }}
+                        transition={{duration: 0.6, type: 'spring',  }}
                        
                     >
                         <IconButton
@@ -110,9 +221,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                         >
                             <CloseIcon />
                         </IconButton>
-                        <Typography sx={{mt:3, mb:1}} variant="h4">
-                            Controller
-                        </Typography>
+
+                        
+                        
 
 
                         {/* Background */}
@@ -122,6 +233,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                 setIsVisible(false)
                                 setIsBackgroundVisible(true) 
                                 setRenderController(false)
+                                handleText('subtitle1', 'Background', 'primary.main')
                                 
                             }}
                             >
@@ -133,9 +245,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                         <StyledButton 
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
-                                setIsVisible(false)
                                 setIsPrimaryVisible(true) 
                                 setRenderController(false)
+                                handleText('subtitle1', 'Primary', 'primary.main')
                                 
                             }}
                             >
@@ -147,8 +259,8 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                    </AnimatePresence>
                 </Grid>
               
-                <MobileBackground BackgroundPalette={BackgroundPalette} addToPalette={addToPalette} renderController={renderController} setRenderController={setRenderController} setIsVisible={setIsVisible} isBackgroundVisible={isBackgroundVisible} setIsBackgroundVisible={setIsBackgroundVisible} setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
-                <MobilePrimaryController addToPalette={addToPalette} PrimaryPalette={PrimaryPalette} setRenderController={setRenderController} isPrimaryVisible={isPrimaryVisible} setIsPrimaryVisible={setIsPrimaryVisible} primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                <MobileBackground handleText={handleText} theme={theme} BackgroundPalette={BackgroundPalette} addToPalette={addToPalette} renderController={renderController} setRenderController={setRenderController} setIsVisible={setIsVisible} isBackgroundVisible={isBackgroundVisible} setIsBackgroundVisible={setIsBackgroundVisible} setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
+                <MobilePrimaryController theme={theme} addToPalette={addToPalette} PrimaryPalette={PrimaryPalette} setRenderController={setRenderController} isPrimaryVisible={isPrimaryVisible} setIsPrimaryVisible={setIsPrimaryVisible} primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
 
             </Grid>
            

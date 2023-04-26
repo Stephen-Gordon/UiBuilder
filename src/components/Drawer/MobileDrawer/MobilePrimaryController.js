@@ -113,21 +113,27 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
         <AnimatePresence>
             {isPrimaryVisible && (
                     
-        <motion.div 
-            sx={{width: '100%'}}
-            initial={{  x: 900 }}
-            style={{width: '100%'}}
-            animate={{ x:0}}
-            exit={{ x: 900 }}
-            transition={{duration:0.6}}
-        >
+            <motion.div 
+                sx={{width: '100%'}}
+                style={{width: '100%'}}
+                initial={{ x: "100%" }}
+                animate={{
+                    x: 0,
+                    transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                }}
+                exit={{
+                    x: "100%",
+                    transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                }}
+                
+            >
 
-        <Grid sx={{p:3, width: '100%', position: 'relative',  backgroundColor: '' }} >
+        <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)",  }} >
                         
        
 
 
-                <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                     Hue
                 </Typography>
 
@@ -167,7 +173,7 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
                 </Grid>
 
                 <Grid>
-                    <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                    <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                             Saturation
                     </Typography>
 
@@ -236,7 +242,7 @@ const MobilePrimaryController = ({addToPalette, PrimaryPalette, setRenderControl
                     
                    
                     <Grid>
-                       <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                       <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                             Brightness
                         </Typography>
 

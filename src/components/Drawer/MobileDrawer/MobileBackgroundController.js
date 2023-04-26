@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import { AnimatePresence, motion } from "framer-motion";
 
 
-const MobileBackgroundController = ({ theme, BackgroundPalette, addToPalette,renderController, setRenderController, setIsVisible, isBackgroundVisible, setIsBackgroundVisible, backgroundJSON, setBackgroundJSON, setBackgroundColorPalette}) => {
+const MobileBackgroundController = ({ theme, BackgroundPalette, isBackgroundVisible, setIsBackgroundVisible, backgroundJSON, setBackgroundJSON, setBackgroundColorPalette}) => {
 
 
     
@@ -117,17 +117,22 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, addToPalette,ren
                     
             <motion.div 
                 sx={{width: '100%'}}
-                initial={{  x: 900 }}
                 style={{width: '100%'}}
-                animate={{ x:0}}
-                exit={{ x: 900 }}
-                transition={{duration:0.6}}
+                initial={{ x: "100%" }}
+                animate={{
+                    x: 0,
+                    transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                }}
+                exit={{
+                    x: "100%",
+                    transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                }}
              
             >
            
-                <Grid sx={{p:3, width: '100%', position: 'relative',  backgroundColor: 'background.default' }} >
+                <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)",  }} >
 
-                        <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                        <Typography sx={{ml:2, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                             Hue
                         </Typography>
 
@@ -169,7 +174,7 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, addToPalette,ren
 
                         {/* SAT */}
                        <Grid>
-                        <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                        <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                                 Saturation
                         </Typography>
 
@@ -238,7 +243,7 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, addToPalette,ren
                        
 
                        <Grid>
-                       <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                       <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                             Brightness
                         </Typography>
 

@@ -133,15 +133,29 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, isBackgroundVisi
                 }}
              
             >
-           <Grid sx={{position: 'absolute', p:3, width: '100%',  height: '760px', overflow: 'hidden', }} container justifyContent="center">
-            {
-                bgPal = BackgroundPalette.map((Pal, i) => {
-                    console.log(Pal.props.sx) 
-                   Pal.props.sx.height = '30px'
-                   return Pal
-                 })
-            }
-        </Grid>
+           
+                
+           <motion.span
+            initial={{ scale: 0.5, opacity: 0}}
+            transition={{ delay: 0.5, duration: 1, ease: 'easeIn' }}
+            animate={{
+                x: 0,
+                opacity: 1,
+                scale: 1,
+            }}
+            >
+            <Grid sx={{position: 'absolute', p:3, width: '100%',  height: '760px', overflow: 'hidden', }} container justifyContent="center">
+                {
+                    bgPal = BackgroundPalette.map((Pal, i) => {
+                        console.log(Pal.props.sx) 
+                    Pal.props.sx.height = '30px'
+                    return Pal
+                    })
+                }
+            </Grid>
+        </motion.span>
+
+
         <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)", backgroundBlendMode: 'overlay',  height: '100%',  }} >
 
                         <Typography sx={{ml:2, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">

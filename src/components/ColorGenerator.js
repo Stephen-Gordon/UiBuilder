@@ -98,6 +98,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
     let BackgroundPalette = backgroundColorPalette.map((c, i)=> {
         return (
             <Button 
+                disableRipple   
                 style={{ transition: 'all 0.5s linear'}} 
                 key={i} onClick={addToPalette} 
                 variant='contained' 
@@ -123,6 +124,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
     let PrimaryPalette = primaryColorPalette.map((c, i)=> {
         return (
             <Button 
+                disableRipple   
                 style={{ transition: 'all 0.5s linear' }} 
                 key={i} onClick={addToPalette} 
                 variant='contained' 

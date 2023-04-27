@@ -107,30 +107,42 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, isBackgroundVisi
     }
 
    
+    let bgPal;
 
       
       
     return (
         <>
-         <AnimatePresence>
+         <AnimatePresence >
                 {isBackgroundVisible && (
                     
             <motion.div 
+               
                 sx={{width: '100%'}}
                 style={{width: '100%'}}
-                initial={{ x: "100%" }}
+                initial={{ x: "100%" ,  scale: 0.8}}
                 animate={{
                     x: 0,
-                    transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                    scale: 1,
+                    transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
                 }}
                 exit={{
                     x: "100%",
-                    transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                    opacity: 0,
+                    transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
                 }}
              
             >
-           
-                <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)",  }} >
+           <Grid sx={{position: 'absolute', p:3, width: '100%',  height: '760px', overflow: 'hidden', }} container justifyContent="center">
+            {
+                bgPal = BackgroundPalette.map((Pal, i) => {
+                    console.log(Pal.props.sx) 
+                   Pal.props.sx.height = '30px'
+                   return Pal
+                 })
+            }
+        </Grid>
+        <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)", backgroundBlendMode: 'overlay',  height: '100%',  }} >
 
                         <Typography sx={{ml:2, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                             Hue
@@ -311,20 +323,28 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, isBackgroundVisi
 
                         
                 
-                <Grid container xl={6} lg={12} md={12} sm={12} xs={12} sx={{display: 'flex', justifyContent: 'center', height: 'fit-content' }}>
+                       <Grid container xl={6} lg={12} md={12} sm={12} xs={12} sx={{display: 'flex', justifyContent: 'center', height: 'fit-content' }}>
                                 
-                <Grid sx={{ width: '100%', maxWidth: '400px', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
-        
-                    
-        
-                    <Grid container justifyContent="space-around ">
-                        {BackgroundPalette} 
-                    </Grid>
-        
-                </Grid>
-        
-                </Grid>
+                        <Grid sx={{ width: '100%', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
+                
+                            
+                            <Grid container alignItems="space-around" justifyContent="space-around" display={'flex'}>
+                                {
+                                    bgPal = BackgroundPalette.map((Pal, i) => {
+                                    console.log(Pal.props.sx) 
+                                    Pal.props.sx.height = '100px'
+                                    Pal.props.sx.width = '47%'
+                                    
 
+
+                                    return Pal
+                                    })
+                                } 
+                            </Grid>
+                
+                        </Grid>
+                
+                        </Grid>
 
                 </Grid>
             </motion.div>

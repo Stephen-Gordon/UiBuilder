@@ -58,14 +58,16 @@ const MobileTypographyController = ({isTypographyVisible, theme, fonts, setFont,
             <motion.div 
                 sx={{width: '100%'}}
                 style={{width: '100%'}}
-                initial={{ x: "100%" }}
+                initial={{ x: "100%" ,  scale: 0.8}}
                 animate={{
                     x: 0,
-                    transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                    scale: 1,
+                    transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
                 }}
                 exit={{
                     x: "100%",
-                    transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                    opacity: 0,
+                    transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
                 }}
             >
                 
@@ -74,7 +76,7 @@ const MobileTypographyController = ({isTypographyVisible, theme, fonts, setFont,
 
 
 
-                <Typography sx={{ml:2, mt:3, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
+                <Typography sx={{ml:2, mb:0.5}}  variant={"subtitle1"}  color="text.secondary">
                     Text Color
                 </Typography>
 

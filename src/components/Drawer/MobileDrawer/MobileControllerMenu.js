@@ -89,7 +89,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             pointerBool = 'cursor'
         }
      
-       
+        console.log(theme)
         return (
 
             <>
@@ -103,15 +103,16 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                 {
                     isPageVisible && (
                     <motion.div
-                    initial={{  x: '100%' }}
+                    layout
                     style={{width: '100%', zIndex: '1501', position: ''}}
+                    initial={{  x: '50%'}}
                     animate={{
                         x:0,
-                        transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                        transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
                     }}
                     exit={{
                         x: '100%',
-                        transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                        transition: { duration: 0.2, ease: [0.71, 0.03, 0.56, 0.95] },
                       }}
                     >
                     <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
@@ -130,9 +131,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                     {/* Controller */}
 
                     <motion.div
+                    layout
                    
-                    transition={ {duration: 0.4, ease: [0.36, 0.66, 0.04, 1]} }
-                    
+                    transition={{layout: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9],}}}
                     layoutId="text" style={{zIndex: '1500'}}>
                     
 
@@ -166,7 +167,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                 }
                               
                                 <Grid sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-                                    <Typography sx={{my:1, ml: marginLeft}} color={color} variant={size}>
+                                    <Typography sx={{my:1, ml: marginLeft, }} color={color} variant={size}>
                                         Controller
                                     </Typography>
                                     
@@ -199,28 +200,32 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                    
                     
             
-            <Grid sx={{width: '100%',  display: 'flex', }} >
+            <Grid sx={{width: '100%',  display: 'flex'}} >
             
             
-                <Grid sx={{ position: 'absolute', p:3, width: '100%', }}>
+                <Grid sx={{ position: 'absolute', p:3, width: '100%', backdropFilter: "blur(64px)", }}>
 
                 
-                <AnimatePresence>
+                <AnimatePresence >
                 {renderController && (
                         
                     <motion.div
+                        layout
                         key="Codn"
-                        initial={{ x: -50, opacity: 0.3 }}
+                        initial={{opacity: 0, scale: 0.8, x: -100 }}
                         animate={{
                             x: 0,
+                            scale: 1,
                             opacity: 1,
-                            transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
+                            transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
                           }}
                           exit={{
+                            scale: 0.8,
                             x: -50,
-                            opacity: 0,
-                            transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
+                            opacity: 0.3,
+                            transition: { duration: 0.2, ease: [0.71, 0.03, 0.56, 0.95], opacity: 0.2  },
                           }}
+                        transition={{layout: { duration: 0.3, ease: [0.71, 0.03, 0.56, 0.95],}}}
                     >
                        
 
@@ -231,8 +236,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                         {/* Background */}
                         <StyledButton 
                             sx={{width: '100%'}}
+                            disableRipple
                             onClick={() => {
-                                setIsBackgroundVisible(true) 
+                                setIsBackgroundVisible(true)  
                                 setRenderController(false)
                                 handleText('subtitle1', 'Background', 'primary.main')
                                 setPageVisible(true)                                
@@ -245,6 +251,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
                         {/* Primary */}
                         <StyledButton 
+                            disableRipple
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
                                 setIsPrimaryVisible(true) 
@@ -258,6 +265,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
                         {/* Theme Accordian */}
                         <StyledButton 
+                            disableRipple
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
                                 setIsThemeVisible(true) 
@@ -271,6 +279,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
                         {/* Typography Accordian */}
                         <StyledButton 
+                            disableRipple
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
                                 setIsTypographyVisible(true) 
@@ -295,18 +304,18 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                
                         <motion.div 
                             sx={{width: '100%'}}
-                            initial={{ x: '100%'}}
                             style={{width: '100%'}}
+                            initial={{ x: "100%" ,  scale: 0.8}}
                             animate={{
                                 x: 0,
-                                opacity: 1,
-                                transition: { duration: 0.4, ease: [0.36, 0.66, 0.04, 1] },
-                              }}
+                                scale: 1,
+                                transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
+                            }}
                             exit={{
-                                x: '100%',
+                                x: "100%",
                                 opacity: 0,
-                                transition: { duration: 0.3, ease: [0.36, 0.66, 0.04, 1] },
-                              }}
+                                transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
+                            }}
                             
                         
                         > 

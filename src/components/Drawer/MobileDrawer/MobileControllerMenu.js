@@ -69,7 +69,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
         const [isPageVisible, setPageVisible] = useState(false)
 
         const [renderController, setRenderController] = useState(true);
-        const [size, setSize] = useState('h4');
+        const [size, setSize] = useState(theme.typography.h4.fontSize);
         const [title, setTitle] = useState('Controller');
         const [color, setColor] = useState('text.primary');
 
@@ -97,7 +97,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             <AppBar 
                 position="sticky" 
                 elevation={0}
-                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", }} >
+                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", height: `${theme.typography.h4.fontSize + '16px'}` }} >
                 <Grid sx={{position: 'absolute', width: '100%'}}>
                 
                 {
@@ -132,9 +132,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
                     <motion.div
                     layout
-                   
+                    layoutId="text" 
                     transition={{layout: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9],}}}
-                    layoutId="text" style={{zIndex: '1500'}}>
+                   style={{zIndex: '1500'}}>
                     
 
                         <Grid sx={{display: 'flex', alignItems: 'center'}} >
@@ -149,7 +149,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                     setPageVisible(false)
                                     setIsThemeVisible(false)
                                     setIsTypographyVisible(false)
-                                    handleText('h4', 'Controller', 'text.main')
+                                    handleText(theme.typography.h4.fontSize, 'Controller', theme.palette.text.main)
                                     } 
                                 
                                     
@@ -158,16 +158,22 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                 { 
                                     isPageVisible && (
                                         <>
-                                            <Grid sx={{display: 'flex',  alignItems: 'center'}}>
-                                                <ArrowBackIosIcon sx={{my:1, ml: 3}} fontSize="xs" color="primary"/> 
-                                            </Grid>
+                                             <>
+                                                <motion.div 
+                                                initial={{opacity: 0, x: 50}}
+                                                animate={{opacity: 1, x: 0}}
+                                                transition={{ duration: 0.2, ease: [0.8, 0.1, 0.2, 0.9],}}
+                                                style={{display: 'flex',  alignItems: 'center'}}>
+                                                    <ArrowBackIosIcon sx={{my:1, ml: 3}} fontSize="xs" color="primary"/> 
+                                                </motion.div>
+                                            </>
                                         </>
                                     )
                                     
                                 }
                               
                                 <Grid sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-                                    <Typography sx={{my:1, ml: marginLeft, }} color={color} variant={size}>
+                                    <Typography sx={{my:1, ml: marginLeft, transitionTimingFunction: theme.transitions.easing.easeIn, transition: 'color 0.3s, font-size 0.3s', fontSize: `${size}`, color: `${color}`}}  >
                                         Controller
                                     </Typography>
                                     
@@ -240,7 +246,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                             onClick={() => {
                                 setIsBackgroundVisible(true)  
                                 setRenderController(false)
-                                handleText('subtitle1', 'Background', 'primary.main')
+                                handleText(theme.typography.subtitle1.fontSize, 'Background', theme.palette.primary.main)
                                 setPageVisible(true)                                
                                 
                             }}
@@ -256,7 +262,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                             onClick={() => {
                                 setIsPrimaryVisible(true) 
                                 setRenderController(false)
-                                handleText('subtitle1', 'Primary', 'primary.main')
+                                handleText(theme.typography.subtitle1.fontSize, 'Primary', theme.palette.primary.main)
                                 setPageVisible(true)                             
                             }}
                             >
@@ -270,7 +276,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                             onClick={() => {
                                 setIsThemeVisible(true) 
                                 setRenderController(false)
-                                handleText('subtitle1', 'Theme', 'primary.main')
+                                handleText(theme.typography.subtitle1.fontSize, 'Theme', theme.palette.primary.main)
                                 setPageVisible(true)                           
                             }}
                             >
@@ -284,7 +290,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                             onClick={() => {
                                 setIsTypographyVisible(true) 
                                 setRenderController(false)
-                                handleText('subtitle1', 'Typography', 'primary.main')
+                                handleText(theme.typography.subtitle1.fontSize, 'Typography', theme.palette.primary.main)
                                 setPageVisible(true)                           
                             }}
                             >

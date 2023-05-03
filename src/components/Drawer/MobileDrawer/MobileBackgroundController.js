@@ -347,7 +347,7 @@ const MobileBackgroundController = ({ theme, BackgroundPalette, isBackgroundVisi
                                     bgPal = BackgroundPalette.map((Pal, i) => {
                                     console.log(Pal.props.sx) 
                                     Pal.props.sx.height = '100px'
-                                    Pal.props.sx.width = '47%'
+                                    /* Pal.props.sx.width = '47%' */
                                     
 
 

@@ -145,7 +145,6 @@ const MobilePrimaryController = ({theme, addToPalette, PrimaryPalette, setRender
             <Grid sx={{position: 'absolute', p:3, width: '100%',  height: '760px', overflow: 'hidden', }} container justifyContent="center">
                 {
                     bgPal = PrimaryPalette.map((Pal, i) => {
-                        console.log(Pal.props.sx) 
                     Pal.props.sx.height = '30px'
                     return Pal
                     })
@@ -344,7 +343,7 @@ const MobilePrimaryController = ({theme, addToPalette, PrimaryPalette, setRender
                                     bgPal = PrimaryPalette.map((Pal, i) => {
                                     console.log(Pal.props.sx) 
                                     Pal.props.sx.height = '100px'
-                                    Pal.props.sx.width = '47%'
+                                    /* Pal.props.sx.width = '47%' */
                                     
 
 

@@ -214,7 +214,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
 
             {/* Mobile Drawer */}                    
-            <SwipeableDrawer
+            <Drawer
                 PaperProps={{
                     sx: {
                         backgroundColor: alpha(theme.palette.background.default, 0),
@@ -239,7 +239,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
                 <MobileControllerMenu BackgroundPalette={BackgroundPalette} addToPalette={addToPalette} PrimaryPalette={PrimaryPalette} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} theme={theme} fonts={fonts} setFont={setFont} primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} customPalette={customPalette} />
             
-            </SwipeableDrawer> 
+            </Drawer> 
 
 
            

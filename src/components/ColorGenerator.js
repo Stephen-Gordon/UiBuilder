@@ -244,7 +244,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
            
             </Grid>  
-             {/* Tabs */}
+                {/* Tabs */}
                 <TabContext value={value}>
                             
 

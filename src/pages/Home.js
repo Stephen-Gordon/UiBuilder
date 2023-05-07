@@ -28,7 +28,7 @@ const Home = () => {
           "dark": "#0e43ad"
       },
       "secondary": {
-        "main": "#7196e1",
+        "main": "#FF6767",
         "light": "#8638d4",
         "dark": "#5805ab"
       },

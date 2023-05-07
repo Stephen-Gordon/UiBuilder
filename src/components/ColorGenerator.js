@@ -178,7 +178,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
         >
           <Grid
           justifyContent="center"
-          style={{ minHeight: '100vh', }} 
+          /* style={{ minHeight: '100vh', }}  */
           sx={{ 
             backgroundColor: 'rgba(0,0,0,0.1)',
             display: 'flex', 
@@ -300,13 +300,13 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                         
                 
 
-                        <TabPanel value="1">
+                        <TabPanel sx={{p:0, height: 'auto',}} value="1">
                             <AnimatePresence>
-                                <UI isVisible={isVisible} theme={theme} palette={palette} setPalette={setPalette}/>
+                                <UI fonts={fonts}  isVisible={isVisible} theme={theme} palette={palette} setPalette={setPalette}/>
                             </AnimatePresence> 
                         </TabPanel>
                         
-                        <TabPanel value="2">
+                        <TabPanel sx={{p:0}} value="2">
                             <AnimatePresence>
                                 <Customize BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} customizeIsVisible={customizeIsVisible}/>
                            </AnimatePresence>

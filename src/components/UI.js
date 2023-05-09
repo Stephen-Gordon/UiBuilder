@@ -2,17 +2,11 @@
 
 import '../App.css';
 
-import Highlight, { defaultProps } from "prism-react-renderer";
-import dracula from 'prism-react-renderer/themes/dracula';
-import {  createTheme, ThemeProvider } from '@mui/material/styles';
-
 import {  useState, useRef, useEffect } from 'react';
 import { Grid, Button, Typography, Box, CssBaseline, Card, CardActions, CardContent } from '@mui/material';
-import { Container } from '@mui/system';
+
 import { alpha } from '@mui/material';
 import { AnimatePresence, motion, useInView} from "framer-motion";
-import TextGradient from './TextGradient';
-import { TimelineDot } from '@mui/lab';
 
 
 
@@ -42,7 +36,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 }
             },
         });
-    `; 
+        `; 
 
     const copyToClipboard = (e) => {
         console.log(e.target.value)
@@ -122,7 +116,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 maxWidth="lg"
                 justifySelf="center"
                 sx={{display: 'flex'}} 
-                style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
+                style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'}} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex', justifyContent: 'center'}}>
                         <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0,  borderRadius: '24px', p: {xs:2, lg:5}}}>
@@ -142,6 +136,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                             <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
                                 Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
                             </Typography>
+                            
                             <Button sx={{background: 'background.paper', width: '50%'}} variant="outlined" size="medium">Learn More</Button>
                         </Grid>
                      
@@ -160,21 +155,30 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 justifySelf="center"
                 sx={{display: 'flex'}} >
               
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
-                          
-                        </Card>
-                    </Grid>
+                   
 
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center'}}>
-                        
-                        
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center', alignContent: 'space-around'}}>
+
+                        <Grid item xs={12} sx={{display: 'flex'}}>
+
+                            <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, px:2}}>
+                           
+                           </Grid>
+
+                           <Grid item xs={2} lg={10} sx={{display: 'grid', justifyContent: 'flex-start', alignContent: 'flex-start', mt: { xs:3, md: 0},  px:2}}>
+                               <Typography variant='h3' options={options} >
+                                   Design
+                               </Typography>
+                           </Grid>
+
+                        </Grid>
+                    
                         
                         {tabList.map((tab) => {
                             
                             return (
                                 <motion.div
-                                 layoutId='tabs' 
+                                layoutId='tabs' 
                                 onClick={()=> {
                                     console.log(tab.id)
                                     setActiveTab(tab.id)
@@ -184,17 +188,17 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                     
                                     <Grid item sx={{ display: 'flex'}}>
                                         <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, p:2,}} >
-                            
+                                       
                                             <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                                 <Grid sx={{position: 'relative'}}>
                                                 {
                                                     activeTab === tab.id && (
                                                         <motion.div 
-                                                        layoutId='blue'
-                                                        animate={{ backgroundColor: activeTab === tab.id ? theme.palette.primary.main : 'inherit'}}
-                                                        transition={{duration: 0.7, type: 'spring'}}
-                                                        style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', borderRadius: '20px'}}>
-        
+                                                            layoutId='blue'
+                                                            animate={{ backgroundColor: activeTab === tab.id ? theme.palette.primary.main : 'inherit'}}
+                                                            transition={{duration: 0.7, type: 'spring'}}
+                                                            style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', borderRadius: '20px'}}>
+            
                                                         </motion.div>
                                                     )
                                                 
@@ -238,6 +242,11 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                         
                         
                      
+                    </Grid>
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
+                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
+                          
+                        </Card>
                     </Grid>
 
             </Grid>

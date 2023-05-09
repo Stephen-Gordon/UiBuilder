@@ -153,7 +153,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
     const [isVisible, setIsVisible] = useState(true);
     const [customizeIsVisible, setCustomizeIsVisible] = useState(true);
     
-    const [mobileOpen, setMobileOpen] = useState(true);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -225,7 +225,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                     display: {xs: 'block', md: 'none' },
                     justifyContent: 'center',
                     '& .MuiDrawer-paper': { width: '100%' },
-                    }}
+                }}
                 variant="temporary"
                 open={mobileOpen}
                 disableBackdropTransition

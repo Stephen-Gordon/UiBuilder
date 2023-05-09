@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 
 import UI from "./UI";
+import UIOverlay from "./UIOverlay";
 
 import { AnimatePresence, motion } from "framer-motion";
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -148,14 +149,6 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
   
     
 
-    const [value, setValue] = useState(2);
-
-    const handleChange = (event, newValue) => {
-        setTimeout(() => {
-            setValue(newValue);
-        }, "500", newValue)
-       
-    };
     
     const [isVisible, setIsVisible] = useState(true);
     const [customizeIsVisible, setCustomizeIsVisible] = useState(true);
@@ -165,6 +158,9 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
       };
+
+      
+
     const drawerWidth = '562px'
     
     return (
@@ -244,29 +240,16 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
            
             </Grid>  
-                {/* Tabs */}
-                <TabContext value={value}>
-                            
+           
 
                     <Grid container justifyContent="center" column={12} sx={{display: 'flex', flexDirection: 'column', flexGrow: 1,  width: { xs: '100%', md: `calc(100% - ${drawerWidth}px)` }}} >
                         
                         <AppBar elevation={0} position="sticky" sx={{backgroundColor: alpha(theme.palette.background.default, 0.4), backdropFilter: "blur(64px)", }}>
                            
-                            <Grid sx={{display: 'flex', flexDirection: 'row', flexGrow: '1', width: '100%', justifyContent: 'center'}}>
+                            <Grid sx={{display: 'flex', flexDirection: 'row', flexGrow: '1', width: '100%', justifyContent: 'flex-start'}}>
 
                                     
-                                <TabList
-                                variant="fullWidth"
-                                centered
                               
-                                    TabIndicatorProps={{ 
-                                        style: {
-                                            display: "none",
-                                        },
-                                    }}
-                                    onChange={handleChange}
-                                  
-                                >        
                                     <IconButton
                                         color="inherit"
                                         aria-label="open drawer"
@@ -277,49 +260,65 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                                         <MenuIcon />
                                     </IconButton>
 
-
-                                    <TabButton onClick={() => {
+                                 
+                                  {/*   <Button
+                                        sx={{borderRadius: '0px'}}
+                                     onClick={() => {
                                             setIsVisible(true)
                                             setCustomizeIsVisible(false)
                                         }} 
-                                        label="Simulate" value="1" 
-                                    /> 
+                                        fullWidth
+                                        label="Simulate" value="0" 
+                                    >
+                                        Simulate
+                                    </Button>
                                 
-                                    <TabButton
+                                    <Button
+                                        sx={{borderRadius: '0px'}}
                                         onClick={() => {
                                             setIsVisible(false)
                                             setCustomizeIsVisible(true)
                                         }}
-                                        label="Customize" value="2" />                                                  
-                                </TabList>
+                                        fullWidth
+                                        label="Customize" value="1">
+                                        Customize
+                                        </Button>      */}                               
+                              
                             
                     
                             </Grid> 
 
                         </AppBar>
                         
-                
-
-                        <TabPanel sx={{p:0, height: 'auto',}} value="1">
-                            <AnimatePresence>
-                                <UI fonts={fonts}  isVisible={isVisible} theme={theme} palette={palette} setPalette={setPalette}/>
-                            </AnimatePresence> 
-                        </TabPanel>
-                        
-                        <TabPanel sx={{p:0}} value="2">
-                            <AnimatePresence>
-                                <Customize BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} customizeIsVisible={customizeIsVisible}/>
-                           </AnimatePresence>
-                        </TabPanel>             
+                        <Grid sx={{display: 'grid'}}> 
+                            {
+                                isVisible && (
+                                    <AnimatePresence>
+                                        <UI fonts={fonts}  isVisible={isVisible} theme={theme} palette={palette} setPalette={setPalette}/>
+                                    </AnimatePresence> 
+                                )
+                            }
+                        </Grid>
+{/* 
+                        <Grid>
+                            {
+                                customizeIsVisible && (
+                                    <AnimatePresence>
+                                        <Customize BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} customizeIsVisible={customizeIsVisible}/>
+                                    </AnimatePresence> 
+                                )
+                            }
+                        </Grid> */}
+             
+            
                 
                     
                     </Grid>
                     
             
-                    </TabContext>
           </Grid>
 
-            </Grid> 
+        </Grid> 
            
         </>
     )

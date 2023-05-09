@@ -89,7 +89,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             pointerBool = 'cursor'
         }
      
-        console.log(theme)
+        console.log(theme.spacing)
         return (
 
             <>
@@ -97,8 +97,9 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             <AppBar 
                 position="sticky" 
                 elevation={0}
-                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", height: `${theme.typography.h4.fontSize + '16px'}` }} >
-                <Grid sx={{position: 'absolute', width: '100%'}}>
+                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", minHeight: `${theme.typography.h4.fontSize}` , p:1 }} >
+                    
+                <Grid sx={{position: 'absolute', width: '100%', }}>
                 
                 {
                     isPageVisible && (
@@ -134,7 +135,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                     layout
                     layoutId="text" 
                     transition={{layout: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9],}}}
-                   style={{zIndex: '1500'}}>
+                    style={{zIndex: '1500'}}>
                     
 
                         <Grid sx={{display: 'flex', alignItems: 'center'}} >
@@ -209,7 +210,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
             <Grid sx={{width: '100%',  display: 'flex'}} >
             
             
-                <Grid sx={{ position: 'absolute', p:3, width: '100%', backdropFilter: "blur(64px)", }}>
+                <Grid sx={{ position: 'absolute', p:3, width: '100%', backdropFilter: "blur(64px)", mt: theme.typography.h4.fontSize  }}>
 
                 
                 <AnimatePresence >

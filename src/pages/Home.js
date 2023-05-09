@@ -23,12 +23,12 @@ const Home = () => {
     {
       "name": "Colors",
       "primary": {
-          "main": "#4c82ed",
+          "main": "#2997ff",
           "light": "#7196e1",
           "dark": "#0e43ad"
       },
       "secondary": {
-        "main": "#FF6767",
+        "main": "#ffb6ff",
         "light": "#8638d4",
         "dark": "#5805ab"
       },
@@ -65,11 +65,8 @@ const Home = () => {
   )
 
   let fonts = [
-    'Segoe UI',
     'Arial',
     'sans-serif',
-    'Segoe UI Emoji', 
-    'Segoe UI Symbol', 
     'Inter',
     'Roboto',
     'Ubuntu',

@@ -97,8 +97,8 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                     </Typography>
                 </Grid>
 
-                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center',  mt: 5, p:2,}}>
-                    <Button sx={{background: 'background.paper',}} variant="contained" size='medium'>Learn More</Button>
+                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center',  mt: 5,}}>
+                    <Button sx={{background: 'background.paper',}} variant="outlined" size='medium'>Learn More</Button>
                 </Grid>
             </Grid>
     
@@ -137,7 +137,10 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                 Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
                             </Typography>
                             
-                            <Button sx={{background: 'background.paper', width: '50%'}} variant="outlined" size="medium">Learn More</Button>
+                            <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'flex-start',  mt: 5,}}>
+                                <Button sx={{background: 'background.paper',}} variant="outlined" size='medium'>Learn More</Button>
+                            </Grid>
+
                         </Grid>
                      
                     </Grid>
@@ -279,7 +282,9 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                             <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
                             Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
                             </Typography>
-                            <Button sx={{background: 'background.paper', width: '50%'}} variant="outlined" size="medium">Learn More</Button>
+                            <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'flex-start',  mt: 5,}}>
+                                <Button sx={{background: 'background.paper',}} variant="outlined" size='medium'>Learn More</Button>
+                            </Grid>
                         </Grid>
                      
                     </Grid>

@@ -177,8 +177,8 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                         {tabList.map((tab) => {
                             
                             return (
-                                <motion.div
-                                layoutId='tabs' 
+                                <Grid
+                                
                                 onClick={()=> {
                                     console.log(tab.id)
                                     setActiveTab(tab.id)
@@ -201,7 +201,6 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
             
                                                         </motion.div>
                                                     )
-                                                
                                                 }
                                                 </Grid>
                                                 
@@ -235,7 +234,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                         </Grid>
 
                                     </Grid>
-                                </motion.div>
+                                </Grid>
                             )
 
                         })}

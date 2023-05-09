@@ -12,6 +12,7 @@ import { Container } from '@mui/system';
 import { alpha } from '@mui/material';
 import { AnimatePresence, motion, useInView} from "framer-motion";
 import TextGradient from './TextGradient';
+import { TimelineDot } from '@mui/lab';
 
 
 
@@ -54,18 +55,22 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
         secondColor: theme.palette.secondary.main, 
         direction: "bottom",
         variant: 'h3'
-      }
+      } 
+
+        let tabList = [
+            {id: 1},
+            {id: 2}
+        ]
+
+        let [activeTab, setActiveTab] = useState(tabList[0].id)
+        console.log(theme)
+    
        
     return (
 
         
       <>
-    {/*     <Grid sx={{ position:'fixed', width: '50%', height: '50%', alignItems: 'center', justifyContent: 'flex-end', display: 'flex', opacity: 0.5, overflow: 'hidden' }}>
-            <Grid sx={{ overflow: 'hidden', backgroundImage: `linear-gradient( to top, ${alpha(theme.palette.primary.main, 1)}, ${alpha(theme.palette.secondary.main, 1)})`, borderRadius: '100%', width: '20%', height: '20%'}}>
-                
-            </Grid>
-        </Grid>
- */}
+
       
             <Grid
             container
@@ -120,7 +125,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex', justifyContent: 'center'}}>
-                        <Card elevation={0} sx={{width: '100%', height: `50vh   `, mx:2, my:0,  borderRadius: '24px', p: {xs:2, lg:5}}}>
+                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0,  borderRadius: '24px', p: {xs:2, lg:5}}}>
                           
                         </Card>
                     </Grid>
@@ -129,9 +134,9 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
 
                         <Grid item xs={12} lg={12} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
                             <Grid>
-                                <TextGradient options={options} >
+                            <Typography variant='h3' options={options} >
                                 Design
-                                </TextGradient>
+                            </Typography>
                             </Grid>
                             
                             <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
@@ -143,6 +148,10 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                     </Grid>
 
             </Grid>
+
+
+
+
             {/* Customize  */}
             <Grid
                 container 
@@ -152,30 +161,86 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 sx={{display: 'flex'}} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-                        <Card elevation={0} sx={{width: '100%', height: `50vh   `, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
+                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
                           
                         </Card>
                     </Grid>
 
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-
-                        <Grid item xs={12} lg={12} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
-
-                            <Grid>
-                            <TextGradient options={options} >
-                                Customize
-                            </TextGradient>
-                            </Grid>
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center'}}>
+                        
+                        
+                        
+                        {tabList.map((tab) => {
                             
-                            <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
-                                Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
-                            </Typography>
-                            <Button sx={{background: 'background.paper', width: '50%'}} variant="outlined" size="medium">Learn More</Button>
-                        </Grid>
+                            return (
+                                <motion.div
+                                 layoutId='tabs' 
+                                onClick={()=> {
+                                    console.log(tab.id)
+                                    setActiveTab(tab.id)
+                                }}
+
+                                >
+                                    <Grid item sx={{ display: 'flex'}}>
+                                        <Grid item xs={6} lg={6} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, p:2,}} >
+                            
+                                            <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                                <Grid sx={{position: 'relative'}}>
+                                                {
+                                                    activeTab === tab.id && (
+                                                        <motion.div 
+                                                        layoutId='blue'
+                                                        animate={{ backgroundColor: activeTab === tab.id ? theme.palette.primary.main : 'inherit'}}
+                                                        transition={{duration: 1, type: 'spring'}}
+                                                        style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '50px', height: '60px', borderRadius: '20px'}}>
+        
+                                                        </motion.div>
+                                                    )
+                                                
+                                                }
+                                                </Grid>
+                                                
+                                                <Grid sx={{position: 'absolute', display: 'grid', justifyContent: 'center', alignContent: 'center',}}>
+                                                    {
+                                                        activeTab === tab.id && (
+                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '20px'}}>
+                                                    
+                                                            </motion.div>
+                                                        )
+                                                    }
+                                                </Grid>
+                                            </Grid>
+                                            
+
+                                        </Grid>
+
+                                        <Grid item xs={6} lg={6} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
+                                            
+                                            <Typography style={{color: theme.palette.text.secondary}} sx={{mb: 1}} variant='p' color="text.secondary">
+                                                0{tab.id + 1}
+                                            </Typography>
+
+                                            <motion.p 
+                                            transition={{duration: 0.3,}}
+                                            animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
+                                            sx={{mb: { xs:3, md: 5}}}>
+                                                Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
+                                            </motion.p>
+                                        </Grid>
+
+                                    </Grid>
+                                </motion.div>
+                            )
+
+                        })}
+                        
+                        
                      
                     </Grid>
 
             </Grid>
+           
+
             {/* Sim */}
             <Grid
                 container 
@@ -186,7 +251,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                 style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-                        <Card elevation={0} sx={{width: '100%', height: `50vh   `, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
+                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
                           
                         </Card>
                     </Grid>
@@ -196,9 +261,9 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                         <Grid item xs={12} lg={12} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
 
                             <Grid>
-                            <TextGradient options={options} >
-                            Simulate
-                            </TextGradient>
+                            <Typography variant='h3' options={options} >
+                                Simulate
+                            </Typography>
                             </Grid>
                             
                             <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">

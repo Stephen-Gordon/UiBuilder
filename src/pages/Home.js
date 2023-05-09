@@ -58,7 +58,7 @@ const Home = () => {
       },
       "text": {
           "primary": "#fff",
-          "secondary": "#cbcbcd",
+          "secondary": "#888d9b",
           "disabled": ""
       }
   }

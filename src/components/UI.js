@@ -58,8 +58,8 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
       } 
 
         let tabList = [
-            {id: 1},
-            {id: 2}
+            {id: 1, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+            {id: 2, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
         ]
 
         let [activeTab, setActiveTab] = useState(tabList[0].id)
@@ -181,8 +181,9 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                 }}
 
                                 >
+                                    
                                     <Grid item sx={{ display: 'flex'}}>
-                                        <Grid item xs={6} lg={6} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, p:2,}} >
+                                        <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, p:2,}} >
                             
                                             <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                                 <Grid sx={{position: 'relative'}}>
@@ -191,8 +192,8 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                                         <motion.div 
                                                         layoutId='blue'
                                                         animate={{ backgroundColor: activeTab === tab.id ? theme.palette.primary.main : 'inherit'}}
-                                                        transition={{duration: 1, type: 'spring'}}
-                                                        style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '50px', height: '60px', borderRadius: '20px'}}>
+                                                        transition={{duration: 0.7, type: 'spring'}}
+                                                        style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', borderRadius: '20px'}}>
         
                                                         </motion.div>
                                                     )
@@ -208,23 +209,24 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                                             </motion.div>
                                                         )
                                                     }
+                                            
                                                 </Grid>
                                             </Grid>
                                             
 
                                         </Grid>
 
-                                        <Grid item xs={6} lg={6} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
+                                        <Grid item xs={10} lg={10} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
                                             
                                             <Typography style={{color: theme.palette.text.secondary}} sx={{mb: 1}} variant='p' color="text.secondary">
-                                                0{tab.id + 1}
+                                                0{tab.id}
                                             </Typography>
 
                                             <motion.p 
                                             transition={{duration: 0.3,}}
                                             animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
                                             sx={{mb: { xs:3, md: 5}}}>
-                                                Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
+                                                {tab.text}
                                             </motion.p>
                                         </Grid>
 

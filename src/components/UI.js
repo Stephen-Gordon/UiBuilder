@@ -3,15 +3,17 @@
 import '../App.css';
 
 import {  useState, useRef, useEffect } from 'react';
-import { Grid, Button, Typography, Box, CssBaseline, Card, CardActions, CardContent } from '@mui/material';
+import { Grid, Button, Typography, Box, CssBaseline, Card, CardActions, CardContent, Input, Icon } from '@mui/material';
 
 import { alpha } from '@mui/material';
 import { AnimatePresence, motion, useInView} from "framer-motion";
 
+import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
+import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined';
+import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
 
 
-
-const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
+const UI = ({theme, palette, font}) => {
 
         const exampleCode = 
         `
@@ -50,10 +52,11 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
         direction: "bottom",
         variant: 'h3'
       } 
-
+      
         let tabList = [
-            {id: 1, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
-            {id: 2, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
+            {id: 1, icon: <PaletteOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+            {id: 2, icon: <PanoramaOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+            {id: 3, icon: <BrushOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>,  text: 'Create your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
         ]
 
         let [activeTab, setActiveTab] = useState(tabList[0].id)
@@ -162,7 +165,7 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
 
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center', alignContent: 'space-around'}}>
 
-                        <Grid item xs={12} sx={{display: 'flex'}}>
+                        <Grid item xs={12} sx={{display: 'flex', mb:5}}>
 
                             <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, px:2}}>
                            
@@ -190,27 +193,35 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                                 >
                                     
                                     <Grid item sx={{ display: 'flex'}}>
-                                        <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, p:2,}} >
+                                        
+                                        <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 5}, p:2,}} >
                                        
                                             <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                           
+                                            
+                                       
+                                    
+                                           
                                                 <Grid sx={{position: 'relative'}}>
+                                               
                                                 {
                                                     activeTab === tab.id && (
                                                         <motion.div 
                                                             layoutId='blue'
-                                                            animate={{ backgroundColor: activeTab === tab.id ? theme.palette.primary.main : 'inherit'}}
+                                                            animate={{ backgroundColor: activeTab === tab.id ? 'inherit' : 'inherit' }}
+                                                            //animate={{ backgroundColor: activeTab === tab.id ? theme.palette.background.paper : 'inherit'}}
                                                             transition={{duration: 0.7, type: 'spring'}}
-                                                            style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', borderRadius: '20px'}}>
+                                                            style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', border: '2px solid', borderColor: theme.palette.primary.main, borderRadius: '12px'}}>
             
                                                         </motion.div>
                                                     )
                                                 }
                                                 </Grid>
-                                                
+                                            
                                                 <Grid sx={{position: 'absolute', display: 'grid', justifyContent: 'center', alignContent: 'center',}}>
                                                     {
                                                         activeTab === tab.id && (
-                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '20px'}}>
+                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab === tab.id ? theme.palette.primary.main : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '6px'}}>
                                                     
                                                             </motion.div>
                                                         )
@@ -222,18 +233,28 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
 
                                         </Grid>
 
-                                        <Grid item xs={10} lg={10} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
-                                            
-                                            <Typography style={{color: theme.palette.text.secondary}} sx={{mb: 1}} variant='p' color="text.secondary">
+                                        <Grid item xs={10} lg={10} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 5}, p:2,}}>
+
+                                            <motion.div 
+                                                transition={{duration: 0.7, type: 'spring'}}
+                                                animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
+                                                style={{width: '100%', justifyContent: 'center', display: 'flex'}}
+                                            >
+                                                {tab.icon}
+                                            </motion.div>
+
+
+                                            {/* <Typography style={{color: theme.palette.text.secondary}} sx={{mb: 1}} variant='p' color="text.secondary">
                                                 0{tab.id}
                                             </Typography>
-
+ */}
                                             <motion.p 
-                                            transition={{duration: 0.3,}}
+                                            transition={{duration: 0.7, type: 'spring'}}
                                             animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
                                             sx={{mb: { xs:3, md: 5}}}>
                                                 {tab.text}
                                             </motion.p>
+                                          
                                         </Grid>
 
                                     </Grid>
@@ -246,9 +267,9 @@ const UI = ({isVisible, theme, palette, font,  setPalette, fonts}) => {
                      
                     </Grid>
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
+                        {/* <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
                           
-                        </Card>
+                        </Card> */}
                     </Grid>
 
             </Grid>

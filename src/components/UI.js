@@ -54,14 +54,15 @@ const UI = ({theme, palette, font}) => {
       } 
       
         let tabList = [
-            {id: 1, icon: <PaletteOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
-            {id: 2, icon: <PanoramaOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
-            {id: 3, icon: <BrushOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>,  text: 'Create your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
+            {id: 1, bgcolor: alpha(theme.palette.background.paper, 1), icon: <PaletteOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+            {id: 2, bgcolor: alpha(theme.palette.background.paper, 0.5), icon: <PanoramaOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+            {id: 3, bgcolor: alpha(theme.palette.background.paper, 0.2), icon: <BrushOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>,  text: 'Create your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
         ]
 
-        let [activeTab, setActiveTab] = useState(tabList[0].id)
-        console.log(theme)
-    
+        let [activeTab, setActiveTab] = useState(tabList[0])
+      
+        console.log(activeTab)
+  
        
     return (
 
@@ -160,24 +161,19 @@ const UI = ({theme, palette, font}) => {
                 maxWidth="lg"
                 justifySelf="center"
                 sx={{display: 'flex'}} >
-              
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', alignContent: 'center',  height: {xs: '50vh', md:'auto'}}}>
+                        <motion.div 
+                        transition={{duration: 0.7}}
+                        animate={{ backgroundColor: activeTab.bgcolor }}
+                        style={{width: '100%', mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5},}}>
+                          
+                        </motion.div> 
+                    </Grid>
                    
 
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center', alignContent: 'space-around'}}>
 
-                        <Grid item xs={12} sx={{display: 'flex', mb:5}}>
-
-                            <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'flex-start', mt: { xs:3, md: 0}, px:2}}>
-                           
-                           </Grid>
-
-                           <Grid item xs={2} lg={10} sx={{display: 'grid', justifyContent: 'flex-start', alignContent: 'flex-start', mt: { xs:3, md: 0},  px:2}}>
-                               <Typography variant='h3' options={options} >
-                                   Design
-                               </Typography>
-                           </Grid>
-
-                        </Grid>
+                    
                     
                         
                         {tabList.map((tab) => {
@@ -187,7 +183,8 @@ const UI = ({theme, palette, font}) => {
                                 
                                 onClick={()=> {
                                     console.log(tab.id)
-                                    setActiveTab(tab.id)
+                                    setActiveTab(tab)
+                                  
                                 }}
 
                                 >
@@ -195,21 +192,17 @@ const UI = ({theme, palette, font}) => {
                                     <Grid item sx={{ display: 'flex'}}>
                                         
                                         <Grid item xs={2} lg={2} sx={{display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 5}, p:2,}} >
-                                       
-                                            <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                           
                                             
-                                       
-                                    
+                                            <Grid sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                
                                            
                                                 <Grid sx={{position: 'relative'}}>
                                                
                                                 {
-                                                    activeTab === tab.id && (
+                                                    activeTab.id === tab.id && (
                                                         <motion.div 
                                                             layoutId='blue'
-                                                            animate={{ backgroundColor: activeTab === tab.id ? 'inherit' : 'inherit' }}
-                                                            //animate={{ backgroundColor: activeTab === tab.id ? theme.palette.background.paper : 'inherit'}}
+                                                            animate={{ backgroundColor: activeTab.id === tab.id ? 'inherit' : 'inherit' }}
                                                             transition={{duration: 0.7, type: 'spring'}}
                                                             style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', border: '2px solid', borderColor: theme.palette.primary.main, borderRadius: '12px'}}>
             
@@ -220,8 +213,8 @@ const UI = ({theme, palette, font}) => {
                                             
                                                 <Grid sx={{position: 'absolute', display: 'grid', justifyContent: 'center', alignContent: 'center',}}>
                                                     {
-                                                        activeTab === tab.id && (
-                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab === tab.id ? theme.palette.primary.main : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '6px'}}>
+                                                        activeTab.id === tab.id && (
+                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab.id === tab.id ? theme.palette.primary.main : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '6px'}}>
                                                     
                                                             </motion.div>
                                                         )
@@ -233,24 +226,19 @@ const UI = ({theme, palette, font}) => {
 
                                         </Grid>
 
-                                        <Grid item xs={10} lg={10} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 5}, p:2,}}>
+                                        <Grid item xs={10} lg={10} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'space-around', mt: { xs:3, md: 5}, p:2,}}>
 
                                             <motion.div 
                                                 transition={{duration: 0.7, type: 'spring'}}
-                                                animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
+                                                animate={{fontSize: theme.typography.h5.fontSize, color: activeTab.id === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
                                                 style={{width: '100%', justifyContent: 'center', display: 'flex'}}
                                             >
                                                 {tab.icon}
                                             </motion.div>
 
-
-                                            {/* <Typography style={{color: theme.palette.text.secondary}} sx={{mb: 1}} variant='p' color="text.secondary">
-                                                0{tab.id}
-                                            </Typography>
- */}
                                             <motion.p 
                                             transition={{duration: 0.7, type: 'spring'}}
-                                            animate={{fontSize: theme.typography.h5.fontSize, color: activeTab === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
+                                            animate={{fontSize: theme.typography.h5.fontSize, color: activeTab.id === tab.id ? theme.palette.text.primary : theme.palette.text.secondary }}
                                             sx={{mb: { xs:3, md: 5}}}>
                                                 {tab.text}
                                             </motion.p>
@@ -266,11 +254,7 @@ const UI = ({theme, palette, font}) => {
                         
                      
                     </Grid>
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
-                        {/* <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
-                          
-                        </Card> */}
-                    </Grid>
+                  
 
             </Grid>
            
@@ -284,7 +268,7 @@ const UI = ({theme, palette, font}) => {
                 sx={{display: 'flex'}} 
                 style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
               
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center'}}>
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', }}>
                         <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
                           
                         </Card>

@@ -11,6 +11,10 @@ import { AnimatePresence, motion, useInView} from "framer-motion";
 import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
+import FormatSizeOutlinedIcon from '@mui/icons-material/FormatSizeOutlined';
+import TextFieldsOutlinedIcon from '@mui/icons-material/TextFieldsOutlined';
+import TextFormatOutlinedIcon from '@mui/icons-material/TextFormatOutlined';
+
 
 
 const UI = ({theme, palette, font}) => {
@@ -44,24 +48,26 @@ const UI = ({theme, palette, font}) => {
         console.log(e.target.value)
         navigator.clipboard.writeText(e.target.value)
       }
-      console.log(theme)
 
-      let options = {
-        firstColor: theme.palette.primary.main, 
-        secondColor: theme.palette.secondary.main, 
-        direction: "bottom",
-        variant: 'h3'
-      } 
+    console.log(theme.typography.h3.fontSize)
+
+    let options = {
+    firstColor: theme.palette.primary.main, 
+    secondColor: theme.palette.secondary.main, 
+    direction: "bottom",
+    variant: 'h3'
+    } 
+
+
       
-        let tabList = [
-            {id: 1, bgcolor: alpha(theme.palette.background.paper, 1), icon: <PaletteOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
-            {id: 2, bgcolor: alpha(theme.palette.background.paper, 0.5), icon: <PanoramaOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
-            {id: 3, bgcolor: alpha(theme.palette.background.paper, 0.2), icon: <BrushOutlinedIcon sx={{ fontSize: 48, color: 'inherit' }}/>,  text: 'Create your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
-        ]
+    let tabList = [
+        {id: 1, bgcolor: alpha(theme.palette.background.paper, 1), icon: <PaletteOutlinedIcon sx={{ fontSize: `${theme.typography.h2.fontSize}`, color: 'inherit' }}/>, text: 'Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+        {id: 2, bgcolor: alpha(theme.palette.background.paper, 0.5), icon: <PanoramaOutlinedIcon sx={{ fontSize: `${theme.typography.h2.fontSize}`, color: 'inherit' }}/>, text: 'Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'},
+        {id: 3, bgcolor: alpha(theme.palette.background.paper, 0.2), icon: <BrushOutlinedIcon sx={{ fontSize: `${theme.typography.h2.fontSize}`, color: 'inherit' }}/>,  text: 'Create your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.'}
+    ]
 
         let [activeTab, setActiveTab] = useState(tabList[0])
       
-        console.log(activeTab)
   
        
     return (
@@ -72,14 +78,23 @@ const UI = ({theme, palette, font}) => {
       
             <Grid
             container
-            maxWidth="lg"
+            maxWidth="md"
             column={12} 
             justifySelf="center"
             style={{ minHeight: '100vh',  alignContent: 'center', justifyContent:'center'}} 
             >
-                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', }}>
+
+
+                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center'}}>
+                    <Typography variant='h3' color="text.secondary">
+                    UI Designer    
+                    </Typography>
+                </Grid>
+
+                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center',mt: 5, }}>
                     <Typography 
-                    variant='h3' 
+                    variant='h2' 
+                    textAlign="center"
                     sx={{
                         p:2,
                         backgroundImage: `linear-gradient( to top, ${alpha(theme.palette.primary.main, 1)}, ${alpha(theme.palette.secondary.main, 1)})`,
@@ -90,22 +105,29 @@ const UI = ({theme, palette, font}) => {
                         WebkitTextFillColor: "transparent"
                         }}
                         >
-                        UI Designer     
+                         Design, Customize and Simulate your User Interface in minutes 
                     </Typography>          
                       
                 </Grid>
 
-                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center', mt: 5, p:2,}}>
-                    <Typography variant='h5' color="text.secondary">
-                        Design, Customize and Simulate your User Interface in minutes 
-                    </Typography>
+                <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Typography 
+                    variant='h5' 
+                    color="text.secondary"
+                    textAlign="center"
+                        >
+                         Create a Material UI Theme in Minutes 
+                    </Typography>          
+                      
                 </Grid>
 
+                
+
                 <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'center',  mt: 5,}}>
-                    <Button sx={{background: 'background.paper',}} variant="outlined" size='medium'>Learn More</Button>
+                    <Button sx={{maxWidth: '300px', width: '100%', background: 'primary.main', }} variant="contained" size='medium'>Get Started</Button>
                 </Grid>
             </Grid>
-    
+            
 
 
            
@@ -204,7 +226,7 @@ const UI = ({theme, palette, font}) => {
                                                             layoutId='blue'
                                                             animate={{ backgroundColor: activeTab.id === tab.id ? 'inherit' : 'inherit' }}
                                                             transition={{duration: 0.7, type: 'spring'}}
-                                                            style={{display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', border: '2px solid', borderColor: theme.palette.primary.main, borderRadius: '12px'}}>
+                                                            style={{ mixBlendMode: 'difference', display: 'flex', justifyContent: 'center', alignItems: 'center', my: { xs:3, md: 5}, width: '40px', height: '50px', border: '2px solid', borderColor: theme.palette.primary.main, borderRadius: '12px'}}>
             
                                                         </motion.div>
                                                     )
@@ -214,7 +236,7 @@ const UI = ({theme, palette, font}) => {
                                                 <Grid sx={{position: 'absolute', display: 'grid', justifyContent: 'center', alignContent: 'center',}}>
                                                     {
                                                         activeTab.id === tab.id && (
-                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{  backgroundColor: activeTab.id === tab.id ? theme.palette.primary.main : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '6px'}}>
+                                                            <motion.div transition={{duration: 0.3}} layoutId='pill' style={{ mixBlendMode: 'difference', backgroundColor: activeTab.id === tab.id ? theme.palette.primary.main : theme.palette.text.secondary, width: '20px', height: '20px', borderRadius: '6px'}}>
                                                     
                                                             </motion.div>
                                                         )
@@ -259,42 +281,180 @@ const UI = ({theme, palette, font}) => {
             </Grid>
            
 
-            {/* Sim */}
+            {/* Cards */}
             <Grid
                 container 
                 column={12} 
-                maxWidth="lg"
+                maxWidth="xl"
                 justifySelf="center"
                 sx={{display: 'flex'}} 
                 style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', }}>
-                        <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0, borderRadius: '24px', p: {xs:2, lg:5}}}>
-                          
+                        <Card elevation={0} sx={{ position: 'relative', display: 'flex', width: '100%', minHeight: {xs: '50vh', md:'384px'}, mx:2, mb:5, borderRadius: '24px', p: {xs:2, lg:5}, border: '1px solid ', borderColor: 'background.paper',":hover": {borderColor: 'border'}}}>
+                                <Grid sx={{
+                                display: 'flex', 
+                                justifyContent: 'flex-end',
+                                alignContent: 'flex-start',
+                                position: 'absolute', 
+                                inset: ' -50% 0 0 50%;',
+                                width: '100%',
+                                height: '100%',
+                                
+                                overflow: 'hidden'
+                                }}>
+                                    <Grid sx={{
+                                        width: '400px',
+                                        height: '400px',
+                                        borderRadius: '200px',
+                                        background: `radial-gradient(circle at 50% 50%, ${theme.palette.primary.main}, transparent 60%)`
+                                        /* background: `linear-gradient( to top, ${alpha(theme.palette.primary.main, 1)}, ${alpha(theme.palette.secondary.main, 1)})`, */
+                                        }}
+                                    > 
+                                        
+                                    </Grid>
+                                </Grid>
+                                <Grid sx={{ display: 'grid', alignContent: 'space-between', height: '100%',}}>
+                                    <Typography variant="h5" sx={{mb:5, fontWeight: '600'}} component="div">
+                                        Create
+                                    </Typography>
+                                
+                                    
+                                    <Grid>
+                                        <Typography  sx={{mb:2}} variant="h6">
+                                            Whereas disregard and contempt for human rights have resulted
+                                        </Typography>
+
+                                        <Button disableRipple textAlign="left" sx={{textAlign: 'left', background: 'background.paper', p:0, ":hover": {backgroundColor: 'inherit'}}} variant="text" color='primary'>Learn More</Button>                               
+                            
+                                    </Grid>
+                                </Grid>
+                        </Card>
+                        
+                    </Grid>
+
+                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', }}>
+                        <Card elevation={0} sx={{ position: 'relative', display: 'flex', width: '100%', minHeight: {xs: '50vh', md:'384px'}, mx:2,  mb:5, borderRadius: '24px', p: {xs:2, lg:5}, border: '1px solid ', borderColor: 'background.paper',":hover": {borderColor: 'border'}}}>
+                                <Grid sx={{
+                                display: 'flex', 
+                                justifyContent: 'flex-end',
+                                alignContent: 'flex-start',
+                                position: 'absolute', 
+                                inset: ' -50% 0 0 50%;',
+                                width: '100%',
+                                height: '100%',
+                                
+                                overflow: 'hidden'
+                                }}>
+                                    <Grid sx={{
+                                        width: '400px',
+                                        height: '400px',
+                                        borderRadius: '200px',
+                                        background: `radial-gradient(circle at 50% 50%, ${theme.palette.primary.main}, transparent 60%)`
+                                        /* background: `linear-gradient( to top, ${alpha(theme.palette.primary.main, 1)}, ${alpha(theme.palette.secondary.main, 1)})`, */
+                                        }}
+                                    > 
+                                        
+                                    </Grid>
+                                </Grid>
+                                <Grid sx={{ display: 'grid', alignContent: 'space-between', height: '100%',}}>
+                                    <Typography variant="h5" sx={{mb:5, fontWeight: '600'}} component="div">
+                                        Develop
+                                    </Typography>
+                                
+                                    
+                                    <Grid>
+                                        <Typography  sx={{mb:2}} variant="h6">
+                                        Simulate your website with professional tools. We want to help you design faster and better
+                                        </Typography>
+
+                                        <Button disableRipple textAlign="left" sx={{textAlign: 'left', background: 'background.paper', p:0, ":hover": {backgroundColor: 'inherit'}}} variant="text" color='primary'>Learn More</Button>                               
+                            
+                                    </Grid>
+                                </Grid>
                         </Card>
                     </Grid>
 
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', alignContent: 'flex-start'}}>
+                    <Grid item xs={12} lg={4} xl={4} sx={{display: 'flex', justifyContent: 'center',}}>
+                        <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border',  backgroundColor: 'background.default'}}>
+                            <a href='#'>
+                            <CardContent>
+                                <Grid sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                        Ubuntu
+                                    </Typography>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                        <TextFormatOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                    </Typography>
+                                </Grid>
 
-                        <Grid item xs={12} lg={12} sx={{ display: 'grid', justifyContent: 'center', alignContent: 'center', mt: { xs:3, md: 0}, p:2,}}>
+                                <Typography  sx={{mb:2}} color="text.secondary" variant="h6">
+                                    Whereas disregard and contempt for human rights have resulted
+                                </Typography>
+                                
+                                <Button disableRipple textAlign="left" sx={{fontWeight: '400', textAlign: 'left', background: 'background.paper', p:0, ":hover": {backgroundColor: 'inherit'}}} variant="text" color='primary'>Learn More</Button>                               
 
-                            <Grid>
-                            <Typography variant='h3' options={options} >
-                                Simulate
-                            </Typography>
-                            </Grid>
                             
-                            <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
-                            Simulate your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
-                            </Typography>
-                            <Grid item xs={12} lg={12} sx={{ display: 'flex', justifyContent: 'flex-start',  mt: 5,}}>
-                                <Button sx={{background: 'background.paper',}} variant="outlined" size='medium'>Learn More</Button>
-                            </Grid>
-                        </Grid>
-                     
+                            </CardContent>
+                            </a>
+                        </Card>
                     </Grid>
 
+                    <Grid item xs={12} lg={4} xl={4} sx={{display: 'flex', justifyContent: 'center',}}>
+                        <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border', backgroundColor: 'background.default'}}>
+                            <a href='#'>
+                            <CardContent>
+                                <Grid sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                    Arial
+                                    </Typography>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                        <FormatSizeOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                    </Typography>
+                                </Grid>
+
+                                <Typography  sx={{mb:2}} color="text.secondary" variant="h6">
+                                    Whereas disregard and contempt for human rights have resulted
+                                </Typography>
+
+                                <Button disableRipple textAlign="left" sx={{fontWeight: '400', textAlign: 'left', background: 'background.paper', p:0, ":hover": {backgroundColor: 'inherit'}}} variant="text" color='primary'>Learn More</Button>                               
+
+                            
+                            </CardContent>
+                            </a>
+                        </Card>
+                    </Grid>
+                    
+                    <Grid item xs={12} lg={4} xl={4} sx={{display: 'flex', justifyContent: 'center',}}>
+                        <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border', backgroundColor: 'background.default'}}>
+                            <a href='#'>
+                            <CardContent>
+                                <Grid sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                    Roboto
+                                    </Typography>
+                                    <Typography variant="h4" sx={{mb:5}} component="div">
+                                        <TextFieldsOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                    </Typography>
+                                </Grid>
+                                <Typography  sx={{mb:2}} color="text.secondary" variant="h6">
+                                    Whereas disregard and contempt for human rights have resulted
+                                </Typography>
+                                <Button disableRipple textAlign="left" sx={{fontWeight: '400', textAlign: 'left', background: 'background.paper', p:0, ":hover": {backgroundColor: 'inherit'}}} variant="text" color='primary'>Learn More</Button>                               
+
+                            
+                            </CardContent>
+                            </a>
+                        </Card>
+                    </Grid>
             </Grid>
+
+
+
+
+
+
+
 
             {/* Cards */}
             
@@ -372,54 +532,7 @@ const UI = ({theme, palette, font}) => {
             style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'  }} >
               
    
-                <Grid xs={12} lg={3} xl={3} sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border',}}>
-                        <a href='#'>
-                        <CardContent>
-                            <Typography variant="h4" sx={{mb:5}} component="div">
-                                Ubuntu
-                            </Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                            </Typography>
-                        
-                        </CardContent>
-                        </a>
-                    </Card>
-                </Grid>
-                <Grid xs={12} lg={3} xl={3} sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border',}}>
-                        <a href='#'>
-                        <CardContent>
-                            <Typography variant="h4" sx={{mb:5}} component="div">
-                                Arial
-                            </Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                            </Typography>
-                        
-                        </CardContent>
-                        </a>
-                    </Card>
-                </Grid>
-                <Grid xs={12} lg={3} xl={3} sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Card elevation={0} sx={{ m:2, width: '100%', borderRadius: '24px', p: 1, border: '1px solid', borderColor: 'border',}}>
-                        <a href='#'>
-                        <CardContent>
-                            <Typography variant="h4" sx={{mb:5}} component="div">
-                                Roboto
-                            </Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                            </Typography>
-                        
-                        </CardContent>
-                        </a>
-                    </Card>
-                </Grid>
+                
                 
                 <Grid item xl={6} lg={6} md={12} sm={6} xs={12} sx={{p: {xs: 1, md:5} }} >
                         <Typography  align='center' sx={{mt:1, mb:1}}>Primary</Typography>

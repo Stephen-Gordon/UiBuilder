@@ -2,7 +2,7 @@
 import '../App.css';
 import { generate } from "@k-vyn/coloralgorithm";
 
-import {  createTheme, ThemeProvider, alpha } from '@mui/material/styles';
+import {  createTheme, ThemeProvider, alpha, responsiveFontSizes} from '@mui/material/styles';
 
 import { useEffect, useState } from 'react';
 import { CssBaseline } from '@mui/material';
@@ -13,6 +13,7 @@ import ColorGenerator from '../components/ColorGenerator'
 
 //motion
 import { motion, useScroll } from "framer-motion";
+
 
 
 const Home = () => {
@@ -146,15 +147,48 @@ const Home = () => {
       let primaryColors = generate(primaryJSON);
       setPrimaryColorPalette(primaryColors[0].colors)
       
+
   }, [palette])
    
 
-
   
-     const theme = createTheme({
-
+     let theme = createTheme({
+      
         typography: {
-          fontFamily: font
+          fontFamily: 'inter',
+       /*    h5: {
+            fontSize: '1.75rem'
+          } */
+        /*   h1: {
+            fontSize: '64px'
+          },
+          h2: {
+            fontSize: '64px'
+          },
+          h3: {
+            fontSize: '64px'
+          },
+          h4: {
+            fontSize: '64px'
+          },
+          h5: {
+            fontSize: '64px'
+          },
+          h6: {
+            fontSize: '64px'
+          },
+          subtitle1: {
+            fontSize: '64px'
+          },
+          subtitle2: {
+            fontSize: '64px'
+          },
+          subtitle2: {
+            fontSize: '64px'
+          },
+          subtitle2: {
+            fontSize: '64px'
+          }, */
         },
         palette: {
             border: alpha(palette.text.primary, 0.1),
@@ -255,12 +289,13 @@ const Home = () => {
                     opacity: 0.9,
                     
                   },
-                  fontSize: '16px',
+                  textTransform: 'none',
+                  fontSize: '20px',
                   paddingTop: '8px',
                   paddingBottom: '8px',
                   paddingLeft: '32px',
                   paddingRight: '32px',
-                  //fontWeight: '700',
+                  fontWeight: '600',
                   borderRadius: '24px'
                 }
               }
@@ -268,7 +303,8 @@ const Home = () => {
           },
         
     });
-     
+    theme = responsiveFontSizes(theme);
+    console.log(theme)
 
     
     return (

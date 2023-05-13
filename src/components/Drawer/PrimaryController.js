@@ -7,7 +7,7 @@ import Slider from '@mui/material/Slider';
 
 
 
-const PrimaryController = ({primaryColorPalette, primaryJSON, setPrimaryColorPalette, setPrimaryJSON}) => {
+const PrimaryController = ({PrimaryPalette, primaryColorPalette, primaryJSON, setPrimaryColorPalette, setPrimaryJSON}) => {
 
   
     let primaryColors;
@@ -283,7 +283,21 @@ const PrimaryController = ({primaryColorPalette, primaryJSON, setPrimaryColorPal
                         </Grid>
 
                        </Grid>
-                       
+                       <Grid>
+                            <Typography sx={{ml:2, mt:3}}  variant={"subtitle1"}  color="text.secondary">
+                                    Palette
+                                </Typography>
+
+                                <Grid sx={{p:3, backgroundColor: 'background.paper', borderRadius: '12px', width: '100%',  }}>
+                                
+                                   
+                               
+                                    {PrimaryPalette}
+                              
+
+                                </Grid>
+
+                       </Grid>
 
                             
                        

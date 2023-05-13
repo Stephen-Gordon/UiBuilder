@@ -335,24 +335,24 @@ const MobilePrimaryController = ({theme, addToPalette, PrimaryPalette, setRender
                             
                         <Grid container xl={6} lg={12} md={12} sm={12} xs={12} sx={{display: 'flex', justifyContent: 'center', height: 'fit-content' }}>
                                 
-                        <Grid sx={{ width: '100%', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
-                
-                            
-                            <Grid container alignItems="space-around" justifyContent="space-around" display={'flex'}>
-                                {
-                                    bgPal = PrimaryPalette.map((Pal, i) => {
-                                    console.log(Pal.props.sx) 
-                                    Pal.props.sx.height = '100px'
-                                    /* Pal.props.sx.width = '47%' */
-                                    
+                            <Grid sx={{ width: '100%', my:3, p:1, border: '1px solid', borderColor: 'border', borderRadius: '24px', backgroundColor: 'background.default', cursor: '-moz-grab', cursor: 'grab'}}>
+                    
+                                
+                                <Grid container alignItems="space-around" justifyContent="space-around" display={'flex'}>
+                                    {
+                                        bgPal = PrimaryPalette.map((Pal, i) => {
+                                        console.log(Pal.props.sx) 
+                                        Pal.props.sx.height = '100px'
+                                        /* Pal.props.sx.width = '47%' */
+                                        
 
 
-                                    return Pal
-                                 })
-                                } 
+                                        return Pal
+                                    })
+                                    } 
+                                </Grid>
+                    
                             </Grid>
-                
-                        </Grid>
                 
                         </Grid>
                    

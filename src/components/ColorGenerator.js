@@ -100,16 +100,15 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
         return (
             <Button 
                 disableRipple   
-                style={{ transition: 'all 0.5s linear'}} 
+                style={{ transition: 'all 0.3s linear'}} 
                 key={i} onClick={addToPalette} 
                 variant='contained' 
                 value={c.hex} 
                 sx={{
-                    m:1,
-                    width: 
-                    '100px', 
+                    my:1,
+                    width: '100%',
                     height: '100px', 
-                    borderRadius: '16px', 
+                    borderRadius: '24px', 
                     backgroundColor: c.hex,
                     '&:hover, &.Mui-hovered': {
                         backgroundColor: alpha(c.hex, 0.5)
@@ -126,13 +125,13 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
         return (
             <Button 
                 disableRipple   
-                style={{ transition: 'all 0.5s linear' }} 
+                style={{ transition: 'all 0.3s linear' }} 
                 key={i} onClick={addToPalette} 
                 variant='contained' 
                 value={c.hex} 
                 sx={{
-                    m:1,
-                    width: {xs: '100%', md: '100px'},
+                    my:1,
+                    width: '100%',
                     height: '100px', 
                     borderRadius: '16px', 
                     backgroundColor: c.hex,
@@ -204,7 +203,7 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
                 open
                 anchor="left"
             >
-                <ControllerMenu theme={theme} fonts={fonts} setFont={setFont} primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} customPalette={customPalette} />
+                <ControllerMenu BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} theme={theme} fonts={fonts} setFont={setFont} primaryJSON={primaryJSON} setPrimaryJSON={setPrimaryJSON }  primaryColorPalette={primaryColorPalette} setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} customPalette={customPalette} />
             </Drawer> 
 
 

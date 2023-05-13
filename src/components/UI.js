@@ -75,6 +75,38 @@ const UI = ({theme, palette, font}) => {
         
       <>
 
+          {/*   <Grid sx={{
+                width: {xs: '100%', md: `calc(100% - 562px)`},
+                height: '100%',
+                position: 'absolute',
+                display: 'flex',
+                justifyContent: 'center',
+                overflowX: 'hidden',
+               
+              
+               
+              
+                
+                  
+            }}>
+                <Grid
+                    sx={{
+                        width: '100%',
+                        height: '100vh',
+                        backdropFilter: 'blur(6.5rem)',
+                        borderRadius: '100px',
+                        backgroundColor: 'inherit',
+                        opacity: 0.1,
+                        backgroundSize: "100%",
+                        backgroundRepeat: 'no-repeat',
+                        backgroundImage: `radial-gradient(circle at 50% 50%, ${theme.palette.primary.main}, transparent 60%)`,
+                    }}
+                >
+
+                </Grid>
+
+            </Grid> */}
+
       
             <Grid
             container
@@ -142,7 +174,7 @@ const UI = ({theme, palette, font}) => {
                 maxWidth="lg"
                 justifySelf="center"
                 sx={{display: 'flex'}} 
-                style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center'}} >
+                style={{ minHeight: '100vh', alignContent: 'center', justifyContent: 'center', mb:20}} >
               
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex', justifyContent: 'center'}}>
                         <Card elevation={0} sx={{width: '100%', height: {xs: '50vh', md:'514px'}, mx:2, my:0,  borderRadius: '24px', p: {xs:2, lg:5}}}>
@@ -159,7 +191,7 @@ const UI = ({theme, palette, font}) => {
                             </Typography>
                             </Grid>
                             
-                            <Typography sx={{my: { xs:3, md: 5}}} variant='h5' color="text.secondary">
+                            <Typography sx={{mt: { xs:3, md: 5}}} variant='h5' color="text.secondary">
                                 Design your website with professional tools. We want to help you design faster and better. Bit by bit. Day by day.
                             </Typography>
                             
@@ -182,7 +214,7 @@ const UI = ({theme, palette, font}) => {
                 column={12} 
                 maxWidth="lg"
                 justifySelf="center"
-                sx={{display: 'flex'}} >
+                sx={{display: 'flex', mb:10,}} >
                     <Grid item xs={12} lg={6} xl={6} sx={{display: 'flex',  justifyContent: 'center', alignContent: 'center',  height: {xs: '50vh', md:'auto'}}}>
                         <motion.div 
                         transition={{duration: 0.7}}
@@ -193,7 +225,7 @@ const UI = ({theme, palette, font}) => {
                     </Grid>
                    
 
-                    <Grid item xs={12} lg={6} xl={6} sx={{display: 'grid',  justifyContent: 'center', alignContent: 'space-around'}}>
+                    <Grid item xs={12} lg={6} xl={6} sx={{ display: 'grid',  justifyContent: 'center', alignContent: 'space-around'}}>
 
                     
                     
@@ -384,7 +416,7 @@ const UI = ({theme, palette, font}) => {
                                         Ubuntu
                                     </Typography>
                                     <Typography variant="h4" sx={{mb:5}} component="div">
-                                        <TextFormatOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                        <TextFormatOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`, }}/>
                                     </Typography>
                                 </Grid>
 
@@ -409,7 +441,7 @@ const UI = ({theme, palette, font}) => {
                                     Arial
                                     </Typography>
                                     <Typography variant="h4" sx={{mb:5}} component="div">
-                                        <FormatSizeOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                        <FormatSizeOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}` }}/>
                                     </Typography>
                                 </Grid>
 
@@ -434,7 +466,7 @@ const UI = ({theme, palette, font}) => {
                                     Roboto
                                     </Typography>
                                     <Typography variant="h4" sx={{mb:5}} component="div">
-                                        <TextFieldsOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`}}/>
+                                        <TextFieldsOutlinedIcon sx={{ fontSize: `${theme.typography.h4.fontSize}`, }}/>
                                     </Typography>
                                 </Grid>
                                 <Typography  sx={{mb:2}} color="text.secondary" variant="h6">

@@ -94,40 +94,42 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
 
             <>
 
-            <AppBar 
-                position="sticky" 
-                elevation={0}
-                sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", minHeight: `${theme.typography.h4.fontSize}` , p:1 }} >
-                    
-                <Grid sx={{position: 'absolute', width: '100%', }}>
+            <motion.div 
+                id="ddddddddddddddd"
+                layout
+                animate={{
+                    transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
+                }}
+                style={{zIndex: '1500', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", minHeight: `${theme.typography.h1.fontSize}`, position: 'sticky', }} >
                 
-                {
-                    isPageVisible && (
-                    <motion.div
-                    layout
-                    style={{width: '100%', zIndex: '1501', position: ''}}
-                    initial={{  x: '50%'}}
-                    animate={{
-                        x:0,
-                        transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
-                    }}
-                    exit={{
-                        x: '100%',
-                        transition: { duration: 0.2, ease: [0.71, 0.03, 0.56, 0.95] },
-                      }}
-                    >
-                    <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
-                        {title}
-                    </Typography> 
-                    </motion.div>
-                    )
-                    
-                }
-             
+                <Grid sx={{position: 'absolute', width: '100%', height: '100%', display: 'flex', alignContent: 'center', alignItems: 'center', }}>
+                
+                    {
+                        isPageVisible && (
+                        <motion.div
+                        layout
+                        style={{width: '100%', zIndex: '-1501', position: '', height: '100%', display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}
+                        initial={{  x: '50%'}}
+                        animate={{
+                            x:0,
+                            transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
+                        }}
+                        exit={{
+                            x: '100%',
+                            transition: { duration: 0.2, ease: [0.71, 0.03, 0.56, 0.95] },
+                        }}
+                        >
+                        <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
+                            {title}
+                        </Typography> 
+                        </motion.div>
+                        )
+                        
+                    }
                 
                 </Grid>
 
-                <Grid sx={{backgroundColor: 'inherit', position: 'sticky'}}>
+                <Grid sx={{backgroundColor: 'inherit', position: 'sticky', height: '100%'}}>
 
                     {/* Controller */}
 
@@ -135,13 +137,12 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                     layout
                     layoutId="text" 
                     transition={{layout: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9],}}}
-                    style={{zIndex: '1500'}}>
+                    style={{zIndex: '1500',  height: '100%'}}>
                     
-
-                        <Grid sx={{display: 'flex', alignItems: 'center'}} >
+                        <Grid sx={{display: 'flex', alignContent : 'center', alignItems: 'center',  height: '100%'}} >
 
                             
-                            <Grid sx={{display: 'flex', alignItems: 'center', cursor: pointerBool, width: '100%'}}
+                            <Grid sx={{display: 'flex', alignContent: 'center', alignItems: 'center', cursor: pointerBool, width: '100%', height: '100%'}}
                                 onClick={() => {
                                     if(isPageVisible){
                                     setRenderController(true) 
@@ -173,7 +174,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                                     
                                 }
                               
-                                <Grid sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                                <Grid sx={{display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'space-between', width: '100%', height: '100%'}}>
                                     <Typography sx={{my:1, ml: marginLeft, transitionTimingFunction: theme.transitions.easing.easeIn, transition: 'color 0.3s, font-size 0.3s', fontSize: `${size}`, color: `${color}`}}  >
                                         Controller
                                     </Typography>
@@ -203,7 +204,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                     </motion.div>
                 
                 </Grid>
-            </AppBar>
+            </motion.div>
                    
                     
             

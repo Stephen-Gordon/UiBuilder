@@ -17,7 +17,7 @@ import TypographyController from "./Drawer/Typography/TypographyController";
 import PrimaryController from "./Drawer/PrimaryController";
 
 
-const ControllerMenu = ({theme, customPalette, setPalette, fonts, setFont={setFont}, palette, setPrimaryJSON, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
+const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette, setPalette, fonts, setFont={setFont}, palette, setPrimaryJSON, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
 
         const TabButton = styled(Tab)({
            
@@ -65,7 +65,7 @@ const ControllerMenu = ({theme, customPalette, setPalette, fonts, setFont={setFo
             
             <TabContext value={value}>
 
-                <Grid sx={{display: 'flex', flexDirection: 'row', height: '100%', position: 'fixed'}}>
+                <Grid sx={{display: 'flex', flexDirection: 'row', height: '100%'}}>
                     
 
                     <Grid sx={{ minWidth: '225px',  display: 'flex', flexDirection: 'column', }}>
@@ -107,11 +107,11 @@ const ControllerMenu = ({theme, customPalette, setPalette, fonts, setFont={setFo
                     
                 <AppBar elevation={0} position="sticky" sx={{ backgroundColor: 'inherit'}}>
                     <TabPanel value="1">
-                        <Background setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
+                        <Background BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette}  setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
                     </TabPanel>
                 
                     <TabPanel value="2">
-                        <PrimaryController  primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                        <PrimaryController BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
                     </TabPanel>
 
                     <TabPanel value="3">

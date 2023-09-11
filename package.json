@@ -37,6 +37,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "react-use-measure": "^2.1.1",
     "resize-observer-polyfill": "^1.5.1",
     "tslib": "^2.5.0",

@@ -156,39 +156,6 @@ const Home = () => {
       
         typography: {
           fontFamily: 'inter',
-       /*    h5: {
-            fontSize: '1.75rem'
-          } */
-        /*   h1: {
-            fontSize: '64px'
-          },
-          h2: {
-            fontSize: '64px'
-          },
-          h3: {
-            fontSize: '64px'
-          },
-          h4: {
-            fontSize: '64px'
-          },
-          h5: {
-            fontSize: '64px'
-          },
-          h6: {
-            fontSize: '64px'
-          },
-          subtitle1: {
-            fontSize: '64px'
-          },
-          subtitle2: {
-            fontSize: '64px'
-          },
-          subtitle2: {
-            fontSize: '64px'
-          },
-          subtitle2: {
-            fontSize: '64px'
-          }, */
         },
         palette: {
             border: alpha(palette.text.primary, 0.1),
@@ -231,7 +198,7 @@ const Home = () => {
                 primary: palette.text.primary,
                 secondary: palette.text.secondary
             }
-        },
+        },  
         overrides: {
           MuiCssBaseline: {
             '@global': {

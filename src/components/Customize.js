@@ -4,8 +4,6 @@ import { Button, Grid, Typography } from "@mui/material";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import SmoothScroll from './SmoothScroll';
-
 
 const Customize = ({BackgroundPalette, PrimaryPalette, customizeIsVisible}) => {
 

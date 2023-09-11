@@ -140,7 +140,7 @@ const ThemeAccordian = ({customPalette, setPalette, palette}) => {
 
     return (
         <>
-           <Grid sx={{  p: {xs: 3, md: 0}, width: '100%', position: 'relative', backdropFilter: {xs: 'blur(100px)"'} }}>
+           <Grid sx={{   width: '100%', position: 'relative', backdropFilter: {xs: 'blur(100px)"'} }}>
             <PrimaryColor customPalette={customPalette} ColorList={ColorList} primary={primary} setPrimary={setPrimary} />
             <SecondaryColor ColorList={ColorList} setSecondary={setSecondary} secondary={secondary}/>
             <ErrorColor ColorList={ColorList} setError={setError} error={error}/>

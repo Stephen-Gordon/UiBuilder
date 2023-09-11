@@ -7,60 +7,23 @@ import { useEffect, useState } from "react";
 
 
 import UI from "./UI";
-import UIOverlay from "./UIOverlay";
 
 import { AnimatePresence, motion } from "framer-motion";
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 
 import ControllerMenu from "./ControllerMenu";
 import MobileControllerMenu from "./Drawer/MobileDrawer/MobileControllerMenu";
 
-import { alpha, styled } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import Customize from "./Customize";
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgroundColorPalette, setPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
-    const TabButton = styled(Tab)({
-           
-        '&.MuiButtonBase-root-MuiTab-root,': {
-            '&:hover, &.Mui-hovered': {
-                backgroundColor: theme.palette.background.paper,
-            },
-            '&.Mui-selected': {
-                backgroundColor: theme.palette.background.paper,
-                color: theme.palette.text.primary,
-            },
-            transition: 'ease-in-out 0.2s',
-            alignItems: 'start',
-            textTransform: 'none',
-            color: theme.palette.text.primary,
-            fontSize: '20px',
-            fontWeight: '400',
-            paddingTop: '12px',
-            paddingBottom: '12px',
-            paddingLeft: '24px',
-            paddingRight: '24px',
-            borderRadius: '0px',
-            backgroundColor: theme.palette.background.default,
-            '&:hover, &.Mui-hovered': {
-                transition: 'ease-in-out 0.2s',
-                backgroundColor: theme.palette.background.paper,
-                '@media (hover: none)': {
-                backgroundColor: 'transparent'
-                },
-            },
-        }
-    });
+   
 
 
     

@@ -277,6 +277,7 @@ const MobileControllerMenu = ({addToPalette, BackgroundPalette, PrimaryPalette, 
                   position: "absolute",
                   p: 3,
                   width: "100%",
+                  height: "100%",
                   backdropFilter: "blur(64px)",
                   mt: theme.typography.h4.fontSize,
                 }}

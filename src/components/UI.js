@@ -140,8 +140,8 @@ const UI = ({ theme, palette, font }) => {
 
         <Grid
           item
-          xs={12}
-          lg={12}
+          xs={8}
+          lg={8}
           sx={{ display: "flex", justifyContent: "center", mt: 5 }}
         >
           <Typography

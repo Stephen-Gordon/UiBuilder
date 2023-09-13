@@ -278,16 +278,16 @@ const Home = () => {
 
     <ThemeProvider theme={theme}>
       <CssBaseline/>
-{/* 
+
       <motion.div
-          style={{ scaleX: scrollYProgress, background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`, 
-          height: '20px', 
+          style={{ scaleY: scrollYProgress, background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`, 
+          height: '100px', 
           position: 'fixed', 
           transformOrigin: '0%', 
           top: 0, 
           left: '0', 
           right: 0 }}
-      /> */}
+      /> 
      
       <ColorGenerator 
           theme={theme} 

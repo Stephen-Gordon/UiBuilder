@@ -58,80 +58,133 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
         };
 
         return (
-
-            <>
-            
-        
-            
+          <>
             <TabContext value={value}>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  height: "100%",
+                  overflowY: "scroll",
+                }}
+              >
+                <Grid
+                  sx={{
+                    minWidth: "225px",
+                    display: "flex",
+                    flexDirection: "column",
+                      overflowY: 'scroll',
+                  }}
+                >
+                  <AppBar
+                    elevation={0}
+                    position="sticky"
+                    sx={{ backgroundColor: "inherit" }}
+                  >
+                    <TabList
+                      sx={{ mt: 2, position: "sticky" }}
+                      TabIndicatorProps={{
+                        style: {
+                          display: "none",
+                          borderRadius: "0px",
+                        },
+                      }}
+                      orientation="vertical"
+                      onChange={handleChange}
+                    >
+                      <TabButton
+                        sx={{ ml: 1, mr: 1, mt: 1 }}
+                        label="Background"
+                        value="1"
+                      />
 
-                <Grid sx={{display: 'flex', flexDirection: 'row', height: '100%'}}>
-                    
+                      <TabButton
+                        sx={{ ml: 1, mr: 1, mt: 1 }}
+                        label="Primary"
+                        value="2"
+                      />
 
-                    <Grid sx={{ minWidth: '225px',  display: 'flex', flexDirection: 'column', }}>
-                    <AppBar elevation={0} position="sticky" sx={{ backgroundColor: 'inherit'}}>
-                            <TabList
-                            sx={{mt:2, }}
-                                TabIndicatorProps={{ 
-                                    style: {
-                                        display: "none",
-                                        borderRadius: '0px'
-                                    },
-                            }}  
-                                
-                                orientation="vertical" onChange={handleChange}
-                            >
-                                
-                                <TabButton  sx={{ml:1, mr:1, mt:1}} label="Background" value="1" />
+                      <TabButton
+                        sx={{ textAlign: "left", ml: 1, mr: 1, mt: 1 }}
+                        label="Theme"
+                        value="3"
+                      />
 
-                                
-                                <TabButton sx={{ml:1, mr:1, mt:1}} label="Primary" value="2" />                          
+                      <TabButton
+                        sx={{ ml: 1, mr: 1, mt: 1 }}
+                        label="Typography"
+                        value="4"
+                      />
+                    </TabList>
+                  </AppBar>
+                </Grid>
 
-
-                                <TabButton sx={{textAlign: 'left', ml:1, mr:1, mt:1}} label="Theme" value="3" />
-
-                            
-                                <TabButton sx={{ml:1, mr:1, mt:1}} label="Typography" value="4" />
-                                
-                            
-                            </TabList>
-                
-                            </AppBar>
-                        
-                    </Grid>  
-
-
-
-                <Grid sx={{ minWidth: '337px', borderLeft: '1px solid', borderColor: 'border', height: '100%',  }}>
-
-                    
-                <AppBar elevation={0} position="sticky" sx={{ backgroundColor: 'inherit'}}>
+                <Grid
+                  sx={{
+                    minWidth: "337px",
+                    borderLeft: "1px solid",
+                    borderColor: "border",
+                    height: "100%",
+                    position: "sticky",
+                  }}
+                >
+                  <AppBar
+                    elevation={0}
+                    position="sticky"
+                    sx={{ backgroundColor: "inherit", position: "sticky" ,}}
+                  >
                     <TabPanel value="1">
-                        <Background BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette}  setBackgroundColorPalette={setBackgroundColorPalette} primaryJSON={primaryJSON} backgroundJSON={backgroundJSON} setBackgroundJSON={setBackgroundJSON} customPalette={customPalette} setPalette={setPalette} palette={palette}/>       
+                      <Background
+                        BackgroundPalette={BackgroundPalette}
+                        PrimaryPalette={PrimaryPalette}
+                        setBackgroundColorPalette={setBackgroundColorPalette}
+                        primaryJSON={primaryJSON}
+                        backgroundJSON={backgroundJSON}
+                        setBackgroundJSON={setBackgroundJSON}
+                        customPalette={customPalette}
+                        setPalette={setPalette}
+                        palette={palette}
+                      />
                     </TabPanel>
-                
+
                     <TabPanel value="2">
-                        <PrimaryController BackgroundPalette={BackgroundPalette} PrimaryPalette={PrimaryPalette} primaryColorPalette={primaryColorPalette} setPrimaryJSON={setPrimaryJSON} primaryJSON={primaryJSON} setPrimaryColorPalette={setPrimaryColorPalette} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                      <PrimaryController
+                        BackgroundPalette={BackgroundPalette}
+                        PrimaryPalette={PrimaryPalette}
+                        primaryColorPalette={primaryColorPalette}
+                        setPrimaryJSON={setPrimaryJSON}
+                        primaryJSON={primaryJSON}
+                        setPrimaryColorPalette={setPrimaryColorPalette}
+                        customPalette={customPalette}
+                        setPalette={setPalette}
+                        palette={palette}
+                      />
                     </TabPanel>
 
                     <TabPanel value="3">
-                        <ThemeAccordian customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                      <ThemeAccordian
+                        customPalette={customPalette}
+                        setPalette={setPalette}
+                        palette={palette}
+                      />
                     </TabPanel>
 
-                    <TabPanel value="4" >
-                        <TypographyController theme={theme} fonts={fonts} setFont={setFont} customPalette={customPalette} setPalette={setPalette} palette={palette}/>
+                    <TabPanel value="4">
+                      <TypographyController
+                        theme={theme}
+                        fonts={fonts}
+                        setFont={setFont}
+                        customPalette={customPalette}
+                        setPalette={setPalette}
+                        palette={palette}
+                      />
                     </TabPanel>
-                </AppBar>
-                    
-                    
+                  </AppBar>
                 </Grid>
-                </Grid>
-                </TabContext>
-           
-    
-            </>
-           
-        )
+              </Grid>
+            </TabContext>
+          </>
+        );
 
 }
 

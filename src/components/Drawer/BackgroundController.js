@@ -120,7 +120,7 @@ const BackgroundController = ({BackgroundPalette, backgroundJSON, setBackgroundJ
           }}
         >
           <Typography
-            sx={{ ml: 2, mt: { xs: 3 , md: 0} }}
+            sx={{ ml: 2, mt: { xs: 3, md: 0 } }}
             variant={"subtitle1"}
             color="text.secondary"
           >
@@ -372,10 +372,14 @@ const BackgroundController = ({BackgroundPalette, backgroundJSON, setBackgroundJ
 
             <Grid
               sx={{
-                p: 3,
+                
                 backgroundColor: "background.paper",
                 borderRadius: "12px",
                 width: "100%",
+                display: "flex",
+                flexWrap: "wrap",
+                p: 3,
+                
               }}
             >
               {BackgroundPalette}

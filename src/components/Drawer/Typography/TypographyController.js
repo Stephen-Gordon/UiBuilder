@@ -136,6 +136,7 @@ const TypographyController = ({theme, fonts, setFont, customPalette, setPalette,
                   {theme.typography.fontFamily}
                 </InputLabel>
                 <Select
+                  inputProps={{ "aria-label": "Without label" }}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value=""

@@ -19,14 +19,24 @@ import { alpha } from '@mui/material/styles';
 
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import useWindowWidth from "../components/useWindowWidth"
 
 const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgroundColorPalette, setPalette, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
   
-   
+    const windowWidth = useWindowWidth();
 
 
     
+    const [isVisible, setIsVisible] = useState(true);
+    const [customizeIsVisible, setCustomizeIsVisible] = useState(true);
+
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    const handleDrawerToggle = () => {
+      setMobileOpen(!mobileOpen);
+    };
+
+      
     const [customPalette, setCustomPalette] = useState([]);
 
     
@@ -36,18 +46,30 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
 
 
     useEffect(() => {
-        
-        backgroundColors = generate(backgroundJSON)
-        primaryColors = generate(primaryJSON)
+      backgroundColors = generate(backgroundJSON);
+      primaryColors = generate(primaryJSON);
 
-        setPrimaryColorPalette(primaryColors[0].colors)
-        setBackgroundColorPalette(backgroundColors[0].colors)
-        
-       
+      setPrimaryColorPalette(primaryColors[0].colors);
+      setBackgroundColorPalette(backgroundColors[0].colors);
+      console.log(windowWidth);
+       if (windowWidth > 899) {
+         setMobileOpen(false);
+       }
+       console.log(windowWidth, mobileOpen);
 
-      }, [primaryJSON, primaryColors, backgroundJSON, backgroundColors]);
+      
+    }, [
+      primaryJSON,
+      primaryColors,
+      backgroundJSON,
+      backgroundColors,
+      windowWidth,
 
+    ]);
 
+    
+   
+    
 
     const addToPalette = (e) => {
         setCustomPalette(prevState => ([
@@ -112,16 +134,6 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
     
 
     
-    const [isVisible, setIsVisible] = useState(true);
-    const [customizeIsVisible, setCustomizeIsVisible] = useState(true);
-    
-    const [mobileOpen, setMobileOpen] = useState(false);
-
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-      };
-
-      
 
     const drawerWidth = '562px'
     

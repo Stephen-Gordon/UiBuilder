@@ -54,90 +54,118 @@ const TypographyController = ({theme, fonts, setFont, customPalette, setPalette,
     
 
     return (
-        <>
-         
-         <Grid sx={{ p:3, backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px'}}>
-        
-                <Grid sx={{display: 'flex' , alignItems: 'center', mb:3 }}>
-                    <Grid container justifyContent="flex-start">
-                        <InputLabel sx={{display: 'flex', width:' 100%'}}>Primary Color</InputLabel>
-                    </Grid>
+      <>
+        <Grid
+          sx={{
+            p: 3,
+            backgroundColor: "background.paper",
+            border: "1px solid",
+            border: "0px solid",
+            borderColor: "border",
+            borderRadius: "12px",
+          }}
+        >
+          <Grid sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+            <Grid container justifyContent="flex-start">
+              <InputLabel sx={{ display: "flex", width: " 100%" }}>
+                Primary Color
+              </InputLabel>
+            </Grid>
 
-                    <Grid container justifyContent="flex-end">
-                        <Select
-                            value=''
-                            label=""
-                            name=''
-                            sx={{backgroundColor: primary}}
-                        >
-                            <Grid container justifyContent='center'>
-                                <ColorList customPalette={customPalette} setter={setPrimary}/>
-                            </Grid>
-                           
-                        </Select>
-                    </Grid>
+            <Grid container justifyContent="flex-end">
+              <Select
+                value=""
+                label=""
+                name=""
+                sx={{ backgroundColor: primary }}
+              >
+                <Grid container justifyContent="center">
+                  <ColorList
+                    customPalette={customPalette}
+                    setter={setPrimary}
+                  />
                 </Grid>
+              </Select>
+            </Grid>
+          </Grid>
 
-                <Grid sx={{borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'border', mb:3, mt:3 }}>
-                    <Grid sx={{display: 'flex' , alignItems: 'center', mb:3, mt:3 }}>
-                        <Grid container justifyContent="center">
-                            <InputLabel sx={{display: 'flex', width:' 100%'}}>Secondary Color</InputLabel>
-                        </Grid>
+          <Grid
+            sx={{
+              borderTop: "1px solid",
+              borderBottom: "1px solid",
+              borderColor: "border",
+              mb: 3,
+              mt: 3,
+            }}
+          >
+            <Grid sx={{ display: "flex", alignItems: "center", mb: 3, mt: 3 }}>
+              <Grid container justifyContent="center">
+                <InputLabel sx={{ display: "flex", width: " 100%" }}>
+                  Secondary Color
+                </InputLabel>
+              </Grid>
 
-                        <Grid container justifyContent="flex-end">
-                            <Select
-                                value=''
-                                label=""
-                                name=''
-                                sx={{backgroundColor: secondary}}
-                            >
-                                    <ColorList customPalette={customPalette} setter={setSecondary} />
-                            </Select>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                
+              <Grid container justifyContent="flex-end">
+                <Select
+                  value=""
+                  label=""
+                  name=""
+                  sx={{ backgroundColor: secondary }}
+                >
+                  <ColorList
+                    customPalette={customPalette}
+                    setter={setSecondary}
+                  />
+                </Select>
+              </Grid>
+            </Grid>
+          </Grid>
 
-                <Grid sx={{display: 'flex' , alignItems: 'center', }}>
-                    <Grid container justifyContent="flex-start">
-                        <InputLabel sx={{display: 'flex', width:' 100%'}}>Font</InputLabel>
-                    </Grid>
-                    <Grid container justifyContent="flex-end">
-                        <Select
-                            value=''
-                            name=''
-                            MenuProps={{ 
-                              
-                                sx: {
-                                    border: '0px solid #f7f7f7',
-                                    borderRadius: '12px',
-                                },
-                                PaperProps: {
-                                    sx: {
-                                        width: '250px',
-                                        border: '1px solid',
-                                        borderRadius: '12px',
-                                        borderColor: 'border'
-                                    }
-                                },
-                                
-                            }}
-                            sx={{backgroundColor: secondary}}
-                        >
-                           
-                                {FontList}
-                            
-                        </Select>
-                    </Grid>
-                </Grid>
-                
-         
-
-        
+          <Grid sx={{ display: "flex", alignItems: "center" }}>
+            <Grid container justifyContent="flex-start">
+              <InputLabel sx={{ display: "flex", width: " 100%" }}>
+                Font
+              </InputLabel>
+            </Grid>
+            <Grid container justifyContent="flex-end">
+              <FormControl fullWidth>
+                <InputLabel
+                  id="demo-simple-select-label"
+                  sx={{ color: "text.primary" }}
+                >
+                  {theme.typography.fontFamily}
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value=""
+                  name="select"
+                  label="select"
+                  MenuProps={{
+                    sx: {
+                      border: "0px solid #f7f7f7",
+                      borderRadius: "12px",
+                      width: "100%",
+                    },
+                    PaperProps: {
+                      sx: {
+                        width: "250px",
+                        border: "1px solid",
+                        borderRadius: "12px",
+                        borderColor: "border",
+                      },
+                    },
+                  }}
+                  sx={{ backgroundColor: secondary }}
+                >
+                  {FontList}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
         </Grid>
-            
-        </>
-    )
+      </>
+    );
 
 }
 

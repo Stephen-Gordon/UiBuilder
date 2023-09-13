@@ -300,6 +300,7 @@ const UI = ({ theme, palette, font }) => {
             justifyContent: "center",
             alignContent: "center",
             height: { xs: "50vh", md: "auto" },
+            m: { xs: 2, lg: 0 },
           }}
         >
           <motion.div
@@ -307,6 +308,7 @@ const UI = ({ theme, palette, font }) => {
             animate={{ backgroundColor: activeTab.bgcolor }}
             style={{
               width: "100%",
+
               mx: 2,
               my: 0,
               borderRadius: "24px",
@@ -1254,30 +1256,34 @@ const UI = ({ theme, palette, font }) => {
         </Grid>
       </Grid>
 
+      {/* CodeBlock */}
+
       <Grid
         container
         column={12}
+        maxWidth="xl"
+        justifySelf="center"
         sx={{ display: "flex" }}
         style={{
           alignContent: "center",
           justifyContent: "center",
         }}
       >
-        {/* Material UI Info Card */}
         <Grid
           item
-          xl={4}
-          lg={4}
+          xl={6}
+          lg={6}
           md={12}
-          sm={6}
+          sm={12}
           xs={12}
           sx={{ p: { xs: 1, md: 5 } }}
         >
+          {/* Material UI Info Card */}
+
           <Card
             elevation={0}
             sx={{
-              mt: 5,
-              mx: 2,
+              width: "100%",
               p: 1,
               borderRadius: "24px",
               border: "1px solid",
@@ -1326,13 +1332,23 @@ const UI = ({ theme, palette, font }) => {
               </a>
             </CardContent>
           </Card>
+        </Grid>
 
+        <Grid
+          item
+          xl={6}
+          lg={6}
+          md={12}
+          sm={12}
+          xs={12}
+          sx={{ p: { xs: 1, md: 5 } }}
+        >
           {/* How to use Card */}
           <Card
             elevation={0}
             sx={{
-              mt: 5,
-              mx: 2,
+              width: "100%",
+              height: { xs: "auto", md: "100%" },
               p: 1,
               borderRadius: "24px",
               border: "1px solid",
@@ -1340,49 +1356,57 @@ const UI = ({ theme, palette, font }) => {
               backgroundColor: "background.default",
             }}
           >
-            <CardContent>
-              <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography variant="h4" sx={{ mb: 5 }} component="div">
-                  Add theme to your Project
-                </Typography>
-                <Typography
-                  variant="h4"
-                  sx={{ mb: 5 }}
-                  component="div"
-                ></Typography>
-              </Grid>
-              <List
-                sx={{
-                  maxWidth: "100%",
-                  listStyleType: "disc",
-                  pl: 2,
-                  "& .MuiListItem-root": {
-                    display: "list-item",
-                  },
-                }}
-              >
-                <ListItem
+            <CardContent
+              sx={{
+                height: "100%",
+                display: "grid",
+                alignContent: "space-between",
+              }}
+            >
+              <Grid>
+                <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="h4" sx={{ mb: 5 }} component="div">
+                    Add theme to your Project
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    sx={{ mb: 5 }}
+                    component="div"
+                  ></Typography>
+                </Grid>
+                <List
                   sx={{
-                    display: "list-item",
-                    color: "text.secondary",
-                    width: "100%",
-                    fontSize: theme.typography.h6.fontSize,
+                    maxWidth: "100%",
+                    listStyleType: "disc",
+                    pl: 2,
+                    "& .MuiListItem-root": {
+                      display: "list-item",
+                    },
                   }}
                 >
-                  Create Theme file in your project
-                </ListItem>
+                  <ListItem
+                    sx={{
+                      display: "list-item",
+                      color: "text.secondary",
+                      width: "100%",
+                      fontSize: theme.typography.h6.fontSize,
+                    }}
+                  >
+                    Create Theme file in your project
+                  </ListItem>
 
-                <ListItem
-                  sx={{
-                    display: "list-item",
-                    color: "text.secondary",
-                    width: "100%",
-                    fontSize: theme.typography.h6.fontSize,
-                  }}
-                >
-                  Copy theme into the newly created Theme file
-                </ListItem>
-              </List>
+                  <ListItem
+                    sx={{
+                      display: "list-item",
+                      color: "text.secondary",
+                      width: "100%",
+                      fontSize: theme.typography.h6.fontSize,
+                    }}
+                  >
+                    Copy theme into the newly created Theme file
+                  </ListItem>
+                </List>
+              </Grid>
 
               <a href="https://mui.com/" target="_blank">
                 <Button
@@ -1404,13 +1428,25 @@ const UI = ({ theme, palette, font }) => {
             </CardContent>
           </Card>
         </Grid>
+      </Grid>
 
+      <Grid
+        container
+        column={12}
+        maxWidth="xl"
+        justifySelf="center"
+        sx={{ display: "flex" }}
+        style={{
+          alignContent: "center",
+          justifyContent: "center",
+        }}
+      >
         <Grid
           item
-          xl={8}
-          lg={8}
+          xl={12}
+          lg={12}
           md={12}
-          sm={6}
+          sm={12}
           xs={12}
           sx={{ p: { xs: 1, md: 5 } }}
         >

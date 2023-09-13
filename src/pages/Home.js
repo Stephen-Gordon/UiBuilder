@@ -155,7 +155,7 @@ const Home = () => {
      let theme = createTheme({
       
         typography: {
-          fontFamily: 'inter',
+          fontFamily: font,
         },
         palette: {
             border: alpha(palette.text.primary, 0.1),
@@ -241,7 +241,7 @@ const Home = () => {
             MuiOutlinedInput: {
               styleOverrides: {
                 root: {
-                  width:'50px', height:'50px', border:'0px solid', borderRadius: '12px'
+                 border:'0px solid', borderRadius: '12px'
                 },
                 notchedOutline:{
                   border: 0,

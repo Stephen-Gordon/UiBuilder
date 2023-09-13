@@ -16,7 +16,7 @@ const CodeBlocks = ({theme, font, palette}) => {
     const exampleCode = `
 const theme = createTheme({
     typography: {
-        fontFamily: ${font}
+        fontFamily: ${theme.typography.fontFamily}
     },
     palette: {
       border: alpha(palette.text.primary, 0.1),
@@ -65,7 +65,7 @@ const theme = createTheme({
 
   return (
     <>
-      <div style={{ overflow: "auto"}}>
+      <Grid sx={{ overflow: "auto", height: '667px', borderRadius: '24px' }}>
         <SyntaxHighlighter
           lineProps={{
           style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
@@ -73,6 +73,7 @@ const theme = createTheme({
           wrapLines={true} 
           codeTagProps={{
             style: {
+              height: '663px',
               fontSize: theme.typography.body1.fontSize,
               width: "100%",
               padding: "24px",
@@ -84,7 +85,7 @@ const theme = createTheme({
         >
           {exampleCode}
         </SyntaxHighlighter>
-      </div>
+      </Grid>
     </>
   );
 };

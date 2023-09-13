@@ -8,12 +8,14 @@ import {
   Card,
   CardActions,
   CardContent,
-
+  CardMedia,
+  ListItem,
+  List,
 } from "@mui/material";
 
 import { alpha } from "@mui/material";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-
+import MaterialUiLogo from "../assets/MaterialUiLogo.png";
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
 import PanoramaOutlinedIcon from "@mui/icons-material/PanoramaOutlined";
 import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
@@ -815,7 +817,6 @@ const UI = ({ theme, palette, font }) => {
         container
         column={12}
         sx={{
-          minHeight: "100vh",
           display: "flex",
           alignContent: "center",
           justifyContent: "center",
@@ -934,7 +935,7 @@ const UI = ({ theme, palette, font }) => {
       <Grid
         container
         column={12}
-        sx={{ display: "flex", backdropFilter: "blur(60px)" }}
+        sx={{ display: "flex" }}
         style={{
           minHeight: "100vh",
           alignContent: "center",
@@ -1256,14 +1257,165 @@ const UI = ({ theme, palette, font }) => {
       <Grid
         container
         column={12}
-        sx={{ display: "flex", backdropFilter: "blur(60px)" }}
+        sx={{ display: "flex" }}
         style={{
-          minHeight: "100vh",
           alignContent: "center",
           justifyContent: "center",
         }}
       >
-        <CodeBlocks theme={theme} palette={palette} font={font} />
+        {/* Material UI Info Card */}
+        <Grid
+          item
+          xl={4}
+          lg={4}
+          md={12}
+          sm={6}
+          xs={12}
+          sx={{ p: { xs: 1, md: 5 } }}
+        >
+          <Card
+            elevation={0}
+            sx={{
+              mt: 5,
+              mx: 2,
+              p: 1,
+              borderRadius: "24px",
+              border: "1px solid",
+              borderColor: "border",
+              backgroundColor: "background.default",
+            }}
+          >
+            <CardContent>
+              <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="h4" sx={{ mb: 5 }} component="div">
+                  Material Ui
+                </Typography>
+                <Typography variant="h4" sx={{ mb: 5 }} component="div">
+                  <CardMedia
+                    component="img"
+                    height="40px"
+                    width="40px"
+                    image={MaterialUiLogo}
+                  />
+                </Typography>
+              </Grid>
+
+              <Typography sx={{ mb: 2 }} color="text.secondary" variant="h6">
+                MUI offers a comprehensive suite of free UI tools to help you
+                ship new features faster. Start with Material UI, our
+                fully-loaded component library, or bring your own design system
+                to our production-ready components.
+              </Typography>
+
+              <a href="https://mui.com/" target="_blank">
+                <Button
+                  disableRipple
+                  textAlign="left"
+                  sx={{
+                    fontWeight: "400",
+                    textAlign: "left",
+                    background: "background.paper",
+                    p: 0,
+                    ":hover": { backgroundColor: "inherit" },
+                  }}
+                  variant="text"
+                  color="primary"
+                >
+                  Documentation
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* How to use Card */}
+          <Card
+            elevation={0}
+            sx={{
+              mt: 5,
+              mx: 2,
+              p: 1,
+              borderRadius: "24px",
+              border: "1px solid",
+              borderColor: "border",
+              backgroundColor: "background.default",
+            }}
+          >
+            <CardContent>
+              <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="h4" sx={{ mb: 5 }} component="div">
+                  Add theme to your Project
+                </Typography>
+                <Typography
+                  variant="h4"
+                  sx={{ mb: 5 }}
+                  component="div"
+                ></Typography>
+              </Grid>
+              <List
+                sx={{
+                  maxWidth: "100%",
+                  listStyleType: "disc",
+                  pl: 2,
+                  "& .MuiListItem-root": {
+                    display: "list-item",
+                  },
+                }}
+              >
+                <ListItem
+                  sx={{
+                    display: "list-item",
+                    color: "text.secondary",
+                    width: "100%",
+                    fontSize: theme.typography.h6.fontSize,
+                  }}
+                >
+                  Create Theme file in your project
+                </ListItem>
+
+                <ListItem
+                  sx={{
+                    display: "list-item",
+                    color: "text.secondary",
+                    width: "100%",
+                    fontSize: theme.typography.h6.fontSize,
+                  }}
+                >
+                  Copy theme into the newly created Theme file
+                </ListItem>
+              </List>
+
+              <a href="https://mui.com/" target="_blank">
+                <Button
+                  disableRipple
+                  textAlign="left"
+                  sx={{
+                    fontWeight: "400",
+                    textAlign: "left",
+                    background: "background.paper",
+                    p: 0,
+                    ":hover": { backgroundColor: "inherit" },
+                  }}
+                  variant="text"
+                  color="primary"
+                >
+                  Watch a Video
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid
+          item
+          xl={8}
+          lg={8}
+          md={12}
+          sm={6}
+          xs={12}
+          sx={{ p: { xs: 1, md: 5 } }}
+        >
+          <CodeBlocks theme={theme} palette={palette} font={font} />
+        </Grid>
       </Grid>
     </>
   );

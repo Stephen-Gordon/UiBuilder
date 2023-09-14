@@ -1,6 +1,6 @@
 import "../App.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Grid,
   Button,
@@ -19,19 +19,27 @@ import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import FormatSizeOutlinedIcon from "@mui/icons-material/FormatSizeOutlined";
 import TextFieldsOutlinedIcon from "@mui/icons-material/TextFieldsOutlined";
 import TextFormatOutlinedIcon from "@mui/icons-material/TextFormatOutlined";
-import TextGradient from "./TextGradient";  
+
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";  
 import CodeBlocks from "./CodeBlock";
 
+//svgs
+import DesignSvg from "../assets/DesignSvg.svg";
+import TabSvg01 from "../assets/TabSvg01.svg"
+import TabSvg02 from "../assets/TabSvg02.svg";
+import TabSvg03 from "../assets/TabSvg03.svg";
+
+
 const UI = ({ theme, palette, font }) => {
   
+
 
   const copyToClipboard = (e) => {
     console.log(e.target.value);
     navigator.clipboard.writeText(e.target.value);
   };
 
-  console.log(theme.typography.h3.fontSize);
+
 
   let options = {
     firstColor: theme.palette.primary.main,
@@ -43,6 +51,7 @@ const UI = ({ theme, palette, font }) => {
   let tabList = [
     {
       id: 1,
+      img: TabSvg01,
       bgcolor: alpha(theme.palette.background.paper, 1),
       icon: (
         <PaletteOutlinedIcon
@@ -53,6 +62,7 @@ const UI = ({ theme, palette, font }) => {
     },
     {
       id: 2,
+      img: TabSvg02,
       bgcolor: alpha(theme.palette.background.paper, 0.5),
       icon: (
         <PanoramaOutlinedIcon
@@ -63,6 +73,7 @@ const UI = ({ theme, palette, font }) => {
     },
     {
       id: 3,
+      img: TabSvg03,
       bgcolor: alpha(theme.palette.background.paper, 0.2),
       icon: (
         <BrushOutlinedIcon
@@ -76,7 +87,16 @@ const UI = ({ theme, palette, font }) => {
   let [activeTab, setActiveTab] = useState(tabList[0]);
 
 
-  
+  useEffect(() => {
+    console.log(activeTab);
+
+   if (activeTab == 1) {
+     setActiveTab(2);
+   }
+   console.log(activeTab);
+  }, [activeTab]);
+
+
   return (
     <>
       {/*  <Grid
@@ -115,26 +135,22 @@ const UI = ({ theme, palette, font }) => {
         justifySelf="center"
         sx={{
           zIndex: 1000,
-          alignContent: { xs: "start", md: "center" },
+          alignContent: { xs: "start", md: "end" },
+          mb: "180px",
           p: { xs: "40px", md: "0px" },
         }}
         style={{
-          minHeight: "100vh",
+          minHeight: "calc(-180px + 100vh)",
 
-          justifyContent: "center",
+          justifyContent: "",
         }}
       >
-        <Grid
-          item
-          xs={12}
-          lg={12}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
+        <Grid item xs={12} lg={12} sx={{ display: "flex", justifyContent: "" }}>
           <Typography variant="h3" color="text.secondary">
             UI Designer
           </Typography>
         </Grid>
-
+        
         <Grid
           item
           xs={8}
@@ -143,9 +159,9 @@ const UI = ({ theme, palette, font }) => {
         >
           <Typography
             variant="h2"
-            textAlign="center"
+            textAlign="left"
             sx={{
-              p: 2,
+              py: 2,
               zIndex: 1000,
               backgroundImage: `linear-gradient( to top, ${alpha(
                 theme.palette.primary.main,
@@ -162,13 +178,8 @@ const UI = ({ theme, palette, font }) => {
           </Typography>
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          lg={12}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
-          <Typography variant="h5" color="text.secondary" textAlign="center">
+        <Grid item xs={12} lg={12} sx={{ display: "flex", justifyContent: "" }}>
+          <Typography variant="h5" color="text.secondary" textAlign="">
             Create a Material UI Theme in Minutes
           </Typography>
         </Grid>
@@ -177,7 +188,7 @@ const UI = ({ theme, palette, font }) => {
           item
           xs={12}
           lg={12}
-          sx={{ display: "flex", justifyContent: "center", mt: 5 }}
+          sx={{ display: "flex", justifyContent: "", mt: 5 }}
         >
           <Button
             sx={{
@@ -214,17 +225,23 @@ const UI = ({ theme, palette, font }) => {
           xl={6}
           sx={{ display: "flex", justifyContent: "center", mb: 10 }}
         >
-          <Card
+          <Grid
             elevation={0}
             sx={{
+              backgroundColor: "none",
               width: "100%",
               height: { xs: "50vh", md: "514px" },
               mx: 2,
               my: 0,
               borderRadius: "24px",
+              border: "1px solid",
+              borderColor: "border",
               p: { xs: 2, lg: 5 },
             }}
-          ></Card>
+          >
+            <img src={DesignSvg} alt="DesignSvg" />
+           
+          </Grid>
         </Grid>
 
         <Grid
@@ -296,22 +313,26 @@ const UI = ({ theme, palette, font }) => {
             display: "flex",
             justifyContent: "center",
             alignContent: "center",
+            alignItems: 'center',
             height: { xs: "50vh", md: "auto" },
             m: { xs: 2, lg: 0 },
           }}
         >
           <motion.div
             transition={{ duration: 0.7 }}
-            animate={{ backgroundColor: activeTab.bgcolor }}
+            
             style={{
               width: "100%",
-
+              justifyContent: "center",
+              alignContent: "center",
               mx: 2,
               my: 0,
               borderRadius: "24px",
               p: { xs: 2, lg: 5 },
             }}
-          ></motion.div>
+          >
+            <img src={activeTab.img}/>
+          </motion.div>
         </Grid>
 
         <Grid
@@ -944,13 +965,13 @@ const UI = ({ theme, palette, font }) => {
           justifyContent: "start",
         }}
       >
-        <Grid sx={{display: 'flex'}}>
+        <Grid sx={{ display: "flex" }}>
           <Typography variant="h3">Get The&nbsp; </Typography>
           <Typography variant="h3" color="primary" fontWeight="bold">
             Code
           </Typography>
         </Grid>
-        <Typography variant="h5" color="text.primary" sx={{mt:2}} >
+        <Typography variant="h5" color="text.primary" sx={{ mt: 2 }}>
           Check out your custom Mui Theme below
         </Typography>
         {/* <TextGradient options={options}>Code</TextGradient> */}
@@ -1130,15 +1151,7 @@ const UI = ({ theme, palette, font }) => {
           justifyContent: "center",
         }}
       >
-        <Grid
-          item
-          xl={12}
-          lg={12}
-          md={12}
-          sm={12}
-          xs={12}
-          sx={{ p:2, mb:5 }}
-        >
+        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} sx={{ p: 2, mb: 5 }}>
           <CodeBlocks theme={theme} palette={palette} font={font} />
         </Grid>
       </Grid>

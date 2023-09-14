@@ -15,7 +15,8 @@ import { AppBar, Grid, Typography, Button } from "@mui/material";
 import styled from "@emotion/styled";
 import TypographyController from "./Drawer/Typography/TypographyController";
 import PrimaryController from "./Drawer/PrimaryController";
-
+import Box from "@mui/material/Box";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
 const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette, setPalette, fonts, setFont={setFont}, palette, setPrimaryJSON, setBackgroundColorPalette, backgroundJSON, setBackgroundJSON, primaryJSON, primaryColorPalette, setPrimaryColorPalette }) => {
 
@@ -65,7 +66,7 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                   display: "flex",
                   flexDirection: "row",
                   height: "100%",
-                  overflowX: 'hidden',
+                  overflowX: "hidden",
                   overflowY: "scroll",
                 }}
               >
@@ -111,295 +112,387 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                         value="3"
                       />
 
-                      <TabButton
-                        sx={{ ml: 1, mr: 1, mt: 1 }}
-                        label="Typography"
-                        value="4"
-                      />
+                      <TabButton sx={{ m: 1 }} label="Typography" value="4" />
                     </TabList>
 
-                    <Grid
-                      sx={{
-                        borderTop: "1px solid",
-                        borderColor: "border",
-                        mt: 3,
-                      }}
-                    ></Grid>
                     {/* Colors Buttons */}
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Primary
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
+                    <Grid>
+                      <Accordion
                         sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
+                          mt: 2,
+                          width: "100%",
+                          backgroundColor: "background.default",
+                          borderTop: "1px solid",
+                          borderBottom: "1px solid",
+                          borderColor: "border",
+                          "& .MuiAccordion-root, .Mui-expanded": {
+                            border: "0px solid",
+                            borderColor: "border",
+                          },
                         }}
                       >
-                        <Grid
+                        <AccordionSummary
                           sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "primary.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
+                            backgroundColor: "",
+                            border: "0px solid",
+                            borderColor: "border",
+                            "& .MuiAccordionSummary-content": {
+                              display: "flex",
+                              flexDirection: "row",
+                              alignItems: "",
+                              display: "flex",
+                              flexDirection: "column",
+                            },
+                            "& .MuiAccordionSummary-root, .Mui-expanded": {
+                              border: "0px solid",
+                              borderColor: "border",
+                            },
                           }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "primary.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "primary.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
-                    </Grid>
+                        >
+                          <Typography
+                            sx={{ ml: 1 }}
+                            variant="h6"
+                            fontWeight="400"
+                          >
+                            Palette
+                          </Typography>
+                          <Grid
+                            sx={{
+                              display: "flex",
+                              mt: 2,
+                              justifyContent: "space-around",
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                backgroundColor: "primary.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                            <Box
+                              sx={{
+                                backgroundColor: "secondary.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                            <Box
+                              sx={{
+                                backgroundColor: "error.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                            <Box
+                              sx={{
+                                backgroundColor: "warning.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                            <Box
+                              sx={{
+                                backgroundColor: "info.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                            <Box
+                              sx={{
+                                backgroundColor: "success.main",
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "8px",
+                              }}
+                            ></Box>
+                          </Grid>
+                        </AccordionSummary>
 
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Secondary
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
-                        }}
-                      >
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "secondary.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "secondary.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "secondary.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
-                    </Grid>
+                        <AccordionDetails>
+                          {/*     LIGHT   */}
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Primary
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "primary.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "primary.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "primary.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
 
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Error
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
-                        }}
-                      >
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "error.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "error.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "error.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
-                    </Grid>
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Secondary
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "secondary.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "secondary.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "secondary.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
 
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Warning
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
-                        }}
-                      >
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "warning.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "warning.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "warning.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
-                    </Grid>
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Error
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "error.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "error.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "error.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
 
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Info
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
-                        }}
-                      >
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "info.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "info.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "info.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
-                    </Grid>
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Warning
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "warning.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "warning.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "warning.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
 
-                    <Grid sx={{ mt: 3 }}>
-                      <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-                        Success
-                      </Typography>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          p: { xs: 1, md: 1 },
-                        }}
-                      >
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "success.light",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "success.main",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                        <Grid
-                          sx={{
-                            borderRadius: "16px",
-                            backgroundColor: "success.dark",
-                            width: "50px",
-                            minWidth: "50px",
-                            height: "50px",
-                            p: 1,
-                          }}
-                        ></Grid>
-                      </Grid>
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Info
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "info.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "info.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "info.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
+
+                          <Grid sx={{ mt: 3 }}>
+                            <Typography align="center" sx={{ mt: 1, mb: 1 }}>
+                              Success
+                            </Typography>
+                            <Grid
+                              item
+                              xs={12}
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                p: { xs: 1, md: 1 },
+                              }}
+                            >
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "success.light",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "success.main",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                              <Grid
+                                sx={{
+                                  borderRadius: "8px",
+                                  backgroundColor: "success.dark",
+                                  width: "32px",
+                                  minWidth: "32px",
+                                  height: "32px",
+                                  p: 1,
+                                }}
+                              ></Grid>
+                            </Grid>
+                          </Grid>
+                        </AccordionDetails>
+                      </Accordion>
                     </Grid>
                   </AppBar>
                 </Grid>
@@ -416,9 +509,12 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                   <AppBar
                     elevation={0}
                     position="sticky"
-                    sx={{ backgroundColor: "inherit", position: "sticky" }}
+                    sx={{
+                      backgroundColor: "inherit",
+                      position: "sticky",
+                    }}
                   >
-                    <TabPanel value="1">
+                    <TabPanel sx={{ p:2 }} value="1">
                       <Background
                         BackgroundPalette={BackgroundPalette}
                         PrimaryPalette={PrimaryPalette}
@@ -432,7 +528,7 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                       />
                     </TabPanel>
 
-                    <TabPanel value="2">
+                    <TabPanel sx={{ p:2 }} value="2">
                       <PrimaryController
                         BackgroundPalette={BackgroundPalette}
                         PrimaryPalette={PrimaryPalette}
@@ -446,7 +542,7 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                       />
                     </TabPanel>
 
-                    <TabPanel value="3">
+                    <TabPanel sx={{ p:2 }} value="3">
                       <ThemeAccordian
                         customPalette={customPalette}
                         setPalette={setPalette}
@@ -454,7 +550,7 @@ const ControllerMenu = ({BackgroundPalette, PrimaryPalette, theme, customPalette
                       />
                     </TabPanel>
 
-                    <TabPanel value="4">
+                    <TabPanel sx={{ p:2 }} value="4">
                       <TypographyController
                         theme={theme}
                         fonts={fonts}

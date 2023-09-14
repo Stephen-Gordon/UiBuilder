@@ -372,14 +372,12 @@ const BackgroundController = ({BackgroundPalette, backgroundJSON, setBackgroundJ
 
             <Grid
               sx={{
-                
+                p: 3,
                 backgroundColor: "background.paper",
                 borderRadius: "12px",
                 width: "100%",
                 display: "flex",
                 flexWrap: "wrap",
-                p: 3,
-                
               }}
             >
               {BackgroundPalette}

@@ -369,6 +369,8 @@ const PrimaryController = ({PrimaryPalette, primaryColorPalette, primaryJSON, se
               backgroundColor: "background.paper",
               borderRadius: "12px",
               width: "100%",
+              display: "flex",
+              flexWrap: "wrap",
             }}
           >
             {PrimaryPalette}

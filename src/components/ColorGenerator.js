@@ -92,16 +92,16 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
             value={c.hex}
             sx={{
               m: 1,
-              width: "50px",
-              height: "50px",
-              borderRadius: "16px",
+              width: "32px",
+              minWidth: "32px",
+              height: "32px",
+              borderRadius: "8px",
               backgroundColor: c.hex,
               "&:hover, &.Mui-hovered": {
                 backgroundColor: alpha(c.hex, 0.5),
               },
             }}
           />
-          
         );
     })
 
@@ -116,9 +116,10 @@ const ColorGenerator = ({ theme, setFont, fonts, palette, setPrimaryJSON, backgr
             value={c.hex}
             sx={{
               m: 1,
-              width: "50px",
-              height: "50px",
-              borderRadius: "16px",
+              width: "32px",
+              minWidth: "32px",
+              height: "32px",
+              borderRadius: "8px",
               backgroundColor: c.hex,
               "&:hover, &.Mui-hovered": {
                 backgroundColor: alpha(c.hex, 0.5),

@@ -29,3 +29,21 @@ pre {
 code {
   overflow: scroll !important;
 }
+
+body::-webkit-scrollbar {
+  width: 1em;
+  scrollbar-gutter: stable;
+  scrollbar-width: none;
+}
+
+
+::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+    background: #4b4b4b;
+    scrollbar-width: none;
+}
+
+body {
+  scrollbar-width: none !important;
+}

@@ -275,39 +275,39 @@ const Home = () => {
 
     
     return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
+        <motion.div
+          style={{
+            scaleY: scrollYProgress,
+            background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`,
+            height: "100px",
+            position: "fixed",
+            transformOrigin: "0%",
+            top: 0,
+            left: "0",
+            right: 0,
+          }}
+        />
 
-      <motion.div
-          style={{ scaleY: scrollYProgress, background: `linear-gradient(90deg, ${palette.secondary.main}, ${palette.primary.main})`, 
-          height: '100px', 
-          position: 'fixed', 
-          transformOrigin: '0%', 
-          top: 0, 
-          left: '0', 
-          right: 0 }}
-      /> 
-     
-      <ColorGenerator 
-          theme={theme} 
-          fonts={fonts} 
-          setFont={setFont} primaryJSON={primaryJSON} 
-          setPrimaryJSON={setPrimaryJSON }  
-          primaryColorPalette={primaryColorPalette} 
-          setPrimaryColorPalette={setPrimaryColorPalette} backgroundJSON={backgroundJSON} 
-          setBackgroundJSON={setBackgroundJSON} backgroundColorPalette={backgroundColorPalette} 
-          setBackgroundColorPalette={setBackgroundColorPalette} palette={palette}  setPalette={setPalette} 
-      />
-
-       
-       
-     
-
-    </ThemeProvider>
-    
-   
-  )
+        <ColorGenerator
+          theme={theme}
+          fonts={fonts}
+          setFont={setFont}
+          primaryJSON={primaryJSON}
+          setPrimaryJSON={setPrimaryJSON}
+          primaryColorPalette={primaryColorPalette}
+          setPrimaryColorPalette={setPrimaryColorPalette}
+          backgroundJSON={backgroundJSON}
+          setBackgroundJSON={setBackgroundJSON}
+          backgroundColorPalette={backgroundColorPalette}
+          setBackgroundColorPalette={setBackgroundColorPalette}
+          palette={palette}
+          setPalette={setPalette}
+        />
+      </ThemeProvider>
+    );
 }
 
 export default Home;

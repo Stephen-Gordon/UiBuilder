@@ -6,24 +6,21 @@ import {
   Button,
   Typography,
   Card,
-  CardActions,
   CardContent,
-  CardMedia,
   ListItem,
   List,
 } from "@mui/material";
 
 import { alpha } from "@mui/material";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import {  motion } from "framer-motion";
 import MaterialUiLogo from "../assets/MaterialUiLogo.png";
-import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
 import PanoramaOutlinedIcon from "@mui/icons-material/PanoramaOutlined";
 import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import FormatSizeOutlinedIcon from "@mui/icons-material/FormatSizeOutlined";
 import TextFieldsOutlinedIcon from "@mui/icons-material/TextFieldsOutlined";
 import TextFormatOutlinedIcon from "@mui/icons-material/TextFormatOutlined";
-
-
+import TextGradient from "./TextGradient";  
+import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";  
 import CodeBlocks from "./CodeBlock";
 
 const UI = ({ theme, palette, font }) => {
@@ -78,23 +75,21 @@ const UI = ({ theme, palette, font }) => {
 
   let [activeTab, setActiveTab] = useState(tabList[0]);
 
+
+  
   return (
     <>
-      {/*   <Grid sx={{
-                width: {xs: '100%'  md: `calc(100% - 562px)`},
-                height: '100%',
-                position: 'absolute',
-                display: 'flex',
-                justifyContent: 'center',
-                overflowX: 'hidden',
-               
-              
-               
-              
-                
-                  
-            }}>
-                <Grid
+      {/*  <Grid
+        sx={{
+          width: { xs: "100%", md: `calc(100% - 562px)` },
+          height: "100%",
+          position: "absolute",
+          display: "flex",
+          justifyContent: "center",
+          overflowX: "hidden",
+        }}
+      >
+        <Grid
                     sx={{
                         width: '100%',
                         height: '100vh',
@@ -108,16 +103,18 @@ const UI = ({ theme, palette, font }) => {
                     }}
                 >
 
-                </Grid>
+                </Grid> 
 
-            </Grid> */}
+   
+      </Grid> */}
 
       <Grid
         container
-        maxWidth="md"
+        maxWidth="lg"
         column={12}
         justifySelf="center"
         sx={{
+          zIndex: 1000,
           alignContent: { xs: "start", md: "center" },
           p: { xs: "40px", md: "0px" },
         }}
@@ -149,6 +146,7 @@ const UI = ({ theme, palette, font }) => {
             textAlign="center"
             sx={{
               p: 2,
+              zIndex: 1000,
               backgroundImage: `linear-gradient( to top, ${alpha(
                 theme.palette.primary.main,
                 1
@@ -204,7 +202,6 @@ const UI = ({ theme, palette, font }) => {
         justifySelf="center"
         sx={{ display: "flex" }}
         style={{
-          minHeight: "100vh",
           alignContent: "center",
           justifyContent: "center",
           mb: 20,
@@ -215,7 +212,7 @@ const UI = ({ theme, palette, font }) => {
           xs={12}
           lg={6}
           xl={6}
-          sx={{ display: "flex", justifyContent: "center" }}
+          sx={{ display: "flex", justifyContent: "center", mb: 10 }}
         >
           <Card
             elevation={0}
@@ -288,7 +285,7 @@ const UI = ({ theme, palette, font }) => {
         column={12}
         maxWidth="lg"
         justifySelf="center"
-        sx={{ display: "flex", mb: 10 }}
+        sx={{ display: "flex", my: 10 }}
       >
         <Grid
           item
@@ -466,9 +463,9 @@ const UI = ({ theme, palette, font }) => {
         column={12}
         maxWidth="xl"
         justifySelf="center"
-        sx={{ display: "flex" }}
+        sx={{ display: "flex", mt: 10 }}
         style={{
-          minHeight: "100vh",
+          mt: 50,
           alignContent: "center",
           justifyContent: "center",
         }}
@@ -490,7 +487,7 @@ const UI = ({ theme, palette, font }) => {
               mx: 2,
               mb: 5,
               borderRadius: "24px",
-              p: { xs: 2, lg: 5 },
+              p: { xs: 2, lg: 3 },
               border: "1px solid ",
               borderColor: "background.paper",
               ":hover": { borderColor: "border" },
@@ -502,10 +499,9 @@ const UI = ({ theme, palette, font }) => {
                 justifyContent: "flex-end",
                 alignContent: "flex-start",
                 position: "absolute",
-                inset: " -50% 0 0 50%;",
+                inset: " -50% 0 0 30%;",
                 width: "100%",
                 height: "100%",
-
                 overflow: "hidden",
               }}
             >
@@ -575,7 +571,7 @@ const UI = ({ theme, palette, font }) => {
               mx: 2,
               mb: 5,
               borderRadius: "24px",
-              p: { xs: 2, lg: 5 },
+              p: { xs: 2, lg: 3 },
               border: "1px solid ",
               borderColor: "background.paper",
               ":hover": { borderColor: "border" },
@@ -587,10 +583,9 @@ const UI = ({ theme, palette, font }) => {
                 justifyContent: "flex-end",
                 alignContent: "flex-start",
                 position: "absolute",
-                inset: " -50% 0 0 50%;",
+                inset: " -50% 0 0 30%;",
                 width: "100%",
                 height: "100%",
-
                 overflow: "hidden",
               }}
             >
@@ -657,7 +652,7 @@ const UI = ({ theme, palette, font }) => {
               m: 2,
               width: "100%",
               borderRadius: "24px",
-              p: 1,
+              p: 3,
               border: "1px solid",
               borderColor: "border",
               backgroundColor: "background.default",
@@ -713,7 +708,7 @@ const UI = ({ theme, palette, font }) => {
               m: 2,
               width: "100%",
               borderRadius: "24px",
-              p: 1,
+              p: 3,
               border: "1px solid",
               borderColor: "border",
               backgroundColor: "background.default",
@@ -769,7 +764,7 @@ const UI = ({ theme, palette, font }) => {
               m: 2,
               width: "100%",
               borderRadius: "24px",
-              p: 1,
+              p: 3,
               border: "1px solid",
               borderColor: "border",
               backgroundColor: "background.default",
@@ -813,7 +808,7 @@ const UI = ({ theme, palette, font }) => {
 
       {/* Cards */}
 
-      <Grid
+      {/* <Grid
         maxWidth="lg"
         justifySelf="center"
         container
@@ -822,7 +817,7 @@ const UI = ({ theme, palette, font }) => {
           display: "flex",
           alignContent: "center",
           justifyContent: "center",
-          pt: { xs: "130px", lg: 0 },
+          mt: 4,
         }}
       >
         <Grid
@@ -837,10 +832,10 @@ const UI = ({ theme, palette, font }) => {
             sx={{
               minWidth: "0px",
               m: 2,
-              maxWidth: "514px",
+              maxWidth: "auto",
               borderRadius: "24px",
               backgroundColor: "background.default",
-              p: { xs: 2, lg: 5 },
+              p: { xs: 2, lg: 3 },
               border: "1px solid",
               borderColor: "border",
             }}
@@ -890,10 +885,10 @@ const UI = ({ theme, palette, font }) => {
             sx={{
               minWidth: "0px",
               m: 2,
-              maxWidth: "514px",
+              maxWidth: "auto",
               borderRadius: "24px",
               backgroundColor: "background.default",
-              p: { xs: 2, lg: 5 },
+              p: { xs: 2, lg: 3 },
               border: "1px solid",
               borderColor: "border",
             }}
@@ -931,333 +926,35 @@ const UI = ({ theme, palette, font }) => {
             </CardActions>
           </Card>
         </Grid>
-      </Grid>
+      </Grid> */}
       {/* Paper cards */}
 
+      {/* CodeBlock */}
       <Grid
         container
         column={12}
-        sx={{ display: "flex" }}
-        style={{
-          minHeight: "100vh",
+        maxWidth="xl"
+        justifySelf="center"
+        sx={{
+          mt: 15,
+          px: 2,
+          pb: 2,
+          display: "grid",
           alignContent: "center",
-          justifyContent: "center",
+          justifyContent: "start",
         }}
       >
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Primary
+        <Grid sx={{display: 'flex'}}>
+          <Typography variant="h3">Get The&nbsp; </Typography>
+          <Typography variant="h3" color="primary" fontWeight="bold">
+            Code
           </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "primary.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "primary.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "primary.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
         </Grid>
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Secondary
-          </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "secondary.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "secondary.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "secondary.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Error
-          </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "error.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "error.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "error.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Warning
-          </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "warning.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "warning.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "warning.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Info
-          </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "info.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "info.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "info.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={6}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
-          <Typography align="center" sx={{ mt: 1, mb: 1 }}>
-            Success
-          </Typography>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "success.light",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "success.main",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-            <Button
-              variant="contained"
-              sx={{
-                m: 1,
-                backgroundColor: "success.dark",
-                maxWidth: "100px",
-                maxHeight: "100px",
-                minHeight: "40px",
-              }}
-            ></Button>
-          </Grid>
-        </Grid>
+        <Typography variant="h5" color="text.primary" sx={{mt:2}} >
+          Check out your custom Mui Theme below
+        </Typography>
+        {/* <TextGradient options={options}>Code</TextGradient> */}
       </Grid>
-
-      {/* CodeBlock */}
-
       <Grid
         container
         column={12}
@@ -1269,15 +966,7 @@ const UI = ({ theme, palette, font }) => {
           justifyContent: "center",
         }}
       >
-        <Grid
-          item
-          xl={6}
-          lg={6}
-          md={12}
-          sm={12}
-          xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
-        >
+        <Grid item xl={6} lg={6} md={12} sm={12} xs={12} sx={{ p: 2 }}>
           {/* Material UI Info Card */}
 
           <Card
@@ -1297,12 +986,12 @@ const UI = ({ theme, palette, font }) => {
                   Material Ui
                 </Typography>
                 <Typography variant="h4" sx={{ mb: 5 }} component="div">
-                  <CardMedia
+                  {/*   <CardMedia
                     component="img"
                     height="40px"
                     width="40px"
                     image={MaterialUiLogo}
-                  />
+                  /> */}
                 </Typography>
               </Grid>
 
@@ -1341,7 +1030,7 @@ const UI = ({ theme, palette, font }) => {
           md={12}
           sm={12}
           xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
+          sx={{ p: { xs: 2, md: 2 } }}
         >
           {/* How to use Card */}
           <Card
@@ -1448,7 +1137,7 @@ const UI = ({ theme, palette, font }) => {
           md={12}
           sm={12}
           xs={12}
-          sx={{ p: { xs: 1, md: 5 } }}
+          sx={{ p:2, mb:5 }}
         >
           <CodeBlocks theme={theme} palette={palette} font={font} />
         </Grid>

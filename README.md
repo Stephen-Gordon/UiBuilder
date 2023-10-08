@@ -38,11 +38,13 @@ UiBuilder is a web application is as a hobby project built to help users design,
 
 ## Connect With Me
 
-- [Stephen Gordon](https://www.linkedin.com/in/ste-gordon/)
+- LinkedIn: [Stephen Gordon](https://www.linkedin.com/in/ste-gordon/)
 - [Portfolio](https://www.stephengordon.ie)
 
-
-
+## Technologies / Frameworks
+- React
+- Material UI 
+- [Colorbox](https://kvyn.medium.com/introducing-the-new-colorbox-e0109c021729)
 
 </body>
 </html>

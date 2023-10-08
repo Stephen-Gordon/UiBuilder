@@ -21,8 +21,17 @@
 	<li>Start the application using <code>npm start</code>.</li>
 </ol>
 
-
+<div style="display: flex; justify-content: center;">
 <img src="./src/assets/colors.png" />
+<img src="./src/assets/colors2.png" />
+
+</div>
+<div style="display: flex; justify-content: center;">
+<img src="./src/assets/colorsphone1.png" />
+<img src="./src/assets/colorsphone2.png" />
+
+</div>
+
 
 </body>
 </html>

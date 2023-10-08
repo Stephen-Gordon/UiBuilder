@@ -21,7 +21,7 @@
 	<li>Start the application using <code>npm start</code>.</li>
 </ol>
 
-<div style="display: flex; justify-content: center;">
+<!-- <div style="display: flex; justify-content: center;">
 <img src="./src/assets/colors.png" />
 <img src="./src/assets/colors2.png" />
 
@@ -30,8 +30,17 @@
 <img src="./src/assets/colorsphone1.png" />
 <img src="./src/assets/colorsphone2.png" />
 
-</div>
+</div> -->
 
+<p align="center">
+  <img src="./src/assets/colors.png" width="400" />
+  <img src="./src/assets/colors2.png" width="400" />
+</p>
+
+<p align="center">
+  <img src="./src/assets/colorsphone1.png" width="200" />
+  <img src="./src/assets/colorsphone2.png" width="200" />
+</p>
 
 </body>
 </html>

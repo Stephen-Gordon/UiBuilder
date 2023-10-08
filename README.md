@@ -21,5 +21,8 @@
 	<li>Start the application using <code>npm start</code>.</li>
 </ol>
 
+
+<img src="/assets/colors.png" />
+
 </body>
 </html>

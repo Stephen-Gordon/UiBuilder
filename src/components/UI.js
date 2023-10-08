@@ -150,7 +150,7 @@ const UI = ({ theme, palette, font }) => {
             UI Designer
           </Typography>
         </Grid>
-        
+
         <Grid
           item
           xs={8}
@@ -240,7 +240,6 @@ const UI = ({ theme, palette, font }) => {
             }}
           >
             <img src={DesignSvg} alt="DesignSvg" />
-           
           </Grid>
         </Grid>
 
@@ -313,14 +312,16 @@ const UI = ({ theme, palette, font }) => {
             display: "flex",
             justifyContent: "center",
             alignContent: "center",
-            alignItems: 'center',
+            alignItems: "center",
             height: { xs: "50vh", md: "auto" },
             m: { xs: 2, lg: 0 },
           }}
         >
           <motion.div
             transition={{ duration: 0.7 }}
-            
+            initial={{ opacity: 0 }}  
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }} //
             style={{
               width: "100%",
               justifyContent: "center",
@@ -331,7 +332,7 @@ const UI = ({ theme, palette, font }) => {
               p: { xs: 2, lg: 5 },
             }}
           >
-            <img src={activeTab.img}/>
+            <img src={activeTab.img} />
           </motion.div>
         </Grid>
 

@@ -22,7 +22,7 @@
 </ol>
 
 
-<img src="/assets/colors.png" />
+<img src="./src/assets/colors.png" />
 
 </body>
 </html>

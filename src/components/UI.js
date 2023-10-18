@@ -28,6 +28,14 @@ import DesignSvg from "../assets/DesignSvg.svg";
 import TabSvg01 from "../assets/TabSvg01.svg"
 import TabSvg02 from "../assets/TabSvg02.svg";
 import TabSvg03 from "../assets/TabSvg03.svg";
+import Buttons from "./MuiComponents/Buttons";
+
+import CheckboxLabels from "./MuiComponents/CheckboxLabels";
+import BasicSelect from "./MuiComponents/BasicSelect";
+import BasicAccordion from "./MuiComponents/Accordian";
+import ControlledAccordions from "./MuiComponents/Accordian";
+import ResponsiveAppBar from "./MuiComponents/ResponsiveAppBar";
+
 
 
 const UI = ({ theme, palette, font }) => {
@@ -127,7 +135,57 @@ const UI = ({ theme, palette, font }) => {
 
    
       </Grid> */}
+      <Grid
+        container
+        maxWidth="lg"
+        column={12}
+        justifySelf="center"
+        sx={{
+          alignContent: "start",
+          display: "grid",
+          p: 2,
+        }}
+        style={{
+          minHeight: "100vh",
+          justifyContent: "",
+        }}
+      >
+        <Card
+          elevation={0}
+          sx={{
+            width: "100%",
+            borderRadius: "24px",
+            p: 2,
+            mb: 5,
+            border: "1px solid",
+            borderColor: "border",
+            backgroundColor: "background.default",
+          }}
+        >
+          <Buttons />
+        </Card>
 
+        <CheckboxLabels />
+
+        <Card
+          elevation={0}
+          sx={{
+            width: "100%",
+            borderRadius: "24px",
+            p: 2,
+            mb: 5,
+            border: "1px solid",
+            borderColor: "border",
+            backgroundColor: "background.default",
+          }}
+        >
+          <BasicSelect />
+        </Card>
+
+        <ControlledAccordions />
+
+        <ResponsiveAppBar />
+      </Grid>
       <Grid
         container
         maxWidth="lg"
@@ -319,7 +377,7 @@ const UI = ({ theme, palette, font }) => {
         >
           <motion.div
             transition={{ duration: 0.7 }}
-            initial={{ opacity: 0 }}  
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }} //
             style={{

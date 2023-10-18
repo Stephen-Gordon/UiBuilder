@@ -35,6 +35,7 @@ import BasicSelect from "./MuiComponents/BasicSelect";
 import BasicAccordion from "./MuiComponents/Accordian";
 import ControlledAccordions from "./MuiComponents/Accordian";
 import ResponsiveAppBar from "./MuiComponents/ResponsiveAppBar";
+import BasicCard from "./MuiComponents/BasicCard";
 
 
 
@@ -185,6 +186,7 @@ const UI = ({ theme, palette, font }) => {
         <ControlledAccordions />
 
         <ResponsiveAppBar />
+        <BasicCard/>
       </Grid>
       <Grid
         container
